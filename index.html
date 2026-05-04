@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Ali Siddiqui — Technical Content Strategist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0f0e0d;
+    --ink-2: #3a3835;
+    --ink-3: #7a7671;
+    --ink-4: #b0aca6;
+    --paper: #f7f4ef;
+    --paper-2: #ede9e2;
+    --paper-3: #e2ddd5;
+    --accent: #c85a2a;
+    --accent-light: #f0e6df;
+    --teal: #1a6b5a;
+    --teal-light: #e0ede9;
+    --rule: #d4cfc8;
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--accent-light); color: var(--accent); }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(247, 244, 239, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 17px;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ink-3);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  .nav-cta {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent) !important;
+    border: 1px solid var(--accent);
+    padding: 5px 14px;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s !important;
+  }
+
+  .nav-cta:hover {
+    background: var(--accent) !important;
+    color: #fff !important;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 140px 2rem 80px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5.5vw, 62px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    max-width: 780px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    color: var(--ink-2);
+    max-width: 560px;
+    line-height: 1.65;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--ink-2); transform: translateY(-1px); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--ink-2);
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-secondary:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* STATS STRIP */
+  .stats-strip {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2rem;
+  }
+
+  .stats-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 2rem;
+  }
+
+  .stat { }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 36px;
+    line-height: 1;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .stat-num span { color: var(--accent); font-style: italic; }
+
+  .stat-desc {
+    font-size: 13px;
+    color: rgba(247,244,239,0.55);
+    line-height: 1.4;
+    font-weight: 300;
+  }
+
+  /* SECTION WRAPPER */
+  .section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 80px 2rem;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-4);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(26px, 3.5vw, 38px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 2.5rem;
+  }
+
+  hr.rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 0;
+  }
+
+  /* WORK GRID */
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .work-card {
+    background: var(--paper);
+    padding: 2rem;
+    text-decoration: none;
+    display: block;
+    transition: background 0.2s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .work-card::after {
+    content: '→';
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    font-size: 18px;
+    color: var(--ink-4);
+    transition: transform 0.2s, color 0.2s;
+  }
+
+  .work-card:hover { background: var(--paper-2); }
+  .work-card:hover::after { transform: translate(3px, -3px); color: var(--accent); }
+
+  .work-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 1rem;
+  }
+
+  .tag-strategy { background: var(--accent-light); color: var(--accent); }
+  .tag-docs { background: var(--teal-light); color: var(--teal); }
+  .tag-seo { background: #e8e4f5; color: #4a3f8a; }
+  .tag-iot { background: #faeeda; color: #633806; }
+
+  .work-card h3 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+
+  .work-card p {
+    font-size: 14px;
+    color: var(--ink-3);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+  }
+
+  .work-meta {
+    font-size: 12px;
+    color: var(--ink-4);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .work-meta-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--ink-4);
+    display: inline-block;
+  }
+
+  /* FEATURED CASE STUDY */
+  .featured-case {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3rem;
+    margin: 0 2rem;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 600px) {
+    .featured-case { margin: 0 1rem; padding: 2rem 1.5rem; }
+  }
+
+  .featured-case .section-label { color: rgba(247,244,239,0.4); }
+
+  .featured-case h2 {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 3vw, 32px);
+    line-height: 1.2;
+    color: #fff;
+    margin: 0.5rem 0 1.5rem;
+    letter-spacing: -0.02em;
+    max-width: 600px;
+  }
+
+  .case-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  @media (max-width: 640px) {
+    .case-body { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+
+  .case-block-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(247,244,239,0.4);
+    margin-bottom: 0.5rem;
+  }
+
+  .case-block-text {
+    font-size: 15px;
+    color: rgba(247,244,239,0.8);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  .case-results {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(247,244,239,0.12);
+    flex-wrap: wrap;
+  }
+
+  .case-result-item .num {
+    font-family: var(--font-display);
+    font-size: 30px;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .case-result-item .num em { font-style: italic; color: var(--accent); }
+
+  .case-result-item .label {
+    font-size: 12px;
+    color: rgba(247,244,239,0.45);
+    font-weight: 300;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  @media (max-width: 680px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  .about-left {}
+
+  .about-name {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+
+  .about-role {
+    font-size: 14px;
+    color: var(--ink-3);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .about-initials {
+    width: 80px;
+    height: 80px;
+    background: var(--ink);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 28px;
+    color: var(--paper);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .about-detail {
+    font-size: 13px;
+    color: var(--ink-3);
+    line-height: 1.6;
+    margin-bottom: 0.4rem;
+    display: flex;
+    gap: 8px;
+  }
+
+  .about-detail strong {
+    font-weight: 500;
+    color: var(--ink-2);
+    min-width: 70px;
+  }
+
+  .about-right p {
+    font-size: 16px;
+    color: var(--ink-2);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+
+  .about-right p:last-of-type { margin-bottom: 1.5rem; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .skill-group { }
+
+  .skill-group-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-4);
+    margin-bottom: 6px;
+  }
+
+  .skill-list {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* EXPERIENCE */
+  .exp-list { }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2rem;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .exp-item:first-child { border-top: 1px solid var(--rule); }
+
+  @media (max-width: 600px) {
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+
+  .exp-left {}
+
+  .exp-date {
+    font-size: 12px;
+    color: var(--ink-4);
+    font-weight: 300;
+    margin-bottom: 4px;
+  }
+
+  .exp-company {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-2);
+  }
+
+  .exp-loc {
+    font-size: 12px;
+    color: var(--ink-4);
+    font-weight: 300;
+  }
+
+  .exp-right {}
+
+  .exp-role {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+  }
+
+  .exp-desc {
+    font-size: 14px;
+    color: var(--ink-3);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  .exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 0.75rem;
+  }
+
+  .exp-tag {
+    font-size: 11px;
+    padding: 2px 9px;
+    background: var(--paper-2);
+    border-radius: 2px;
+    color: var(--ink-3);
+    border: 1px solid var(--paper-3);
+  }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--paper-2);
+    border-top: 1px solid var(--rule);
+  }
+
+  .contact-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 80px 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (max-width: 640px) {
+    .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  .contact-inner h2 {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 3.5vw, 38px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .contact-inner h2 em { color: var(--accent); font-style: italic; }
+
+  .contact-sub {
+    font-size: 15px;
+    color: var(--ink-3);
+    font-weight: 300;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--ink-2);
+    font-size: 14px;
+    transition: color 0.2s;
+    font-weight: 300;
+  }
+
+  .contact-link:hover { color: var(--accent); }
+
+  .contact-link-icon {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: var(--paper);
+    font-size: 13px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: rgba(247,244,239,0.4);
+    text-align: center;
+    padding: 1.5rem 2rem;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.03em;
+  }
+
+  /* MODAL / CASE OVERLAY */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15,14,13,0.7);
+    z-index: 200;
+    overflow-y: auto;
+    padding: 2rem;
+  }
+
+  .modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+
+  .modal {
+    background: var(--paper);
+    max-width: 720px;
+    width: 100%;
+    border-radius: 2px;
+    padding: 3rem;
+    position: relative;
+    margin: auto;
+  }
+
+  @media (max-width: 600px) { .modal { padding: 2rem 1.5rem; } }
+
+  .modal-close {
+    position: absolute;
+    top: 1.5rem; right: 1.5rem;
+    width: 32px; height: 32px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    background: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    color: var(--ink-3);
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .modal-close:hover { background: var(--paper-2); color: var(--ink); }
+
+  .modal-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 1rem;
+  }
+
+  .modal h2 {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 3vw, 30px);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .modal-company {
+    font-size: 13px;
+    color: var(--ink-4);
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  .modal-section { margin-bottom: 1.75rem; }
+
+  .modal-section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-4);
+    margin-bottom: 0.5rem;
+  }
+
+  .modal-section p {
+    font-size: 15px;
+    color: var(--ink-2);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .modal-results {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 1.5rem;
+    background: var(--paper-2);
+    border-radius: 2px;
+    margin-top: 1.5rem;
+  }
+
+  .modal-result-item .r-num {
+    font-family: var(--font-display);
+    font-size: 26px;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+
+  .modal-result-item .r-label {
+    font-size: 12px;
+    color: var(--ink-3);
+    font-weight: 300;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up {
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.35s; }
+  .delay-4 { animation-delay: 0.5s; }
+
+  /* MOBILE NAV */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 20px;
+    height: 1.5px;
+    background: var(--ink);
+  }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Ali Siddiqui</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+  </ul>
+  <button class="nav-hamburger" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'; document.querySelector('.nav-links').style.flexDirection = 'column'; document.querySelector('.nav-links').style.position = 'absolute'; document.querySelector('.nav-links').style.top = '56px'; document.querySelector('.nav-links').style.left = '0'; document.querySelector('.nav-links').style.right = '0'; document.querySelector('.nav-links').style.background = 'var(--paper)'; document.querySelector('.nav-links').style.padding = '1rem 2rem'; document.querySelector('.nav-links').style.borderBottom = '1px solid var(--rule)';" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow fade-up">Technical Content Strategist</div>
+  <h1 class="fade-up delay-1">I turn technical complexity into content that <em>converts.</em></h1>
+  <p class="hero-sub fade-up delay-2">Physics postgraduate. Documentation writer. SEO strategist. I create content systems for SaaS, WordPress ecosystems, and technical teams — and I understand what I'm writing about.</p>
+  <div class="hero-actions fade-up delay-3">
+    <a href="#work" class="btn-primary">See my work ↓</a>
+    <a href="#contact" class="btn-secondary">Available for remote contracts</a>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip fade-up delay-4">
+  <div class="stats-inner">
+    <div class="stat">
+      <div class="stat-num">1.24<span>M</span></div>
+      <div class="stat-desc">organic impressions driven<br>in 7 months</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">17.3<span>K</span></div>
+      <div class="stat-desc">clicks from SEO-led<br>content strategy</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5<span>+</span></div>
+      <div class="stat-desc">years building content<br>systems across industries</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">85<span>K</span></div>
+      <div class="stat-desc">audience growth across<br>ghostwritten publications</div>
+    </div>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- WORK -->
+<section class="section" id="work">
+  <div class="section-label">Selected work</div>
+  <div class="section-title">Projects & case studies</div>
+
+  <div class="work-grid">
+    <div class="work-card" onclick="openModal('alliance')">
+      <span class="work-tag tag-strategy">Content strategy</span>
+      <h3>Building a shipping brand's content engine from scratch</h3>
+      <p>Designed and executed a full-funnel content strategy for Alliance Shipping — from zero to 1.24M impressions in 7 months.</p>
+      <div class="work-meta">
+        <span>Alliance Shipping</span>
+        <span class="work-meta-dot"></span>
+        <span>Dubai</span>
+        <span class="work-meta-dot"></span>
+        <span>2024–2026</span>
+      </div>
+    </div>
+
+    <div class="work-card" onclick="openModal('objects')">
+      <span class="work-tag tag-docs">Documentation</span>
+      <h3>Plugin documentation users actually read</h3>
+      <p>Writing technical documentation, onboarding guides and feature tutorials for WordPress plugins — simplifying complex features for real users.</p>
+      <div class="work-meta">
+        <span>Objects</span>
+        <span class="work-meta-dot"></span>
+        <span>WordPress ecosystem</span>
+        <span class="work-meta-dot"></span>
+        <span>2026–present</span>
+      </div>
+    </div>
+
+    <div class="work-card" onclick="openModal('ghostwriting')">
+      <span class="work-tag tag-seo">SEO & ghostwriting</span>
+      <h3>100+ high-ranking articles across diverse niches</h3>
+      <p>Ghostwritten blogs and articles that consistently ranked on Google — achieving 92% on-time delivery and contributing to 85K+ audience growth.</p>
+      <div class="work-meta">
+        <span>Medium (remote)</span>
+        <span class="work-meta-dot"></span>
+        <span>2020–2024</span>
+      </div>
+    </div>
+
+    <div class="work-card" onclick="openModal('iot')">
+      <span class="work-tag tag-iot">Technical / IoT</span>
+      <h3>Sensor documentation for a biotech hardware project</h3>
+      <p>Configured, tested and documented biosensor systems for a Chinese biotech company — bridging engineering and clear technical communication.</p>
+      <div class="work-meta">
+        <span>JANUS Biotechnology</span>
+        <span class="work-meta-dot"></span>
+        <span>Guangdong, China</span>
+        <span class="work-meta-dot"></span>
+        <span>2024</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED CASE STUDY -->
+<div class="featured-case">
+  <div class="section-label">Featured case study</div>
+  <h2>From zero to 1.24M impressions: the Alliance Shipping content strategy</h2>
+  <div class="case-body">
+    <div>
+      <div class="case-block-label">The challenge</div>
+      <div class="case-block-text">Alliance Shipping had no established content presence. The goal was to build topical authority in the logistics and shipping niche from scratch — aligned with CEO vision and lead-generation targets — without a large budget or team.</div>
+    </div>
+    <div>
+      <div class="case-block-label">The approach</div>
+      <div class="case-block-text">I designed a full-funnel content pipeline: topic clustering, keyword mapping, E-E-A-T frameworks, GMB optimisation, and landing pages. I built editorial SOPs, managed in-house and freelance writers, and owned strategy from ideation to performance analysis.</div>
+    </div>
+  </div>
+  <div class="case-results">
+    <div class="case-result-item">
+      <div class="num">1.24<em>M</em></div>
+      <div class="label">impressions in 7 months</div>
+    </div>
+    <div class="case-result-item">
+      <div class="num">17.3<em>K</em></div>
+      <div class="label">organic clicks</div>
+    </div>
+    <div class="case-result-item">
+      <div class="num">Full</div>
+      <div class="label">funnel coverage built</div>
+    </div>
+    <div class="case-result-item">
+      <div class="num">E-E-A-T</div>
+      <div class="label">framework implemented</div>
+    </div>
+  </div>
+</div>
+
+<hr class="rule" style="margin-top: 0;">
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-label">About</div>
+  <div class="about-grid">
+    <div class="about-left">
+      <div class="about-initials">AS</div>
+      <div class="about-name">Muhammad Ali Siddiqui</div>
+      <div class="about-role">Technical Content Strategist</div>
+      <div class="about-detail"><strong>Based</strong> Karachi, Pakistan</div>
+      <div class="about-detail"><strong>Available</strong> Remote, worldwide</div>
+      <div class="about-detail"><strong>Education</strong> MSc Applied Physics, University of Karachi</div>
+      <div class="about-detail"><strong>Languages</strong> English (C1), Urdu (native)</div>
+
+      <div class="skills-grid" style="margin-top: 1.5rem;">
+        <div class="skill-group">
+          <div class="skill-group-label">Content</div>
+          <div class="skill-list">Technical writing<br>SEO strategy<br>Documentation<br>Content systems<br>E-E-A-T</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Tools</div>
+          <div class="skill-list">Ahrefs · Semrush<br>SurferSEO<br>WordPress<br>Google Search Console<br>ChatGPT · Claude</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Technical</div>
+          <div class="skill-list">Python basics<br>Arduino / IoT<br>PLC systems<br>Sensor integration<br>MATLAB</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Certifications</div>
+          <div class="skill-list">Cybersecurity (U of London)<br>Python (Google)<br>Intro to AI (IBM)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-right">
+      <p>I'm a technical content strategist with an unusual background: an MSc in Applied Physics, hands-on experience with sensor systems and hardware, and a content career spanning SaaS, logistics, WordPress ecosystems, and technical documentation.</p>
+      <p>That combination means I don't just write well — I understand the systems I'm writing about. When I document a plugin feature or write for an engineering audience, I'm working from real technical literacy, not surface-level research.</p>
+      <p>My strongest skill isn't any single format. It's building content systems — the strategy, structure, editorial workflows, and performance loops that turn individual pieces into compounding organic growth.</p>
+      <p>I'm currently working as a Content Producer at Objects in Karachi, writing documentation and tutorials for WordPress plugins. I'm actively seeking remote contracts with SaaS companies, developer tool teams, and technical product organisations.</p>
+      <a href="#contact" class="btn-secondary" style="display: inline-flex;">Work with me →</a>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="section-label">Experience</div>
+  <div class="section-title">Where I've worked</div>
+
+  <div class="exp-list">
+
+    <div class="exp-item">
+      <div class="exp-left">
+        <div class="exp-date">Apr 2026 – Present</div>
+        <div class="exp-company">Objects</div>
+        <div class="exp-loc">Karachi, Pakistan</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Content Producer</div>
+        <div class="exp-desc">Writing technical documentation, onboarding guides and feature tutorials for WordPress plugins. Collaborating with developers to ensure technical accuracy. Optimising product pages and knowledge base content for search visibility and user task completion.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">WordPress</span>
+          <span class="exp-tag">Technical docs</span>
+          <span class="exp-tag">SEO</span>
+          <span class="exp-tag">Plugin content</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-left">
+        <div class="exp-date">Oct 2024 – Mar 2026</div>
+        <div class="exp-company">Alliance Shipping</div>
+        <div class="exp-loc">Dubai (remote)</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Content Manager <span style="font-weight:300; color: var(--ink-4); font-size: 13px;">↑ promoted from Senior Content Writer</span></div>
+        <div class="exp-desc">Built and owned the full content strategy from scratch — driving 1.24M impressions and 17.3K clicks in 7 months. Designed scalable pipelines across blogs, service pages, landing pages and GMB listings. Managed in-house and freelance writers; established editorial SOPs, QA workflows and brand voice guidelines. Implemented E-E-A-T frameworks to build topical authority across the logistics niche.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Content strategy</span>
+          <span class="exp-tag">SEO</span>
+          <span class="exp-tag">E-E-A-T</span>
+          <span class="exp-tag">Team management</span>
+          <span class="exp-tag">GMB</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-left">
+        <div class="exp-date">Jan – Oct 2024</div>
+        <div class="exp-company">Divinatory Solutions</div>
+        <div class="exp-loc">Karachi, Pakistan</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Technical Content Writer</div>
+        <div class="exp-desc">Produced technical documentation including process guides, RFPs, and fuel systems manuals. Created ATS-optimised CVs with measurable impact on interview callback rates. Developed interactive client presentations and delivered a session on content formatting best practices.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Technical writing</span>
+          <span class="exp-tag">Documentation</span>
+          <span class="exp-tag">RFPs</span>
+          <span class="exp-tag">CV writing</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-left">
+        <div class="exp-date">Jan – Aug 2024</div>
+        <div class="exp-company">JANUS Biotechnology</div>
+        <div class="exp-loc">Guangdong, China (remote)</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Project Assistant</div>
+        <div class="exp-desc">Configured and tested biosensor hardware for a Chinese biotech company. Documented test results, reported findings to the project lead, and supported cross-timezone technical troubleshooting. Applied physics background directly in a real hardware environment.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Sensor systems</span>
+          <span class="exp-tag">Hardware testing</span>
+          <span class="exp-tag">Technical documentation</span>
+          <span class="exp-tag">IoT</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-left">
+        <div class="exp-date">Sep 2021 – Jan 2023</div>
+        <div class="exp-company">HiQain</div>
+        <div class="exp-loc">Remote</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Web Content Writer (part-time)</div>
+        <div class="exp-desc">Researched and produced SEO-driven web content for a handyman services company. Improved content structure, internal linking and crawlability. Maintained brand voice alignment across all content.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">SEO writing</span>
+          <span class="exp-tag">On-page optimisation</span>
+          <span class="exp-tag">Web content</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div>
+      <h2>Let's work <em>together.</em></h2>
+      <p class="contact-sub">I'm open to remote contracts and full-time roles with SaaS companies, WordPress plugin teams, developer tool organisations, and technical product companies worldwide.</p>
+      <a href="mailto:muhammadsiddiqui111@gmail.com" class="btn-primary" style="display: inline-flex;">Send an email →</a>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:muhammadsiddiqui111@gmail.com" class="contact-link">
+        <div class="contact-link-icon">@</div>
+        muhammadsiddiqui111@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/malisid-content-writer/" target="_blank" class="contact-link">
+        <div class="contact-link-icon">in</div>
+        linkedin.com/in/malisid-content-writer
+      </a>
+      <a href="tel:+923452300197" class="contact-link">
+        <div class="contact-link-icon">✆</div>
+        +92 345 2300197
+      </a>
+      <a href="https://github.com/alisiddiqui" target="_blank" class="contact-link">
+        <div class="contact-link-icon" style="font-size: 11px; font-weight: 500;">gh</div>
+        github.com/alisiddiqui
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 2026 Muhammad Ali Siddiqui — Technical Content Strategist, Karachi
+</footer>
+
+<!-- CASE STUDY MODALS -->
+<div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this) closeModal()">
+  <div class="modal" id="modal-content">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+const cases = {
+  alliance: {
+    tag: '<span class="modal-tag tag-strategy">Content strategy</span>',
+    title: 'Building a shipping brand\'s content engine from scratch',
+    company: 'Alliance Shipping · Dubai · Oct 2024 – Mar 2026',
+    sections: [
+      { label: 'The challenge', text: 'Alliance Shipping had no established content presence or organic search visibility. The brief was to build topical authority in the logistics and shipping niche from scratch, aligned with the CEO\'s brand vision and the company\'s lead-generation goals — without a large team or external agency budget.' },
+      { label: 'My approach', text: 'I designed a full-funnel content strategy: starting with keyword research and competitor analysis, moving into topic clustering and search intent mapping, and then building scalable editorial pipelines for blogs, service pages, landing pages, and Google My Business listings. I hired and managed in-house and freelance writers, established SOPs and QA workflows, and implemented E-E-A-T frameworks to build credibility and topical authority.' },
+      { label: 'The result', text: 'In 7 months, the strategy drove 1.24 million organic impressions and 17,300 clicks — entirely through search-led content with no paid media. The content system I built continued running after my promotion, with the pipelines and editorial guidelines I created still in place.' },
+      { label: 'What I\'d do differently', text: 'I\'d have invested earlier in building out the pillar page architecture. We started with individual blog posts and layered structure in later — going pillar-first would have compounded authority faster in the first 3 months.' }
+    ],
+    results: [
+      { num: '1.24M', label: 'impressions in 7 months' },
+      { num: '17.3K', label: 'organic clicks' },
+      { num: '0→full', label: 'funnel coverage built' },
+    ]
+  },
+  objects: {
+    tag: '<span class="modal-tag tag-docs">Documentation</span>',
+    title: 'Plugin documentation users actually read',
+    company: 'Objects · Karachi · Apr 2026 – present',
+    sections: [
+      { label: 'The context', text: 'At Objects, I produce content for WordPress plugins — product pages, knowledge base documentation, tutorials, and how-to guides. The core challenge of this work is taking complex plugin functionality and making it genuinely useful for non-technical users without dumbing it down for technical ones.' },
+      { label: 'My approach', text: 'I collaborate closely with developers and business analysts to understand how each feature actually works before writing about it. I structure documentation around user tasks and outcomes rather than feature lists, and I optimise every piece for search visibility so users find answers before they raise a support ticket.' },
+      { label: 'What this work involves', text: 'Onboarding guides, step-by-step tutorials, troubleshooting documentation, product page copy, and technical blog articles. All content is reviewed for technical accuracy by the development team before publishing.' }
+    ],
+    results: [
+      { num: 'WP', label: 'plugin ecosystem' },
+      { num: 'Task-led', label: 'docs structure' },
+      { num: 'SEO', label: 'optimised throughout' }
+    ]
+  },
+  ghostwriting: {
+    tag: '<span class="modal-tag tag-seo">SEO & Ghostwriting</span>',
+    title: '100+ high-ranking articles across diverse niches',
+    company: 'Medium (remote ghostwriting) · Oct 2020 – Nov 2024',
+    sections: [
+      { label: 'The work', text: 'Over four years I ghostwrote 100+ client-commissioned articles on topics ranging from business and technology to lifestyle and culture. Every article was written to the client\'s tone, optimised for Google, and structured for featured-snippet potential.' },
+      { label: 'Results', text: 'Maintained a 92% on-time delivery rate across hundreds of briefs. Contributed to 85,000+ audience growth for clients across their publications. Consistently achieved high Google rankings through ethical keyword integration and strong content structure.' },
+      { label: 'What this taught me', text: 'Ghostwriting at volume teaches you to understand audience intent faster than almost any other format. Writing across 15+ niches in 4 years built a research instinct and tonal flexibility that now makes me faster and more accurate as a technical writer.' }
+    ],
+    results: [
+      { num: '100+', label: 'articles delivered' },
+      { num: '85K+', label: 'audience growth' },
+      { num: '92%', label: 'on-time delivery rate' }
+    ]
+  },
+  iot: {
+    tag: '<span class="modal-tag tag-iot">Technical / IoT</span>',
+    title: 'Sensor documentation for a biotech hardware project',
+    company: 'Guangdong JANUS Biotechnology Co. Ltd · Remote · Jan–Aug 2024',
+    sections: [
+      { label: 'The context', text: 'JANUS Biotechnology is a Chinese biotech company developing sensor-based diagnostic devices. I was brought in as a Project Assistant to support sensor configuration, testing, and documentation — working remotely across time zones with an engineering team.' },
+      { label: 'What I did', text: 'Configured and tested biosensor hardware, documented test results for the project lead, and supported the team with technical troubleshooting and setup tasks. This role applied my Applied Physics background directly — not as a content exercise but as real hardware work.' },
+      { label: 'Why this matters for content', text: 'This is the experience that separates my technical writing from generic content work. I\'ve held a sensor, configured it, documented its failure modes, and reported findings to engineers. When I write documentation for technical products, that background is in the room with me.' }
+    ],
+    results: [
+      { num: 'MSc', label: 'Applied Physics background' },
+      { num: 'Hardware', label: 'sensor configuration' },
+      { num: 'Cross-TZ', label: 'remote engineering team' }
+    ]
+  }
+};
+
+function openModal(key) {
+  const c = cases[key];
+  let html = `${c.tag}<h2>${c.title}</h2><div class="modal-company">${c.company}</div>`;
+  c.sections.forEach(s => {
+    html += `<div class="modal-section"><div class="modal-section-label">${s.label}</div><p>${s.text}</p></div>`;
+  });
+  html += `<div class="modal-results">`;
+  c.results.forEach(r => {
+    html += `<div class="modal-result-item"><div class="r-num">${r.num}</div><div class="r-label">${r.label}</div></div>`;
+  });
+  html += `</div>`;
+  document.getElementById('modal-body').innerHTML = html;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
