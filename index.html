@@ -21,8 +21,8 @@ html { scroll-behavior: smooth; }
 body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 ::selection { background: var(--accent-light); color: var(--accent); }
 
-/* NAV */
-nav { position: fixed; top:0; left:0; right:0; z-index:100; padding:0 2.5rem; height:56px; display:flex; align-items:center; justify-content:space-between; background:rgba(247,244,239,0.93); backdrop-filter:blur(14px); border-bottom:1px solid var(--rule); }
+/* ─── NAV ─── */
+nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:0 2.5rem; height:56px; display:flex; align-items:center; justify-content:space-between; background:rgba(247,244,239,0.93); backdrop-filter:blur(14px); border-bottom:1px solid var(--rule); }
 .nav-logo { font-family:var(--font-display); font-size:17px; color:var(--ink); text-decoration:none; letter-spacing:-0.01em; }
 .nav-links { display:flex; gap:2rem; list-style:none; }
 .nav-links a { font-size:13px; color:var(--ink-3); text-decoration:none; letter-spacing:0.02em; transition:color 0.2s; }
@@ -31,17 +31,39 @@ nav { position: fixed; top:0; left:0; right:0; z-index:100; padding:0 2.5rem; he
 .nav-cta:hover { background:var(--accent) !important; color:#fff !important; }
 @media(max-width:640px){ .nav-links { display:none; } }
 
-/* HERO */
-.hero { padding:140px 2.5rem 80px; max-width:980px; margin:0 auto; }
+/* ─── DOODLE WRAPPER ─── */
+/* Each section is position:relative; doodles are absolute, pointer-events:none */
+.doodle {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.13;
+  z-index: 0;
+}
+.doodle svg { display:block; }
+/* alternating placement */
+.doodle-right { right: -20px; top: 50%; transform: translateY(-50%); }
+.doodle-left  { left:  -20px; top: 50%; transform: translateY(-50%); }
+
+/* Float animations */
+@keyframes doodleFloat {
+  0%,100% { transform: translateY(-50%) rotate(-3deg); }
+  50%      { transform: translateY(calc(-50% - 14px)) rotate(3deg); }
+}
+@keyframes doodleFloatL {
+  0%,100% { transform: translateY(-50%) rotate(3deg); }
+  50%      { transform: translateY(calc(-50% - 14px)) rotate(-3deg); }
+}
+.doodle-right { animation: doodleFloat 8s ease-in-out infinite; }
+.doodle-left  { animation: doodleFloatL 9s ease-in-out infinite; }
+
+/* ─── HERO ─── */
+.hero { position:relative; padding:140px 2.5rem 80px; max-width:980px; margin:0 auto; }
 .hero-eyebrow { font-size:11px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:1.5rem; display:flex; align-items:center; gap:10px; }
 .hero-eyebrow::before { content:''; display:block; width:32px; height:1px; background:var(--accent); }
 .hero h1 { font-family:var(--font-display); font-size:clamp(36px,5.5vw,64px); line-height:1.08; letter-spacing:-0.025em; color:var(--ink); margin-bottom:1.5rem; max-width:800px; }
-
-/* Typewriter */
 .tw-word { color:var(--accent); font-style:italic; position:relative; display:inline-block; }
 .tw-cursor { display:inline-block; color:var(--accent); font-style:normal; animation:blink 0.75s step-end infinite; margin-left:1px; }
 @keyframes blink { 50%{opacity:0;} }
-
 .hero-sub { font-size:17px; color:var(--ink-2); max-width:560px; line-height:1.65; margin-bottom:2.5rem; font-weight:300; }
 .hero-actions { display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
 .btn-primary { display:inline-flex; align-items:center; gap:8px; background:var(--ink); color:var(--paper); font-family:var(--font-body); font-size:14px; font-weight:500; padding:12px 24px; border-radius:4px; text-decoration:none; transition:background 0.2s, transform 0.15s; }
@@ -49,20 +71,20 @@ nav { position: fixed; top:0; left:0; right:0; z-index:100; padding:0 2.5rem; he
 .btn-secondary { display:inline-flex; align-items:center; gap:8px; color:var(--ink-2); font-size:14px; font-weight:400; text-decoration:none; border-bottom:1px solid var(--rule); padding-bottom:2px; transition:color 0.2s, border-color 0.2s; }
 .btn-secondary:hover { color:var(--accent); border-color:var(--accent); }
 
-/* STATS */
+/* ─── STATS ─── */
 .stats-strip { background:var(--ink); padding:2.25rem 2.5rem; }
 .stats-inner { max-width:980px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:2rem; }
 .stat-num { font-family:var(--font-display); font-size:38px; line-height:1; color:#fff; margin-bottom:4px; }
 .stat-num span { color:var(--accent); font-style:italic; }
 .stat-desc { font-size:13px; color:rgba(247,244,239,0.5); line-height:1.4; font-weight:300; }
 
-/* SECTION */
-.section { max-width:980px; margin:0 auto; padding:80px 2.5rem; }
+/* ─── SECTION ─── */
+.section { position:relative; max-width:980px; margin:0 auto; padding:80px 2.5rem; }
 .section-label { font-size:11px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-4); margin-bottom:0.5rem; }
 .section-title { font-family:var(--font-display); font-size:clamp(26px,3.5vw,40px); line-height:1.12; letter-spacing:-0.02em; color:var(--ink); margin-bottom:2.5rem; }
 hr.rule { border:none; border-top:1px solid var(--rule); margin:0; }
 
-/* FLIP CARDS */
+/* ─── FLIP CARDS ─── */
 .work-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.25rem; }
 .flip-card { height:280px; perspective:1200px; cursor:pointer; }
 .flip-inner { position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform 0.7s cubic-bezier(0.4,0.2,0.2,1); }
@@ -71,14 +93,14 @@ hr.rule { border:none; border-top:1px solid var(--rule); margin:0; }
 .flip-front { background:var(--paper); border:1px solid var(--rule); }
 .flip-back { background:var(--ink); transform:rotateY(180deg); }
 .work-tag { display:inline-block; font-size:10px; font-weight:500; letter-spacing:0.09em; text-transform:uppercase; padding:3px 10px; border-radius:2px; margin-bottom:0.75rem; width:fit-content; }
-.tag-strategy { background:var(--accent-light); color:var(--accent); }
-.tag-docs     { background:var(--teal-light); color:var(--teal); }
-.tag-seo      { background:#e8e4f5; color:#4a3f8a; }
-.tag-iot      { background:#faeeda; color:#633806; }
-.tag-saas     { background:#e3f0fb; color:#1a4f7a; }
-.tag-apparel  { background:#fce8f0; color:#8a1a45; }
-.tag-finance  { background:#e8f5e9; color:#1b5e20; }
-.tag-press    { background:#fff3e0; color:#7c4206; }
+.tag-strategy{background:var(--accent-light);color:var(--accent);}
+.tag-docs{background:var(--teal-light);color:var(--teal);}
+.tag-seo{background:#e8e4f5;color:#4a3f8a;}
+.tag-iot{background:#faeeda;color:#633806;}
+.tag-saas{background:#e3f0fb;color:#1a4f7a;}
+.tag-apparel{background:#fce8f0;color:#8a1a45;}
+.tag-finance{background:#e8f5e9;color:#1b5e20;}
+.tag-press{background:#fff3e0;color:#7c4206;}
 .flip-front h3 { font-family:var(--font-display); font-size:17px; line-height:1.25; letter-spacing:-0.01em; color:var(--ink); flex:1; margin-bottom:0.75rem; }
 .work-meta { font-size:11px; color:var(--ink-4); display:flex; gap:6px; align-items:center; flex-wrap:wrap; }
 .wdot { width:3px; height:3px; border-radius:50%; background:var(--ink-4); display:inline-block; }
@@ -88,21 +110,85 @@ hr.rule { border:none; border-top:1px solid var(--rule); margin:0; }
 .back-cta { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:500; color:var(--accent); margin-top:1rem; cursor:pointer; background:none; border:none; padding:0; font-family:var(--font-body); transition:gap 0.2s; }
 .flip-card:hover .back-cta { gap:10px; }
 
-/* FEATURED */
-.featured-case { background:var(--ink); color:var(--paper); padding:3.5rem; margin:0 2.5rem; border-radius:3px; }
+/* ─── FEATURED CASE STUDY ─── */
+.featured-wrap { position:relative; overflow:visible; }
+.featured-case {
+  position: relative;
+  background: #0f0e0d;
+  color: var(--paper);
+  padding: 3.5rem; margin: 0 2.5rem; border-radius: 6px;
+  overflow: hidden;
+  cursor: default;
+  /* subtle inner glow that brightens on hover */
+  box-shadow: 0 0 0 1px rgba(200,90,42,0), 0 24px 60px rgba(15,14,13,0.18);
+  transition: box-shadow 0.5s ease;
+}
+.featured-case:hover {
+  box-shadow: 0 0 0 1px rgba(200,90,42,0.35), 0 32px 80px rgba(15,14,13,0.28);
+}
 @media(max-width:600px){ .featured-case { margin:0 1rem; padding:2rem 1.5rem; } }
+
+/* Particle canvas — sits behind all content */
+#fc-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 6px;
+}
+
+/* All content above canvas */
+.fc-content { position: relative; z-index: 1; }
+
+/* shimmer sweep on scroll-in */
+.featured-case::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 55%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.035), transparent);
+  transform: skewX(-12deg);
+  z-index: 2;
+  pointer-events: none;
+}
+.featured-case.swept::before {
+  animation: shimmerSweep 1.2s ease forwards;
+}
+@keyframes shimmerSweep {
+  0%   { left: -100%; }
+  100% { left: 160%; }
+}
+
 .featured-case .section-label { color:rgba(247,244,239,0.35); }
 .featured-case h2 { font-family:var(--font-display); font-size:clamp(22px,3vw,34px); line-height:1.15; color:#fff; margin:0.5rem 0 2rem; letter-spacing:-0.02em; max-width:620px; }
 .case-body { display:grid; grid-template-columns:1fr 1fr; gap:3rem; }
 @media(max-width:640px){ .case-body { grid-template-columns:1fr; gap:1.5rem; } }
-.case-block-label { font-size:10px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(247,244,239,0.35); margin-bottom:0.5rem; }
-.case-block-text { font-size:15px; color:rgba(247,244,239,0.75); line-height:1.7; font-weight:300; }
-.case-results { display:flex; gap:2.5rem; flex-wrap:wrap; margin-top:2rem; padding-top:2rem; border-top:1px solid rgba(247,244,239,0.1); }
-.case-result-item .num { font-family:var(--font-display); font-size:30px; color:#fff; line-height:1; margin-bottom:4px; }
-.case-result-item .num em { font-style:italic; color:var(--accent); }
-.case-result-item .label { font-size:12px; color:rgba(247,244,239,0.4); font-weight:300; }
+.case-block-label { font-size:10px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(247,244,239,0.32); margin-bottom:0.5rem; }
+.case-block-text { font-size:15px; color:rgba(247,244,239,0.72); line-height:1.7; font-weight:300; }
 
-/* ABOUT */
+/* Stat results */
+.case-results { display:flex; gap:2.5rem; flex-wrap:wrap; margin-top:2rem; padding-top:2rem; border-top:1px solid rgba(247,244,239,0.08); }
+.case-result-item {
+  cursor: default;
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+}
+.case-result-item:hover { transform: translateY(-4px) scale(1.05); }
+.case-result-item .num {
+  font-family:var(--font-display); font-size:30px; color:#fff; line-height:1; margin-bottom:4px;
+}
+.case-result-item:hover .num { color: #fff; }
+.case-result-item .num em { font-style:italic; color:var(--accent); }
+.case-result-item .num .count-val { display:inline-block; }
+.case-result-item .label { font-size:12px; color:rgba(247,244,239,0.38); font-weight:300; transition: color 0.2s; }
+.case-result-item:hover .label { color:rgba(247,244,239,0.7); }
+
+/* bar that fills under each stat */
+.stat-bar-wrap { margin-top:7px; height:2px; background:rgba(247,244,239,0.08); border-radius:1px; width:80px; overflow:hidden; }
+.stat-bar-fill { height:100%; width:0%; background:var(--accent); border-radius:1px; transition:width 1.6s cubic-bezier(0.4,0,0.2,1); }
+.featured-case.swept .stat-bar-fill { width:100%; }
+
+/* ─── ABOUT ─── */
+.about-section { position:relative; }
 .about-grid { display:grid; grid-template-columns:1fr 1.4fr; gap:4rem; align-items:start; }
 @media(max-width:680px){ .about-grid { grid-template-columns:1fr; gap:2rem; } }
 .about-initials { width:72px; height:72px; background:var(--ink); border-radius:3px; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-size:26px; color:var(--paper); margin-bottom:1.25rem; letter-spacing:-0.02em; }
@@ -115,19 +201,57 @@ hr.rule { border:none; border-top:1px solid var(--rule); margin:0; }
 .skill-list { font-size:13px; color:var(--ink-2); line-height:1.7; font-weight:300; }
 .about-right p { font-size:15px; color:var(--ink-2); line-height:1.75; font-weight:300; margin-bottom:1rem; }
 
-/* EXPERIENCE */
-.exp-item { display:grid; grid-template-columns:180px 1fr; gap:2rem; padding:1.75rem 0; border-bottom:1px solid var(--rule); }
-.exp-item:first-child { border-top:1px solid var(--rule); }
+/* ─── EXPERIENCE — POP HOVER ─── */
+.exp-section { position:relative; }
+.exp-item {
+  display:grid; grid-template-columns:180px 1fr; gap:2rem;
+  padding:1.75rem; margin-bottom:2px;
+  border-radius:4px;
+  border: 1px solid transparent;
+  transition:
+    transform 0.28s cubic-bezier(0.34,1.56,0.64,1),
+    box-shadow 0.28s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+  cursor: default;
+  will-change: transform;
+}
+/* subtle top/bottom separator in normal state */
+.exp-item + .exp-item { border-top: 1px solid var(--rule); }
+.exp-list { border-top: 1px solid var(--rule); }
+
+.exp-item:hover {
+  transform: scale(1.025) translateY(-3px);
+  box-shadow: 0 12px 40px rgba(15,14,13,0.1), 0 4px 12px rgba(15,14,13,0.06);
+  background: #fff;
+  border-color: var(--rule) !important;
+  z-index: 2;
+  position: relative;
+}
+/* accent left stripe on hover */
+.exp-item::before {
+  content:'';
+  position:absolute;
+  left:0; top:20%; height:60%;
+  width:2px; background:var(--accent);
+  border-radius:0 2px 2px 0;
+  opacity:0;
+  transition:opacity 0.25s ease, height 0.3s ease, top 0.3s ease;
+}
+.exp-item:hover::before { opacity:1; top:10%; height:80%; }
+
 @media(max-width:600px){ .exp-item { grid-template-columns:1fr; gap:0.5rem; } }
 .exp-date { font-size:12px; color:var(--ink-4); font-weight:300; margin-bottom:3px; }
-.exp-company { font-size:13px; font-weight:500; color:var(--ink-2); }
+.exp-company { font-size:13px; font-weight:500; color:var(--ink-2); transition:color 0.2s; }
+.exp-item:hover .exp-company { color:var(--accent); }
 .exp-loc { font-size:12px; color:var(--ink-4); font-weight:300; }
 .exp-role { font-size:16px; font-weight:500; color:var(--ink); margin-bottom:0.5rem; }
 .exp-desc { font-size:14px; color:var(--ink-3); line-height:1.65; font-weight:300; }
 .exp-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:0.75rem; }
-.exp-tag { font-size:11px; padding:2px 9px; background:var(--paper-2); border-radius:2px; color:var(--ink-3); border:1px solid var(--paper-3); }
+.exp-tag { font-size:11px; padding:2px 9px; background:var(--paper-2); border-radius:2px; color:var(--ink-3); border:1px solid var(--paper-3); transition:background 0.2s, color 0.2s; }
+.exp-item:hover .exp-tag { background:var(--accent-light); color:var(--accent); border-color:var(--accent-light); }
 
-/* CONTACT */
+/* ─── CONTACT ─── */
 .contact-section { background:var(--paper-2); border-top:1px solid var(--rule); }
 .contact-inner { max-width:980px; margin:0 auto; padding:80px 2.5rem; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
 @media(max-width:640px){ .contact-inner { grid-template-columns:1fr; gap:2rem; } }
@@ -140,7 +264,7 @@ hr.rule { border:none; border-top:1px solid var(--rule); margin:0; }
 .contact-link-icon { width:32px; height:32px; border:1px solid var(--rule); border-radius:2px; display:flex; align-items:center; justify-content:center; flex-shrink:0; background:var(--paper); font-size:12px; font-weight:500; }
 footer { background:var(--ink); color:rgba(247,244,239,0.35); text-align:center; padding:1.5rem 2rem; font-size:12px; font-weight:300; letter-spacing:0.03em; }
 
-/* MODAL */
+/* ─── MODAL ─── */
 .modal-overlay { display:none; position:fixed; inset:0; background:rgba(15,14,13,0.75); z-index:200; overflow-y:auto; padding:2rem; }
 .modal-overlay.open { display:flex; align-items:flex-start; justify-content:center; }
 .modal { background:var(--paper); max-width:740px; width:100%; border-radius:3px; padding:3rem; position:relative; margin:auto; }
@@ -157,10 +281,10 @@ footer { background:var(--ink); color:rgba(247,244,239,0.35); text-align:center;
 .modal-result-item .r-num { font-family:var(--font-display); font-size:24px; color:var(--ink); line-height:1; margin-bottom:3px; }
 .modal-result-item .r-label { font-size:12px; color:var(--ink-3); font-weight:300; }
 
-/* ANIMATE */
-@keyframes fadeUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);} }
 .fade-up { opacity:0; animation:fadeUp 0.65s ease forwards; }
-.d1{animation-delay:0.1s;} .d2{animation-delay:0.25s;} .d3{animation-delay:0.4s;} .d4{animation-delay:0.55s;}
+.d1{animation-delay:0.1s;}.d2{animation-delay:0.25s;}.d3{animation-delay:0.4s;}.d4{animation-delay:0.55s;}
 </style>
 </head>
 <body>
@@ -175,7 +299,37 @@ footer { background:var(--ink); color:rgba(247,244,239,0.35); text-align:center;
   </ul>
 </nav>
 
+<!-- ═══ HERO ═══ -->
 <section class="hero">
+  <!-- Doodle 1: right side — content graph / rising trend line -->
+  <div class="doodle doodle-right" style="width:180px;height:200px;">
+    <svg width="180" height="200" viewBox="0 0 180 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Grid lines -->
+      <line x1="20" y1="20" x2="20" y2="170" stroke="#0f0e0d" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="20" y1="170" x2="160" y2="170" stroke="#0f0e0d" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="20" y1="140" x2="160" y2="140" stroke="#0f0e0d" stroke-width="0.8" stroke-dasharray="4 3"/>
+      <line x1="20" y1="110" x2="160" y2="110" stroke="#0f0e0d" stroke-width="0.8" stroke-dasharray="4 3"/>
+      <line x1="20" y1="80" x2="160" y2="80" stroke="#0f0e0d" stroke-width="0.8" stroke-dasharray="4 3"/>
+      <!-- Rising line -->
+      <polyline points="30,155 55,148 80,130 105,100 130,65 155,30" stroke="#c85a2a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <!-- Dots on line -->
+      <circle cx="30" cy="155" r="3.5" fill="#c85a2a"/>
+      <circle cx="80" cy="130" r="3.5" fill="#c85a2a"/>
+      <circle cx="130" cy="65" r="3.5" fill="#c85a2a"/>
+      <circle cx="155" cy="30" r="5" fill="#c85a2a"/>
+      <!-- Star burst at top -->
+      <line x1="155" y1="10" x2="155" y2="20" stroke="#0f0e0d" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="145" y1="20" x2="155" y2="30" stroke="#0f0e0d" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="165" y1="20" x2="155" y2="30" stroke="#0f0e0d" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- Label squiggle -->
+      <path d="M 35 185 Q 55 180 75 185 Q 95 190 115 185 Q 135 180 155 185" stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      <!-- small x labels on axis -->
+      <line x1="55"  y1="167" x2="55"  y2="173" stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="90"  y1="167" x2="90"  y2="173" stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="125" y1="167" x2="125" y2="173" stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>
+  </div>
+
   <div class="hero-eyebrow fade-up">Technical Content Strategist</div>
   <h1 class="fade-up d1">I turn technical complexity into content that <span class="tw-word" id="tw-word"><span class="tw-cursor" id="tw-cursor">|</span></span></h1>
   <p class="hero-sub fade-up d2">Physics postgraduate. Documentation writer. SEO strategist. I build content systems for SaaS, WordPress ecosystems, and technical teams — and I understand what I'm writing about.</p>
@@ -196,116 +350,133 @@ footer { background:var(--ink); color:rgba(247,244,239,0.35); text-align:center;
 
 <hr class="rule">
 
-<section class="section" id="work">
+<!-- ═══ WORK ═══ -->
+<section class="section" id="work" style="overflow:visible;">
+  <!-- Doodle 2: left side — pen nib / writing -->
+  <div class="doodle doodle-left" style="width:160px;height:210px;">
+    <svg width="160" height="210" viewBox="0 0 160 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Pen nib -->
+      <path d="M 80 20 L 110 60 L 80 80 L 50 60 Z" stroke="#0f0e0d" stroke-width="1.8" stroke-linejoin="round" fill="none"/>
+      <line x1="80" y1="80" x2="80" y2="130" stroke="#0f0e0d" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M 80 130 Q 60 145 65 160 Q 70 175 80 180 Q 90 175 95 160 Q 100 145 80 130 Z" stroke="#0f0e0d" stroke-width="1.8" stroke-linejoin="round" fill="none"/>
+      <line x1="80" y1="80" x2="80" y2="95" stroke="#c85a2a" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Ink drop -->
+      <circle cx="80" cy="195" r="4" fill="#c85a2a" opacity="0.8"/>
+      <path d="M 78 188 Q 80 183 82 188" stroke="#c85a2a" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <!-- Lines being written -->
+      <line x1="100" y1="95"  x2="145" y2="95"  stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="100" y1="105" x2="140" y2="105" stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="3 2"/>
+      <line x1="100" y1="115" x2="135" y2="115" stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="100" y1="125" x2="130" y2="125" stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="3 2"/>
+    </svg>
+  </div>
+
   <div class="section-label">Selected work</div>
   <div class="section-title">Case studies &amp; projects</div>
   <div class="work-grid">
-
-    <div class="flip-card" onclick="openModal('alliance')">
-      <div class="flip-inner">
-        <div class="flip-front"><div><span class="work-tag tag-strategy">Content Strategy</span><h3>Building Alliance Shipping's content engine from scratch</h3></div><div class="work-meta"><span>Alliance Shipping · Dubai</span><span class="wdot"></span><span>2024–2026</span></div></div>
-        <div class="flip-back"><div><div class="back-label">The result</div><div class="back-title">1.24M impressions. 17.3K clicks. 7 months.</div><div class="back-desc">Full-funnel strategy from zero — topic clusters, E-E-A-T frameworks, editorial SOPs, and a scalable pipeline that outlasted my tenure.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('alliance')">Read case study →</button></div>
-      </div>
-    </div>
-
-    <div class="flip-card" onclick="openModal('objects')">
-      <div class="flip-inner">
-        <div class="flip-front"><div><span class="work-tag tag-docs">Documentation</span><h3>WordPress plugin documentation users actually read</h3></div><div class="work-meta"><span>Objects</span><span class="wdot"></span><span>2026–present</span></div></div>
-        <div class="flip-back"><div><div class="back-label">The challenge</div><div class="back-title">Technical accuracy meets plain language.</div><div class="back-desc">Press releases, feature tutorials, onboarding guides, and technical blogs for WordPress plugins — written with developer input, optimised for users and search.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('objects')">Read case study →</button></div>
-      </div>
-    </div>
-
-    <div class="flip-card" onclick="openModal('logistics_seo')">
-      <div class="flip-inner">
-        <div class="flip-front"><div><span class="work-tag tag-seo">SEO Content</span><h3>35+ logistics articles that built topical authority in Dubai</h3></div><div class="work-meta"><span>Alliance Shipping</span><span class="wdot"></span><span>AI ranking strategy</span></div></div>
-        <div class="flip-back"><div><div class="back-label">The approach</div><div class="back-title">Topic clustering for a niche no one owned.</div><div class="back-desc">From "What is a Bill of Lading?" to air freight pricing guides — a content map covering every search intent in the Dubai logistics space.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('logistics_seo')">Read case study →</button></div>
-      </div>
-    </div>
-
-    <div class="flip-card" onclick="openModal('apparel')">
-      <div class="flip-inner">
-        <div class="flip-front"><div><span class="work-tag tag-apparel">Apparel / B2B</span><h3>30+ manufacturer guides for a B2B apparel brand</h3></div><div class="work-meta"><span>B2B Fashion Manufacturing</span><span class="wdot"></span><span>2025–2026</span></div></div>
-        <div class="flip-back"><div><div class="back-label">The scope</div><div class="back-title">Complete content library for a clothing manufacturer.</div><div class="back-desc">Landing pages, buying guides, and deep-dive articles covering hoodie manufacturing, fabric selection, MOQ guides, and how-to-start-a-brand series.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('apparel')">Read case study →</button></div>
-      </div>
-    </div>
-
-    <div class="flip-card" onclick="openModal('saas_b2b')">
-      <div class="flip-inner">
-        <div class="flip-front"><div><span class="work-tag tag-saas">SaaS / B2B Data</span><h3>B2B data provider comparisons across 6 EU markets</h3></div><div class="work-meta"><span>B2B SaaS client</span><span class="wdot"></span><span>2024</span></div></div>
-        <div class="flip-back"><div><div class="back-label">The deliverable</div><div class="back-title">High-intent comparison content that converts.</div><div class="back-desc">Six long-form articles covering Sweden, Portugal, Denmark, Finland, Greece, and Austria — targeting decision-stage B2B buyers.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('saas_b2b')">Read case study →</button></div>
-      </div>
-    </div>
-
-    <div class="flip-card" onclick="openModal('real_estate')">
-      <div class="flip-inner">
-        <div class="flip-front"><div><span class="work-tag tag-finance">Real Estate</span><h3>Dubai real estate content for Indian and UK investors</h3></div><div class="work-meta"><span>Real estate client · Dubai</span><span class="wdot"></span><span>2024</span></div></div>
-        <div class="flip-back"><div><div class="back-label">The audience</div><div class="back-title">Cross-border investment guides that build trust.</div><div class="back-desc">Property laws for Indian buyers, off-plan guides for UK investors, tax landscape analysis, and 2024 market forecasts.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('real_estate')">Read case study →</button></div>
-      </div>
-    </div>
-
-    <div class="flip-card" onclick="openModal('technical_docs')">
-      <div class="flip-inner">
-        <div class="flip-front"><div><span class="work-tag tag-docs">Technical Writing</span><h3>Fuel tank process guide and RFP documentation</h3></div><div class="work-meta"><span>Divinatory Solutions</span><span class="wdot"></span><span>BOSAL Belgium</span></div></div>
-        <div class="flip-back"><div><div class="back-label">The brief</div><div class="back-title">Engineering documentation for non-technical readers.</div><div class="back-desc">Technical overview of a flexible fuel tank production line, plus RFP writing — requiring physics-level comprehension of manufacturing systems.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('technical_docs')">Read case study →</button></div>
-      </div>
-    </div>
-
-    <div class="flip-card" onclick="openModal('iot_biotech')">
-      <div class="flip-inner">
-        <div class="flip-front"><div><span class="work-tag tag-iot">IoT / Hardware</span><h3>Biosensor testing and documentation for a Chinese biotech firm</h3></div><div class="work-meta"><span>JANUS Biotechnology · China</span><span class="wdot"></span><span>2024</span></div></div>
-        <div class="flip-back"><div><div class="back-label">What made it different</div><div class="back-title">I didn't just write about sensors. I tested them.</div><div class="back-desc">Configured, tested, and documented biosensor hardware for a remote engineering team — applying my Applied Physics degree in a real hardware environment.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('iot_biotech')">Read case study →</button></div>
-      </div>
-    </div>
-
-    <div class="flip-card" onclick="openModal('press_releases')">
-      <div class="flip-inner">
-        <div class="flip-front"><div><span class="work-tag tag-press">Press Releases</span><h3>WordPress plugin launch releases and feature announcements</h3></div><div class="work-meta"><span>Objects · Post SMTP · AIO Login</span><span class="wdot"></span><span>2026</span></div></div>
-        <div class="flip-back"><div><div class="back-label">The deliverables</div><div class="back-title">Product launches that get read and shared.</div><div class="back-desc">Press releases for Post SMTP Pro v1.5.0, Post SMTP v3.8.0, and AIO Login Pro v1.4.0 — plus release emails for developer audiences.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('press_releases')">Read case study →</button></div>
-      </div>
-    </div>
-
-    <div class="flip-card" onclick="openModal('ghostwriting')">
-      <div class="flip-inner">
-        <div class="flip-front"><div><span class="work-tag tag-seo">Ghostwriting</span><h3>100+ ghostwritten articles driving 85K+ audience growth</h3></div><div class="work-meta"><span>Medium (remote)</span><span class="wdot"></span><span>2020–2024</span></div></div>
-        <div class="flip-back"><div><div class="back-label">The track record</div><div class="back-title">92% on-time. Consistently ranked. Client-invisible.</div><div class="back-desc">Four years of high-volume ghostwriting across business, tech, lifestyle, real estate, and finance — every piece written to rank and built to the client's voice.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('ghostwriting')">Read case study →</button></div>
-      </div>
-    </div>
-
-    <div class="flip-card" onclick="openModal('finance_writing')">
-      <div class="flip-inner">
-        <div class="flip-front"><div><span class="work-tag tag-finance">Finance Content</span><h3>Long-form investment guides and e-wallet competitive analysis</h3></div><div class="work-meta"><span>Finance clients</span><span class="wdot"></span><span>2024</span></div></div>
-        <div class="flip-back"><div><div class="back-label">The work</div><div class="back-title">Research-led writing for high-trust financial audiences.</div><div class="back-desc">Investment principles guides, long-term strategy articles, and a comprehensive e-wallet competitive analysis deck for decision-makers.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('finance_writing')">Read case study →</button></div>
-      </div>
-    </div>
-
-    <div class="flip-card" onclick="openModal('ebooks')">
-      <div class="flip-inner">
-        <div class="flip-front"><div><span class="work-tag tag-saas">Long-Form</span><h3>7 full ebooks across health, business, and entrepreneurship</h3></div><div class="work-meta"><span>Various ghostwriting clients</span><span class="wdot"></span><span>2020–2024</span></div></div>
-        <div class="flip-back"><div><div class="back-label">The scope</div><div class="back-title">Book-length content that educates and sells.</div><div class="back-desc">Gut health, passive income, children's leadership, entrepreneurship, Moissanite jewelry, and a gluten-free cookbook — all ghost, all structured for engagement.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('ebooks')">Read case study →</button></div>
-      </div>
-    </div>
-
+    <div class="flip-card" onclick="openModal('alliance')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-strategy">Content Strategy</span><h3>Building Alliance Shipping's content engine from scratch</h3></div><div class="work-meta"><span>Alliance Shipping · Dubai</span><span class="wdot"></span><span>2024–2026</span></div></div><div class="flip-back"><div><div class="back-label">The result</div><div class="back-title">1.24M impressions. 17.3K clicks. 7 months.</div><div class="back-desc">Full-funnel strategy from zero — topic clusters, E-E-A-T frameworks, editorial SOPs, and a scalable pipeline that outlasted my tenure.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('alliance')">Read case study →</button></div></div></div>
+    <div class="flip-card" onclick="openModal('objects')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-docs">Documentation</span><h3>WordPress plugin documentation users actually read</h3></div><div class="work-meta"><span>Objects</span><span class="wdot"></span><span>2026–present</span></div></div><div class="flip-back"><div><div class="back-label">The challenge</div><div class="back-title">Technical accuracy meets plain language.</div><div class="back-desc">Press releases, feature tutorials, onboarding guides, and technical blogs for WordPress plugins — written with developer input, optimised for users and search.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('objects')">Read case study →</button></div></div></div>
+    <div class="flip-card" onclick="openModal('logistics_seo')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-seo">SEO Content</span><h3>35+ logistics articles that built topical authority in Dubai</h3></div><div class="work-meta"><span>Alliance Shipping</span><span class="wdot"></span><span>AI ranking strategy</span></div></div><div class="flip-back"><div><div class="back-label">The approach</div><div class="back-title">Topic clustering for a niche no one owned.</div><div class="back-desc">From "What is a Bill of Lading?" to air freight pricing guides — a content map covering every search intent in the Dubai logistics space.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('logistics_seo')">Read case study →</button></div></div></div>
+    <div class="flip-card" onclick="openModal('apparel')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-apparel">Apparel / B2B</span><h3>30+ manufacturer guides for a B2B apparel brand</h3></div><div class="work-meta"><span>B2B Fashion Manufacturing</span><span class="wdot"></span><span>2025–2026</span></div></div><div class="flip-back"><div><div class="back-label">The scope</div><div class="back-title">Complete content library for a clothing manufacturer.</div><div class="back-desc">Landing pages, buying guides, and deep-dive articles covering hoodie manufacturing, fabric selection, MOQ guides, and how-to-start-a-brand series.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('apparel')">Read case study →</button></div></div></div>
+    <div class="flip-card" onclick="openModal('saas_b2b')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-saas">SaaS / B2B Data</span><h3>B2B data provider comparisons across 6 EU markets</h3></div><div class="work-meta"><span>B2B SaaS client</span><span class="wdot"></span><span>2024</span></div></div><div class="flip-back"><div><div class="back-label">The deliverable</div><div class="back-title">High-intent comparison content that converts.</div><div class="back-desc">Six long-form articles covering Sweden, Portugal, Denmark, Finland, Greece, and Austria — targeting decision-stage B2B buyers.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('saas_b2b')">Read case study →</button></div></div></div>
+    <div class="flip-card" onclick="openModal('real_estate')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-finance">Real Estate</span><h3>Dubai real estate content for Indian and UK investors</h3></div><div class="work-meta"><span>Real estate client · Dubai</span><span class="wdot"></span><span>2024</span></div></div><div class="flip-back"><div><div class="back-label">The audience</div><div class="back-title">Cross-border investment guides that build trust.</div><div class="back-desc">Property laws for Indian buyers, off-plan guides for UK investors, tax landscape analysis, and 2024 market forecasts.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('real_estate')">Read case study →</button></div></div></div>
+    <div class="flip-card" onclick="openModal('technical_docs')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-docs">Technical Writing</span><h3>Fuel tank process guide and RFP documentation</h3></div><div class="work-meta"><span>Divinatory Solutions</span><span class="wdot"></span><span>BOSAL Belgium</span></div></div><div class="flip-back"><div><div class="back-label">The brief</div><div class="back-title">Engineering documentation for non-technical readers.</div><div class="back-desc">Technical overview of a flexible fuel tank production line, plus RFP writing — requiring physics-level comprehension of manufacturing systems.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('technical_docs')">Read case study →</button></div></div></div>
+    <div class="flip-card" onclick="openModal('iot_biotech')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-iot">IoT / Hardware</span><h3>Biosensor testing and documentation for a Chinese biotech firm</h3></div><div class="work-meta"><span>JANUS Biotechnology · China</span><span class="wdot"></span><span>2024</span></div></div><div class="flip-back"><div><div class="back-label">What made it different</div><div class="back-title">I didn't just write about sensors. I tested them.</div><div class="back-desc">Configured, tested, and documented biosensor hardware for a remote engineering team — applying my Applied Physics degree in a real hardware environment.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('iot_biotech')">Read case study →</button></div></div></div>
+    <div class="flip-card" onclick="openModal('press_releases')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-press">Press Releases</span><h3>WordPress plugin launch releases and feature announcements</h3></div><div class="work-meta"><span>Objects · Post SMTP · AIO Login</span><span class="wdot"></span><span>2026</span></div></div><div class="flip-back"><div><div class="back-label">The deliverables</div><div class="back-title">Product launches that get read and shared.</div><div class="back-desc">Press releases for Post SMTP Pro v1.5.0, Post SMTP v3.8.0, and AIO Login Pro v1.4.0 — plus release emails for developer audiences.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('press_releases')">Read case study →</button></div></div></div>
+    <div class="flip-card" onclick="openModal('ghostwriting')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-seo">Ghostwriting</span><h3>100+ ghostwritten articles driving 85K+ audience growth</h3></div><div class="work-meta"><span>Medium (remote)</span><span class="wdot"></span><span>2020–2024</span></div></div><div class="flip-back"><div><div class="back-label">The track record</div><div class="back-title">92% on-time. Consistently ranked. Client-invisible.</div><div class="back-desc">Four years of high-volume ghostwriting across business, tech, lifestyle, real estate, and finance — every piece written to rank and built to the client's voice.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('ghostwriting')">Read case study →</button></div></div></div>
+    <div class="flip-card" onclick="openModal('finance_writing')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-finance">Finance Content</span><h3>Long-form investment guides and e-wallet competitive analysis</h3></div><div class="work-meta"><span>Finance clients</span><span class="wdot"></span><span>2024</span></div></div><div class="flip-back"><div><div class="back-label">The work</div><div class="back-title">Research-led writing for high-trust financial audiences.</div><div class="back-desc">Investment principles guides, long-term strategy articles, and a comprehensive e-wallet competitive analysis deck for decision-makers.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('finance_writing')">Read case study →</button></div></div></div>
+    <div class="flip-card" onclick="openModal('ebooks')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-saas">Long-Form</span><h3>7 full ebooks across health, business, and entrepreneurship</h3></div><div class="work-meta"><span>Various ghostwriting clients</span><span class="wdot"></span><span>2020–2024</span></div></div><div class="flip-back"><div><div class="back-label">The scope</div><div class="back-title">Book-length content that educates and sells.</div><div class="back-desc">Gut health, passive income, children's leadership, entrepreneurship, Moissanite jewelry, and a gluten-free cookbook — all ghost, all structured for engagement.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('ebooks')">Read case study →</button></div></div></div>
   </div>
 </section>
 
-<div class="featured-case">
-  <div class="section-label">Featured case study</div>
-  <h2>From zero to 1.24M impressions: the Alliance Shipping content strategy</h2>
-  <div class="case-body">
-    <div><div class="case-block-label">The challenge</div><div class="case-block-text">Alliance Shipping had no organic search presence. The brief was to build topical authority in the Dubai logistics niche from scratch — aligned with the CEO's brand vision and lead-generation targets — without an agency budget.</div></div>
-    <div><div class="case-block-label">The approach</div><div class="case-block-text">Full-funnel content pipeline: topic clustering, keyword mapping, E-E-A-T frameworks, GMB optimisation, and landing pages. I built editorial SOPs, managed in-house and freelance writers, and owned strategy from ideation through to performance analytics.</div></div>
+<!-- ═══ FEATURED CASE ═══ -->
+<div class="featured-wrap" style="position:relative; overflow:visible;">
+  <!-- Doodle 3: right side — compass / strategy circle -->
+  <div class="doodle doodle-right" style="width:170px;height:200px;right:0;top:50%;transform:translateY(-50%);">
+    <svg width="170" height="200" viewBox="0 0 170 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer circle -->
+      <circle cx="85" cy="100" r="65" stroke="#0f0e0d" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <!-- Inner circle -->
+      <circle cx="85" cy="100" r="40" stroke="#0f0e0d" stroke-width="1.2"/>
+      <!-- Cross hairs -->
+      <line x1="85" y1="35" x2="85" y2="165" stroke="#0f0e0d" stroke-width="1"/>
+      <line x1="20" y1="100" x2="150" y2="100" stroke="#0f0e0d" stroke-width="1"/>
+      <!-- Compass needle -->
+      <polygon points="85,60 80,100 85,95 90,100" fill="#c85a2a"/>
+      <polygon points="85,140 80,100 85,105 90,100" fill="#0f0e0d" opacity="0.4"/>
+      <!-- Center dot -->
+      <circle cx="85" cy="100" r="4" fill="#0f0e0d"/>
+      <!-- N S E W -->
+      <text x="82" y="28" font-size="10" fill="#0f0e0d" font-family="Georgia">N</text>
+      <text x="82" y="182" font-size="10" fill="#0f0e0d" font-family="Georgia">S</text>
+      <text x="153" y="104" font-size="10" fill="#0f0e0d" font-family="Georgia">E</text>
+      <text x="10" y="104" font-size="10" fill="#0f0e0d" font-family="Georgia">W</text>
+    </svg>
   </div>
-  <div class="case-results">
-    <div class="case-result-item"><div class="num">1.24<em>M</em></div><div class="label">impressions in 7 months</div></div>
-    <div class="case-result-item"><div class="num">17.3<em>K</em></div><div class="label">organic clicks</div></div>
-    <div class="case-result-item"><div class="num">35<em>+</em></div><div class="label">articles published</div></div>
-    <div class="case-result-item"><div class="num">Full</div><div class="label">funnel coverage built</div></div>
+
+  <div class="featured-case" id="featured-case">
+    <canvas id="fc-canvas"></canvas>
+    <div class="fc-content">
+      <div class="section-label">Featured case study</div>
+      <h2>From zero to 1.24M impressions: the Alliance Shipping content strategy</h2>
+      <div class="case-body">
+        <div><div class="case-block-label">The challenge</div><div class="case-block-text">Alliance Shipping had no organic search presence. The brief was to build topical authority in the Dubai logistics niche from scratch — aligned with the CEO's brand vision and lead-generation targets — without an agency budget.</div></div>
+        <div><div class="case-block-label">The approach</div><div class="case-block-text">Full-funnel content pipeline: topic clustering, keyword mapping, E-E-A-T frameworks, GMB optimisation, and landing pages. I built editorial SOPs, managed in-house and freelance writers, and owned strategy from ideation through to performance analytics.</div></div>
+      </div>
+      <div class="case-results">
+        <div class="case-result-item">
+          <div class="num"><span class="count-val" data-target="1.24" data-suffix="M">0</span></div>
+          <div class="label">impressions in 7 months</div>
+          <div class="stat-bar-wrap"><div class="stat-bar-fill"></div></div>
+        </div>
+        <div class="case-result-item">
+          <div class="num"><span class="count-val" data-target="17.3" data-suffix="K">0</span></div>
+          <div class="label">organic clicks</div>
+          <div class="stat-bar-wrap"><div class="stat-bar-fill"></div></div>
+        </div>
+        <div class="case-result-item">
+          <div class="num"><span class="count-val" data-target="35" data-suffix="+">0</span></div>
+          <div class="label">articles published</div>
+          <div class="stat-bar-wrap"><div class="stat-bar-fill"></div></div>
+        </div>
+        <div class="case-result-item">
+          <div class="num"><em>Full</em></div>
+          <div class="label">funnel coverage built</div>
+          <div class="stat-bar-wrap"><div class="stat-bar-fill"></div></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <hr class="rule" style="margin-top:0;">
 
-<section class="section" id="about">
+<!-- ═══ ABOUT ═══ -->
+<section class="section about-section" id="about">
+  <!-- Doodle 4: left — atom (physics nod) -->
+  <div class="doodle doodle-left" style="width:180px;height:190px;">
+    <svg width="180" height="190" viewBox="0 0 180 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Nucleus -->
+      <circle cx="90" cy="95" r="10" stroke="#0f0e0d" stroke-width="1.8" fill="none"/>
+      <circle cx="87" cy="93" r="3.5" fill="#c85a2a"/>
+      <circle cx="93" cy="97" r="3.5" fill="#0f0e0d" opacity="0.5"/>
+      <!-- Orbit 1 -->
+      <ellipse cx="90" cy="95" rx="60" ry="22" stroke="#0f0e0d" stroke-width="1.4" fill="none"/>
+      <!-- Orbit 2 rotated 60deg -->
+      <ellipse cx="90" cy="95" rx="60" ry="22" stroke="#0f0e0d" stroke-width="1.4" fill="none" transform="rotate(60 90 95)"/>
+      <!-- Orbit 3 rotated 120deg -->
+      <ellipse cx="90" cy="95" rx="60" ry="22" stroke="#0f0e0d" stroke-width="1.4" fill="none" transform="rotate(120 90 95)"/>
+      <!-- Electrons on orbits -->
+      <circle cx="150" cy="95" r="5" fill="#c85a2a"/>
+      <circle cx="60" cy="69" r="4" fill="#0f0e0d" opacity="0.6"/>
+      <circle cx="119" cy="130" r="4" fill="#0f0e0d" opacity="0.6"/>
+      <!-- Little spark dots -->
+      <circle cx="35"  cy="160" r="2.5" fill="#c85a2a" opacity="0.7"/>
+      <circle cx="145" cy="25"  r="2"   fill="#c85a2a" opacity="0.5"/>
+      <circle cx="20"  cy="50"  r="1.5" fill="#0f0e0d" opacity="0.4"/>
+    </svg>
+  </div>
+
   <div class="section-label">About</div>
   <div class="about-grid">
     <div>
@@ -335,34 +506,93 @@ footer { background:var(--ink); color:rgba(247,244,239,0.35); text-align:center;
 
 <hr class="rule">
 
-<section class="section" id="experience">
+<!-- ═══ EXPERIENCE ═══ -->
+<section class="section exp-section" id="experience">
+  <!-- Doodle 5: right — circuit board / nodes -->
+  <div class="doodle doodle-right" style="width:175px;height:220px;">
+    <svg width="175" height="220" viewBox="0 0 175 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Circuit paths -->
+      <path d="M 30 40 H 70 V 80 H 110 V 40 H 145" stroke="#0f0e0d" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <path d="M 70 80 V 130 H 30 V 170" stroke="#0f0e0d" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <path d="M 110 80 V 110 H 145 V 155 H 110 V 180 H 70 V 210" stroke="#0f0e0d" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <path d="M 30 170 H 70 V 210" stroke="#0f0e0d" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <path d="M 145 40 V 20 H 165" stroke="#0f0e0d" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <!-- Component — resistor box -->
+      <rect x="58" y="100" width="25" height="12" rx="2" stroke="#0f0e0d" stroke-width="1.4" fill="none"/>
+      <!-- Component — capacitor -->
+      <line x1="125" y1="125" x2="125" y2="140" stroke="#0f0e0d" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="117" y1="130" x2="133" y2="130" stroke="#0f0e0d" stroke-width="2" stroke-linecap="round"/>
+      <line x1="117" y1="135" x2="133" y2="135" stroke="#0f0e0d" stroke-width="2" stroke-linecap="round"/>
+      <!-- Nodes -->
+      <circle cx="70"  cy="80"  r="4" fill="#c85a2a"/>
+      <circle cx="110" cy="80"  r="4" fill="#0f0e0d"/>
+      <circle cx="30"  cy="170" r="4" fill="#0f0e0d"/>
+      <circle cx="110" cy="180" r="4" fill="#c85a2a"/>
+      <circle cx="70"  cy="210" r="4" fill="#0f0e0d"/>
+      <!-- Glow dot -->
+      <circle cx="145" cy="20" r="5" fill="#c85a2a" opacity="0.9"/>
+      <circle cx="145" cy="20" r="9" fill="#c85a2a" opacity="0.2"/>
+    </svg>
+  </div>
+
   <div class="section-label">Experience</div>
   <div class="section-title">Where I've worked</div>
-  <div>
-    <div class="exp-item">
+  <div class="exp-list">
+
+    <div class="exp-item" style="position:relative;">
       <div><div class="exp-date">Apr 2026 – Present</div><div class="exp-company">Objects</div><div class="exp-loc">Karachi, Pakistan</div></div>
       <div><div class="exp-role">Content Producer</div><div class="exp-desc">Writing technical documentation, onboarding guides, press releases, and feature tutorials for WordPress plugins. Collaborating with developers to ensure technical accuracy. Optimising product pages and knowledge base content for search visibility and user task completion.</div><div class="exp-tags"><span class="exp-tag">WordPress</span><span class="exp-tag">Technical docs</span><span class="exp-tag">SEO</span><span class="exp-tag">Press releases</span></div></div>
     </div>
-    <div class="exp-item">
+
+    <div class="exp-item" style="position:relative;">
       <div><div class="exp-date">Oct 2024 – Mar 2026</div><div class="exp-company">Alliance Shipping</div><div class="exp-loc">Dubai (remote)</div></div>
       <div><div class="exp-role">Content Manager <span style="font-weight:300;color:var(--ink-4);font-size:13px;">↑ promoted</span></div><div class="exp-desc">Built and owned full content strategy from scratch — driving 1.24M impressions and 17.3K clicks in 7 months. Designed scalable pipelines, managed writers, established editorial SOPs and E-E-A-T frameworks.</div><div class="exp-tags"><span class="exp-tag">Content strategy</span><span class="exp-tag">SEO</span><span class="exp-tag">E-E-A-T</span><span class="exp-tag">Team management</span></div></div>
     </div>
-    <div class="exp-item">
+
+    <div class="exp-item" style="position:relative;">
       <div><div class="exp-date">Jan – Oct 2024</div><div class="exp-company">Divinatory Solutions</div><div class="exp-loc">Karachi, Pakistan</div></div>
       <div><div class="exp-role">Technical Content Writer</div><div class="exp-desc">Produced technical documentation including process guides, RFPs, and fuel systems manuals. Created ATS-optimised CVs. Developed interactive client presentations.</div><div class="exp-tags"><span class="exp-tag">Technical writing</span><span class="exp-tag">Documentation</span><span class="exp-tag">RFPs</span></div></div>
     </div>
-    <div class="exp-item">
+
+    <div class="exp-item" style="position:relative;">
       <div><div class="exp-date">Jan – Aug 2024</div><div class="exp-company">JANUS Biotechnology</div><div class="exp-loc">Guangdong, China (remote)</div></div>
       <div><div class="exp-role">Project Assistant</div><div class="exp-desc">Configured and tested biosensor hardware. Documented test results, reported findings to the project lead, and supported cross-timezone technical troubleshooting.</div><div class="exp-tags"><span class="exp-tag">Sensor systems</span><span class="exp-tag">Hardware testing</span><span class="exp-tag">IoT</span></div></div>
     </div>
-    <div class="exp-item">
+
+    <div class="exp-item" style="position:relative;">
       <div><div class="exp-date">Sep 2021 – Jan 2023</div><div class="exp-company">HiQain</div><div class="exp-loc">Remote</div></div>
       <div><div class="exp-role">Web Content Writer (part-time)</div><div class="exp-desc">SEO-driven web content for a handyman services brand. Improved content structure, internal linking, and crawlability.</div><div class="exp-tags"><span class="exp-tag">SEO writing</span><span class="exp-tag">Web content</span></div></div>
     </div>
+
   </div>
 </section>
 
-<div class="contact-section" id="contact">
+<!-- ═══ CONTACT ═══ -->
+<div class="contact-section" id="contact" style="position:relative; overflow:hidden;">
+  <!-- Doodle 6: left — envelope / mail -->
+  <div class="doodle doodle-left" style="width:155px;height:180px;opacity:0.1;">
+    <svg width="155" height="180" viewBox="0 0 155 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Envelope body -->
+      <rect x="15" y="50" width="125" height="90" rx="4" stroke="#0f0e0d" stroke-width="1.8" fill="none"/>
+      <!-- Flap -->
+      <path d="M 15 50 L 77 100 L 140 50" stroke="#0f0e0d" stroke-width="1.8" stroke-linejoin="round" fill="none"/>
+      <!-- Bottom fold lines -->
+      <line x1="15"  y1="140" x2="55"  y2="105" stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="140" y1="140" x2="100" y2="105" stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round"/>
+      <!-- Stamp square -->
+      <rect x="105" y="58" width="22" height="18" rx="2" stroke="#c85a2a" stroke-width="1.4" fill="none" stroke-dasharray="2 1.5"/>
+      <!-- Stamp inner -->
+      <rect x="108" y="61" width="16" height="12" rx="1" stroke="#c85a2a" stroke-width="1" fill="none"/>
+      <!-- Wavy lines below envelope (address lines) -->
+      <path d="M 30 155 Q 50 150 70 155 Q 90 160 110 155" stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      <path d="M 30 165 Q 45 160 65 165 Q 85 170 100 165" stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      <!-- Flying birds / dots above -->
+      <path d="M 30 25 Q 35 20 40 25" stroke="#0f0e0d" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+      <path d="M 55 15 Q 62 9 69 15"  stroke="#0f0e0d" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+      <path d="M 80 28 Q 86 23 92 28"  stroke="#0f0e0d" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+
   <div class="contact-inner">
     <div>
       <h2>Let's work <em>together.</em></h2>
@@ -380,6 +610,7 @@ footer { background:var(--ink); color:rgba(247,244,239,0.35); text-align:center;
 
 <footer>© 2026 Muhammad Ali Siddiqui — Technical Content Strategist, Karachi</footer>
 
+<!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this)closeModal()">
   <div class="modal"><button class="modal-close" onclick="closeModal()">✕</button><div id="modal-body"></div></div>
 </div>
@@ -388,39 +619,186 @@ footer { background:var(--ink); color:rgba(247,244,239,0.35); text-align:center;
 /* ── TYPEWRITER ── */
 (function(){
   const word = document.getElementById('tw-word');
-  const cursor = document.getElementById('tw-cursor');
   const text = 'converts.';
   let i = 0;
   function type(){
     if(i <= text.length){
       word.innerHTML = text.slice(0,i) + '<span class="tw-cursor" id="tw-cursor">|</span>';
       i++;
-      setTimeout(type, i===1 ? 50 : 85 + Math.random()*45);
+      setTimeout(type, i===1 ? 50 : 85+Math.random()*45);
     } else {
-      // blink briefly then remove cursor
       setTimeout(()=>{
         const c = document.getElementById('tw-cursor');
-        if(c) c.style.display = 'none';
+        if(c) c.style.display='none';
       }, 1600);
     }
   }
   setTimeout(type, 800);
 })();
 
-/* ── CASE STUDIES ── */
+/* ── FEATURED CASE: particle field + scroll shimmer + counters ── */
+(function(){
+  const fc   = document.getElementById('featured-case');
+  const cvs  = document.getElementById('fc-canvas');
+  const ctx  = cvs.getContext('2d');
+  let W, H, particles = [], mouse = { x: -999, y: -999, inside: false };
+  let triggered = false;
+  let raf;
+
+  /* ── resize canvas to match panel ── */
+  function resize(){
+    const r = fc.getBoundingClientRect();
+    W = cvs.width  = r.width;
+    H = cvs.height = r.height;
+    buildParticles();
+  }
+
+  /* ── build particle cloud ── */
+  function buildParticles(){
+    particles = [];
+    const count = Math.floor((W * H) / 5200);  // density
+    for(let i = 0; i < count; i++){
+      const base = {
+        x: Math.random() * W,
+        y: Math.random() * H,
+      };
+      particles.push({
+        ox: base.x,       // origin x
+        oy: base.y,       // origin y
+        x:  base.x,
+        y:  base.y,
+        r:  0.6 + Math.random() * 1.4,
+        // orange accent or white — weighted toward subtle white
+        hue: Math.random() < 0.18 ? 'accent' : 'white',
+        opacity: 0.08 + Math.random() * 0.22,
+        speed:  0.3 + Math.random() * 0.5,
+        angle:  Math.random() * Math.PI * 2,
+        drift:  0.002 + Math.random() * 0.004,
+      });
+    }
+  }
+
+  /* ── draw frame ── */
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+
+    particles.forEach(p => {
+      /* gentle ambient drift */
+      p.angle += p.drift;
+      p.ox += Math.cos(p.angle) * 0.12;
+      p.oy += Math.sin(p.angle) * 0.12;
+      /* wrap */
+      if(p.ox < 0) p.ox = W; if(p.ox > W) p.ox = 0;
+      if(p.oy < 0) p.oy = H; if(p.oy > H) p.oy = 0;
+
+      /* magnetic pull toward mouse */
+      if(mouse.inside){
+        const dx = mouse.x - p.ox;
+        const dy = mouse.y - p.oy;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        const radius = 130;
+        if(dist < radius){
+          const force = (1 - dist/radius) * 0.38;
+          p.x += (p.ox + dx * force - p.x) * 0.12;
+          p.y += (p.oy + dy * force - p.y) * 0.12;
+        } else {
+          p.x += (p.ox - p.x) * 0.06;
+          p.y += (p.oy - p.y) * 0.06;
+        }
+      } else {
+        p.x += (p.ox - p.x) * 0.05;
+        p.y += (p.oy - p.y) * 0.05;
+      }
+
+      /* draw dot */
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.hue === 'accent'
+        ? `rgba(200,90,42,${p.opacity})`
+        : `rgba(247,244,239,${p.opacity})`;
+      ctx.fill();
+
+      /* draw faint connection lines between nearby particles */
+      particles.forEach(q => {
+        if(q === p) return;
+        const dx = p.x - q.x, dy = p.y - q.y;
+        const d = Math.sqrt(dx*dx + dy*dy);
+        if(d < 55){
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(q.x, q.y);
+          ctx.strokeStyle = `rgba(247,244,239,${0.04 * (1 - d/55)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      });
+    });
+
+    raf = requestAnimationFrame(draw);
+  }
+
+  /* ── mouse tracking (relative to canvas) ── */
+  fc.addEventListener('mousemove', e => {
+    const r = fc.getBoundingClientRect();
+    mouse.x = e.clientX - r.left;
+    mouse.y = e.clientY - r.top;
+    mouse.inside = true;
+  });
+  fc.addEventListener('mouseleave', () => { mouse.inside = false; });
+
+  /* ── counter animation ── */
+  function animateCount(el, target, suffix, duration){
+    const isDecimal = String(target).includes('.');
+    const startTime = performance.now();
+    function update(now){
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = target * eased;
+      el.textContent = (isDecimal ? current.toFixed(2) : Math.floor(current)) + suffix;
+      if(progress < 1) requestAnimationFrame(update);
+      else el.textContent = target + suffix;
+    }
+    requestAnimationFrame(update);
+  }
+
+  function trigger(){
+    if(triggered) return;
+    triggered = true;
+    fc.classList.add('swept');
+    const vals = fc.querySelectorAll('.count-val');
+    vals.forEach((el, i) => {
+      const t = parseFloat(el.dataset.target);
+      const s = el.dataset.suffix || '';
+      setTimeout(() => animateCount(el, t, s, 1500), i * 130);
+    });
+  }
+
+  /* ── init ── */
+  resize();
+  window.addEventListener('resize', resize);
+  draw();
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) trigger(); });
+  }, { threshold: 0.3 });
+  observer.observe(fc);
+})();
+
+/* ── CASE STUDIES DATA ── */
 const cases = {
-  alliance:{tag:'<span class="modal-tag tag-strategy">Content Strategy</span>',title:"Building Alliance Shipping's content engine from scratch",company:'Alliance Shipping · Dubai · Oct 2024 – Mar 2026',sections:[{label:'The challenge',text:"Alliance Shipping had no organic search presence. The brief was to build topical authority in the Dubai logistics and shipping niche from zero — aligned with the CEO's brand vision and direct lead-generation goals — without an agency budget or a large team."},{label:'My approach',text:"I designed a full-funnel content strategy starting with competitor analysis and keyword research, moving into topic clustering and search intent mapping, then building scalable editorial pipelines for blogs, service pages, landing pages, and Google My Business listings. I recruited and managed in-house and freelance writers, built editorial SOPs and QA workflows, and implemented E-E-A-T frameworks to establish topical authority."},{label:'The content produced',text:'35+ long-form logistics articles covering everything from "What is a Bill of Lading?" to detailed air freight pricing guides and Jebel Ali customs clearance costs — every piece mapped to a specific search intent and stage of the funnel.'},{label:'The result',text:'1.24 million organic impressions and 17,300 clicks in 7 months — entirely through search-led content with no paid media. The editorial system I built continued producing results after my promotion to Content Manager.'},{label:"What I'd do differently",text:"I'd have built pillar page architecture from day one. We started with individual blog posts and layered structure in later — going pillar-first would have compounded authority faster in the first 90 days."}],results:[{num:'1.24M',label:'impressions in 7 months'},{num:'17.3K',label:'organic clicks'},{num:'35+',label:'articles published'},{num:'Promoted',label:'to Content Manager'}]},
-  objects:{tag:'<span class="modal-tag tag-docs">Documentation</span>',title:'WordPress plugin documentation users actually read',company:'Objects · Karachi · Apr 2026 – present',sections:[{label:'The context',text:'At Objects I produce content for WordPress plugins — press releases, product pages, knowledge base documentation, tutorials, and technical blog articles. The core challenge is translating complex plugin functionality into content that serves both non-technical users and developers without alienating either audience.'},{label:'Recent deliverables',text:'Press releases for Post SMTP Pro v1.5.0 (one-click Microsoft 365 email setup), Post SMTP v3.8.0 (Sweego SMTP mailer integration), and AIO Login Pro v1.4.0 (WooCommerce + hCAPTCHA). Plus release emails, B2B technical tutorials, and onboarding documentation.'},{label:'The technical articles',text:'How-to guides covering WooCommerce checkout flows, WordPress contact form plugins, SMTP configuration, CAPTCHA setup, recurring donation forms, and Google Postmaster Tools — each written with developer review for accuracy and optimised for search.'},{label:'My approach',text:'I collaborate directly with developers before writing a word. I map the user journey first: what task is someone trying to complete? Then I write from that task backwards — not from the feature forwards.'}],results:[{num:'WP',label:'plugin ecosystem'},{num:'Task-led',label:'doc structure'},{num:'Dev-reviewed',label:'for accuracy'},{num:'SEO',label:'optimised'}]},
-  logistics_seo:{tag:'<span class="modal-tag tag-seo">SEO Content</span>',title:'35+ logistics articles that built topical authority in Dubai',company:'Alliance Shipping · Dubai · 2024–2026',sections:[{label:'The brief',text:"Build a complete content map for the Dubai shipping and logistics space — covering every search intent from beginner education ('What is shipping?') to decision-stage comparisons and pricing guides."},{label:'The strategy',text:"I mapped the entire logistics knowledge graph: shipping fundamentals, document types (Bill of Lading, Commercial Invoice, Airway Bill), freight methods, port operations, and cost guides. Each article targeted a specific keyword cluster with clear search intent. AI-assisted content workflow used for scaling while maintaining quality."},{label:'Sample articles',text:'Topics included: types of cargo vessels, international shipping process, Jebel Ali customs clearance costs, sea freight rates from Dubai per KG, air freight charges, freight forwarder roles, reefer container guides, and sustainable logistics in Dubai.'},{label:'The outcome',text:"The content library became the backbone of the 1.24M impression result — with educational articles pulling top-of-funnel traffic that converted to service page visits."}],results:[{num:'35+',label:'articles published'},{num:'Full',label:'intent coverage'},{num:'AI+human',label:'content workflow'},{num:'Topical',label:'authority built'}]},
-  apparel:{tag:'<span class="modal-tag tag-apparel">Apparel / B2B</span>',title:'30+ manufacturer guides for a B2B apparel brand',company:'B2B Apparel Manufacturing Client · 2025–2026',sections:[{label:'The scope',text:'A complete content library for a B2B clothing manufacturer targeting retailers, brand founders, and entrepreneurs looking to start clothing lines. The content needed to rank for high-intent keywords while educating a buyer audience unfamiliar with manufacturing processes.'},{label:'Content types',text:'Landing pages for specific product categories (underwear, hats, caps), buying guides, manufacturer comparison roundups ("Top 10 Custom Hoodie Manufacturers in USA"), how-to-start-a-brand guides, fabric selection explainers, and production method deep dives.'},{label:'Sample articles',text:'Small batch hoodie production guide, cotton vs polyester comparison, custom gym wear benefits, compression clothing guide, tech pack creation guide, and 20+ types-of-apparel articles covering hoodies, leggings, shorts, tank tops, and pants.'},{label:'The result',text:"A scalable content system that covered every stage of the B2B buyer journey — from discovery ('what is a clothing manufacturer?') to decision ('how much does it cost to manufacture one piece?')."}],results:[{num:'30+',label:'articles and pages'},{num:'B2B',label:'buyer journey mapped'},{num:'USA',label:'market targeting'},{num:'2026',label:'content updated'}]},
-  saas_b2b:{tag:'<span class="modal-tag tag-saas">SaaS / B2B Data</span>',title:'B2B data provider comparison series across 6 EU markets',company:'B2B SaaS client · 2024',sections:[{label:'The brief',text:'Produce a series of "Best B2B Data Providers in [Country]" articles targeting decision-stage buyers across six European markets — Sweden, Portugal, Denmark, Finland, Greece, and Austria. Each article needed to rank individually while fitting a coherent content strategy.'},{label:'The challenge',text:"This type of comparison content requires deep research into each market's data landscape, accurate positioning of each provider, and writing that serves both the search algorithm and a sophisticated B2B audience. Generic content would fail — buyers in this space fact-check."},{label:'My approach',text:"Each article was independently researched, with providers evaluated on data coverage, integration options, compliance, and pricing. I wrote to a consistent structure that could rank as a standalone piece while linking internally to build topical authority across the series."},{label:'The outcome',text:'Six published comparison articles covering the top data intelligence providers in each market — each targeting high-commercial-intent keywords with purchase-ready buyers.'}],results:[{num:'6',label:'EU markets covered'},{num:'High-intent',label:'decision-stage content'},{num:'Series',label:'with internal linking'},{num:'Research-led',label:'per market'}]},
-  real_estate:{tag:'<span class="modal-tag tag-finance">Real Estate</span>',title:'Dubai real estate content for Indian and UK investors',company:'Real estate client · Dubai · 2024',sections:[{label:'The audience',text:"Two distinct investor audiences: Indian buyers navigating Dubai's property laws and tax landscape, and UK investors looking at off-plan properties. Both audiences are high-value, high-trust — they read carefully and exit fast if content feels thin."},{label:'Content produced',text:'Dubai real estate 2024 forecast, property laws for Indian buyers, off-plan property guide for UK investors, Dubai tax landscape analysis for Indian investors, and a marketing case study series featuring top-performing real estate brands.'},{label:'The approach',text:'Research-heavy and compliance-aware. Each piece was written with awareness of the regulatory differences between jurisdictions — a reader in Mumbai and a reader in London have different legal contexts, different tax concerns, and different risk tolerances.'},{label:'Why this worked',text:'Real estate content fails when it is too generic. These pieces were written for specific national audiences with specific concerns — that specificity is what earns trust and ranks for long-tail queries.'}],results:[{num:'2',label:'investor audiences'},{num:'5',label:'articles produced'},{num:'Compliance-aware',label:'writing'},{num:'High-trust',label:'format'}]},
-  technical_docs:{tag:'<span class="modal-tag tag-docs">Technical Writing</span>',title:'Fuel tank process guide and RFP documentation',company:'Divinatory Solutions · BOSAL Belgium · 2024',sections:[{label:'The brief',text:"Produce a technical overview of BOSAL Belgium's flexible fuel tank production line — a document requiring real understanding of manufacturing systems, materials, and process engineering. Additionally, RFP writing for client proposals and internal process documentation."},{label:'What made it challenging',text:"This isn't the kind of content you can research your way through in an afternoon. Fuel tank production involves fluid dynamics, materials science, and quality control processes. My Applied Physics background made me the right person for this — I could read the source materials and understand them."},{label:'My process',text:"I worked from engineering documentation and product specs, structured the content for a non-engineering reader (procurement decision-makers), and had technical sections reviewed for accuracy. The output was a professional document suitable for client presentation."},{label:'The broader context',text:'This project is an example of the technical writing work I can take on that most content writers cannot — documentation that requires real domain comprehension, not just clear writing.'}],results:[{num:'BOSAL',label:'Belgium — industrial client'},{num:'RFPs',label:'and process guides'},{num:'Physics-led',label:'comprehension'},{num:'Client-ready',label:'documents'}]},
-  iot_biotech:{tag:'<span class="modal-tag tag-iot">IoT / Hardware</span>',title:'Biosensor testing and documentation for JANUS Biotechnology',company:'Guangdong JANUS Biotechnology Co. Ltd · Remote · 2024',sections:[{label:'The context',text:'JANUS Biotechnology develops sensor-based diagnostic devices. I joined as a Project Assistant to support sensor configuration, testing, and documentation — working remotely across time zones with an engineering team in Guangdong, China.'},{label:'What I did',text:'Configured and tested biosensor hardware. Documented test results and reported findings to the project lead. Supported cross-timezone technical troubleshooting and device setup. Applied my Applied Physics degree in a working hardware environment, not just in writing about hardware.'},{label:'Why this matters for my content work',text:"This is the experience that separates my technical writing from generic content. I've held a sensor, configured it, documented its failure modes, and reported findings to engineers. When I produce documentation for technical products, that background comes with me."},{label:'The long-term signal',text:'This role opens the door to IoT documentation, robotics SaaS, industrial automation content, and developer tool writing — categories where technical writers with real hardware experience are rare and paid accordingly.'}],results:[{num:'MSc',label:'Applied Physics'},{num:'Hardware',label:'sensor config'},{num:'Biotech',label:'industry'},{num:'Cross-TZ',label:'eng team'}]},
-  press_releases:{tag:'<span class="modal-tag tag-press">Press Releases</span>',title:'WordPress plugin launch releases and feature announcements',company:'Objects · 2026',sections:[{label:'The deliverables',text:'Three press releases and two release emails for major WordPress plugin updates: Post SMTP Pro v1.5.0 (one-click Microsoft 365 email setup), Post SMTP v3.8.0 (Sweego SMTP mailer + SendTest notification), and AIO Login Pro v1.4.0 (WooCommerce integration + hCAPTCHA).'},{label:'What good plugin press releases require',text:"You need to understand the feature before you can explain why it matters. A Microsoft 365 integration isn't a technical upgrade — it's a one-click solution to a configuration problem that's frustrated thousands of WordPress admins. That's the story. The feature is just the vehicle."},{label:'The release emails',text:'"Protect Your WooCommerce Store from Bots — AIO Login Pro v1.4.0 Is Here" and the Sweego mailer integration announcement — both concise, benefit-led, technically accurate, and reviewed by the dev team before sending.'},{label:'The format',text:'Each press release: headline → what is new → why it matters → how to get it. No fluff, no passive voice, no feature-list dumping.'}],results:[{num:'3',label:'press releases'},{num:'2',label:'release emails'},{num:'Dev-reviewed',label:'for accuracy'},{num:'WordPress',label:'ecosystem'}]},
-  ghostwriting:{tag:'<span class="modal-tag tag-seo">Ghostwriting</span>',title:'100+ ghostwritten articles driving 85K+ audience growth',company:'Medium (remote ghostwriting) · Oct 2020 – Nov 2024',sections:[{label:'The work',text:"Over four years I ghostwrote 100+ client-commissioned articles on topics ranging across business, technology, lifestyle, real estate, finance, health, and culture. Every piece was written to the client's tone, structured for featured snippets, and optimised for Google."},{label:'The track record',text:'92% on-time delivery rate across hundreds of briefs. Contributed to 85,000+ audience growth for clients across their publications. Consistently achieved high Google rankings through ethical keyword integration and strong structural decisions.'},{label:'What this discipline built',text:'Writing at volume across 15+ niches trains you to understand audience intent faster than almost any other format. You develop a research instinct, tonal range, and structural fluency that makes you faster and more accurate as a technical writer.'},{label:'The ghost advantage',text:"The best ghost writing is invisible. Every piece I delivered felt like it came from the client — their voice, their expertise, their authority. That's the skill: ego-free writing that serves someone else's brand."}],results:[{num:'100+',label:'articles delivered'},{num:'85K+',label:'audience growth'},{num:'92%',label:'on-time delivery'},{num:'15+',label:'niches covered'}]},
-  finance_writing:{tag:'<span class="modal-tag tag-finance">Finance Content</span>',title:'Long-form investment guides and e-wallet competitive analysis',company:'Finance clients · 2024',sections:[{label:'The work',text:'Long-form content for financial audiences: investment principles guides, long-term strategy articles, and a comprehensive e-wallet competitive analysis delivered as a PowerPoint presentation deck.'},{label:'The challenge',text:'Financial content requires a higher standard of accuracy than most writing. Readers in this space are educated, skeptical, and quick to spot shallow research. Every claim needs to be defensible, and the structure needs to make complex ideas navigable.'},{label:'The e-wallet analysis',text:'A competitive analysis of major e-wallet providers structured as an executive-ready PPT deck — covering market positioning, feature comparison, regulatory compliance, and strategic recommendations.'},{label:'The investment articles',text:'"Essential Investing Principles Every Smart Investor Should Know" and "Long-Term Investment Strategies for Maximizing Returns" — written for retail investors with depth that also serves financially literate readers.'}],results:[{num:'Finance',label:'specialist content'},{num:'PPT',label:'competitive deck'},{num:'Research-led',label:'writing'},{num:'Retail+pro',label:'audience range'}]},
-  ebooks:{tag:'<span class="modal-tag tag-saas">Long-Form</span>',title:'7 full ebooks across health, business, and entrepreneurship',company:'Various ghostwriting clients · 2020–2024',sections:[{label:'The scope',text:"Seven complete ebooks delivered ghost across a range of categories: gut health and weight loss, passive income strategies, children's leadership development (parts 2 and 3), entrepreneurship fundamentals, Moissanite jewelry education, and a gluten-free cookbook."},{label:'What long-form ghostwriting requires',text:"An ebook isn't a long blog post. It has arc, chapter structure, voice consistency across tens of thousands of words, and a reading experience that has to hold together as a product. The author's voice has to stay consistent from page 1 to the last."},{label:'The process',text:"Each project started with a detailed brief and chapter outline agreed with the client. Research phase, then chapter-by-chapter drafting with revision rounds. The final product was delivered formatted for digital distribution."},{label:'The outcome',text:"All ebooks delivered to client satisfaction, on brief, on time. Several were published and sold. The Moissanite guide became marketing collateral for a jewelry brand. The passive income book was self-published by the client."}],results:[{num:'7',label:'full ebooks'},{num:'Multi-category',label:'range'},{num:'Ghost',label:'voice-matched'},{num:'Published',label:'& sold'}]}
+  alliance:{tag:'<span class="modal-tag tag-strategy">Content Strategy</span>',title:"Building Alliance Shipping's content engine from scratch",company:'Alliance Shipping · Dubai · Oct 2024 – Mar 2026',sections:[{label:'The challenge',text:"Alliance Shipping had no organic search presence. The brief was to build topical authority in the Dubai logistics and shipping niche from zero — aligned with the CEO's brand vision and direct lead-generation goals — without an agency budget or a large team."},{label:'My approach',text:"I designed a full-funnel content strategy starting with competitor analysis and keyword research, moving into topic clustering and search intent mapping, then building scalable editorial pipelines for blogs, service pages, landing pages, and Google My Business listings."},{label:'The content produced',text:'35+ long-form logistics articles covering everything from "What is a Bill of Lading?" to detailed air freight pricing guides and Jebel Ali customs clearance costs — every piece mapped to a specific search intent and stage of the funnel.'},{label:'The result',text:'1.24 million organic impressions and 17,300 clicks in 7 months — entirely through search-led content with no paid media.'},{label:"What I'd do differently",text:"I'd have built pillar page architecture from day one. We started with individual blog posts and layered structure in later — going pillar-first would have compounded authority faster in the first 90 days."}],results:[{num:'1.24M',label:'impressions in 7 months'},{num:'17.3K',label:'organic clicks'},{num:'35+',label:'articles published'},{num:'Promoted',label:'to Content Manager'}]},
+  objects:{tag:'<span class="modal-tag tag-docs">Documentation</span>',title:'WordPress plugin documentation users actually read',company:'Objects · Karachi · Apr 2026 – present',sections:[{label:'The context',text:'At Objects I produce content for WordPress plugins — press releases, product pages, knowledge base documentation, tutorials, and technical blog articles. The core challenge is translating complex plugin functionality into content that serves both non-technical users and developers without alienating either audience.'},{label:'Recent deliverables',text:'Press releases for Post SMTP Pro v1.5.0 (one-click Microsoft 365 email setup), Post SMTP v3.8.0 (Sweego SMTP mailer integration), and AIO Login Pro v1.4.0 (WooCommerce + hCAPTCHA). Plus release emails, B2B technical tutorials, and onboarding documentation.'},{label:'The technical articles',text:'How-to guides covering WooCommerce checkout flows, WordPress contact form plugins, SMTP configuration, CAPTCHA setup, recurring donation forms, and Google Postmaster Tools.'},{label:'My approach',text:'I collaborate directly with developers before writing a word. I map the user journey first: what task is someone trying to complete? Then I write from that task backwards — not from the feature forwards.'}],results:[{num:'WP',label:'plugin ecosystem'},{num:'Task-led',label:'doc structure'},{num:'Dev-reviewed',label:'for accuracy'},{num:'SEO',label:'optimised'}]},
+  logistics_seo:{tag:'<span class="modal-tag tag-seo">SEO Content</span>',title:'35+ logistics articles that built topical authority in Dubai',company:'Alliance Shipping · Dubai · 2024–2026',sections:[{label:'The brief',text:"Build a complete content map for the Dubai shipping and logistics space — covering every search intent from beginner education to decision-stage comparisons and pricing guides."},{label:'The strategy',text:"I mapped the entire logistics knowledge graph: shipping fundamentals, document types, freight methods, port operations, and cost guides. Each article targeted a specific keyword cluster."},{label:'Sample articles',text:'Air freight charges Dubai, sea freight rates per KG, Jebel Ali customs clearance costs, freight forwarder guide, reefer container guide, sustainable logistics Dubai.'},{label:'The outcome',text:"The content library became the backbone of the 1.24M impression result — educational articles pulling top-of-funnel traffic that converted to service page visits."}],results:[{num:'35+',label:'articles published'},{num:'Full',label:'intent coverage'},{num:'AI+human',label:'content workflow'},{num:'Topical',label:'authority built'}]},
+  apparel:{tag:'<span class="modal-tag tag-apparel">Apparel / B2B</span>',title:'30+ manufacturer guides for a B2B apparel brand',company:'B2B Apparel Manufacturing Client · 2025–2026',sections:[{label:'The scope',text:'A complete content library for a B2B clothing manufacturer targeting retailers, brand founders, and entrepreneurs looking to start clothing lines.'},{label:'Content types',text:'Landing pages for specific categories, buying guides, manufacturer comparison roundups, how-to-start-a-brand guides, fabric selection explainers, and production method deep dives.'},{label:'Sample articles',text:'Small batch hoodie production, cotton vs polyester comparison, tech pack creation guide, and 20+ types-of-apparel articles covering hoodies, leggings, shorts, tank tops, and pants.'},{label:'The result',text:"A scalable content system covering every stage of the B2B buyer journey — from discovery to decision."}],results:[{num:'30+',label:'articles and pages'},{num:'B2B',label:'buyer journey mapped'},{num:'USA',label:'market targeting'},{num:'2026',label:'content updated'}]},
+  saas_b2b:{tag:'<span class="modal-tag tag-saas">SaaS / B2B Data</span>',title:'B2B data provider comparison series across 6 EU markets',company:'B2B SaaS client · 2024',sections:[{label:'The brief',text:'Produce "Best B2B Data Providers in [Country]" articles targeting decision-stage buyers across Sweden, Portugal, Denmark, Finland, Greece, and Austria.'},{label:'The challenge',text:"Deep research into each market's data landscape, accurate provider positioning, and writing that serves both the algorithm and a sophisticated B2B audience."},{label:'My approach',text:"Each article was independently researched with providers evaluated on data coverage, integration options, compliance, and pricing."},{label:'The outcome',text:'Six published comparison articles covering the top data intelligence providers in each market.'}],results:[{num:'6',label:'EU markets covered'},{num:'High-intent',label:'decision-stage'},{num:'Series',label:'with internal linking'},{num:'Research-led',label:'per market'}]},
+  real_estate:{tag:'<span class="modal-tag tag-finance">Real Estate</span>',title:'Dubai real estate content for Indian and UK investors',company:'Real estate client · Dubai · 2024',sections:[{label:'The audience',text:"Two distinct audiences: Indian buyers navigating Dubai's property laws and tax landscape, and UK investors looking at off-plan properties."},{label:'Content produced',text:'Dubai 2024 forecast, property laws for Indian buyers, off-plan guide for UK investors, tax landscape analysis, and a marketing case study series.'},{label:'The approach',text:'Research-heavy and compliance-aware — each piece written with awareness of the regulatory differences between jurisdictions.'},{label:'Why this worked',text:'Real estate content fails when it is too generic. Specificity to national audiences is what earns trust and ranks for long-tail queries.'}],results:[{num:'2',label:'investor audiences'},{num:'5',label:'articles produced'},{num:'Compliance-aware',label:'writing'},{num:'High-trust',label:'format'}]},
+  technical_docs:{tag:'<span class="modal-tag tag-docs">Technical Writing</span>',title:'Fuel tank process guide and RFP documentation',company:'Divinatory Solutions · BOSAL Belgium · 2024',sections:[{label:'The brief',text:"Technical overview of BOSAL Belgium's flexible fuel tank production line — requiring real understanding of manufacturing systems, materials, and process engineering."},{label:'What made it challenging',text:"Fuel tank production involves fluid dynamics, materials science, and quality control. My Applied Physics background made me the right person — I could read the source materials and understand them."},{label:'My process',text:"Worked from engineering documentation and specs, structured for non-engineering readers (procurement decision-makers), with technical sections reviewed for accuracy."},{label:'The broader context',text:'This is the kind of technical writing most content writers cannot do — documentation that requires real domain comprehension.'}],results:[{num:'BOSAL',label:'Belgium — industrial'},{num:'RFPs',label:'and process guides'},{num:'Physics-led',label:'comprehension'},{num:'Client-ready',label:'documents'}]},
+  iot_biotech:{tag:'<span class="modal-tag tag-iot">IoT / Hardware</span>',title:'Biosensor testing and documentation for JANUS Biotechnology',company:'Guangdong JANUS Biotechnology Co. Ltd · Remote · 2024',sections:[{label:'The context',text:'JANUS Biotechnology develops sensor-based diagnostic devices. I joined as Project Assistant to support sensor configuration, testing, and documentation — working remotely with an engineering team in Guangdong, China.'},{label:'What I did',text:'Configured and tested biosensor hardware. Documented test results and reported findings to the project lead. Applied my Applied Physics degree in a working hardware environment.'},{label:'Why this matters for my content work',text:"I've held a sensor, configured it, documented its failure modes, and reported findings to engineers. When I produce documentation for technical products, that background comes with me."},{label:'The long-term signal',text:'This role opens the door to IoT documentation, robotics SaaS, industrial automation content, and developer tool writing — where technical writers with hardware experience are rare.'}],results:[{num:'MSc',label:'Applied Physics'},{num:'Hardware',label:'sensor config'},{num:'Biotech',label:'industry'},{num:'Cross-TZ',label:'eng team'}]},
+  press_releases:{tag:'<span class="modal-tag tag-press">Press Releases</span>',title:'WordPress plugin launch releases and feature announcements',company:'Objects · 2026',sections:[{label:'The deliverables',text:'Three press releases and two release emails: Post SMTP Pro v1.5.0 (Microsoft 365 setup), Post SMTP v3.8.0 (Sweego mailer), and AIO Login Pro v1.4.0 (WooCommerce + hCAPTCHA).'},{label:'What good plugin press releases require',text:"You need to understand the feature before explaining why it matters. A Microsoft 365 integration isn't a technical upgrade — it's a solution to a problem that's frustrated thousands of WordPress admins."},{label:'The release emails',text:'"Protect Your WooCommerce Store from Bots" and the Sweego mailer announcement — concise, benefit-led, technically accurate, reviewed by the dev team.'},{label:'The format',text:'Each press release: headline → what is new → why it matters → how to get it. No fluff, no passive voice.'}],results:[{num:'3',label:'press releases'},{num:'2',label:'release emails'},{num:'Dev-reviewed',label:'accuracy'},{num:'WordPress',label:'ecosystem'}]},
+  ghostwriting:{tag:'<span class="modal-tag tag-seo">Ghostwriting</span>',title:'100+ ghostwritten articles driving 85K+ audience growth',company:'Medium (remote ghostwriting) · Oct 2020 – Nov 2024',sections:[{label:'The work',text:"100+ client-commissioned articles across business, technology, lifestyle, real estate, finance, health, and culture — every piece written to the client's tone and optimised for Google."},{label:'The track record',text:'92% on-time delivery rate. Contributed to 85,000+ audience growth for clients. Consistently achieved high Google rankings through ethical keyword integration.'},{label:'What this discipline built',text:'Writing at volume across 15+ niches trains research instinct, tonal range, and structural fluency — skills that directly improve technical writing speed and accuracy.'},{label:'The ghost advantage',text:"The best ghost writing is invisible. Every piece I delivered felt like it came from the client — their voice, their expertise, their authority."}],results:[{num:'100+',label:'articles delivered'},{num:'85K+',label:'audience growth'},{num:'92%',label:'on-time delivery'},{num:'15+',label:'niches covered'}]},
+  finance_writing:{tag:'<span class="modal-tag tag-finance">Finance Content</span>',title:'Long-form investment guides and e-wallet competitive analysis',company:'Finance clients · 2024',sections:[{label:'The work',text:'Long-form content for financial audiences: investment principles guides, long-term strategy articles, and a comprehensive e-wallet competitive analysis as a PPT deck.'},{label:'The challenge',text:'Financial content requires a higher accuracy standard. Readers are educated, skeptical, and quick to spot shallow research.'},{label:'The e-wallet analysis',text:'Competitive analysis of major e-wallet providers — covering market positioning, feature comparison, regulatory compliance, and strategic recommendations.'},{label:'The investment articles',text:'"Essential Investing Principles Every Smart Investor Should Know" and "Long-Term Investment Strategies for Maximizing Returns."'}],results:[{num:'Finance',label:'specialist content'},{num:'PPT',label:'competitive deck'},{num:'Research-led',label:'writing'},{num:'Retail+pro',label:'audience range'}]},
+  ebooks:{tag:'<span class="modal-tag tag-saas">Long-Form</span>',title:'7 full ebooks across health, business, and entrepreneurship',company:'Various ghostwriting clients · 2020–2024',sections:[{label:'The scope',text:"Seven complete ebooks: gut health and weight loss, passive income, children's leadership (parts 2 & 3), entrepreneurship, Moissanite jewelry, and a gluten-free cookbook."},{label:'What long-form ghostwriting requires',text:"An ebook isn't a long blog post. It has arc, chapter structure, voice consistency across tens of thousands of words, and a reading experience that has to hold together as a product."},{label:'The process',text:"Detailed brief and chapter outline agreed with client, research phase, chapter-by-chapter drafts with revision rounds, delivered formatted for digital distribution."},{label:'The outcome',text:"All ebooks delivered on brief, on time. Several published and sold. The Moissanite guide became marketing collateral. The passive income book was self-published by the client."}],results:[{num:'7',label:'full ebooks'},{num:'Multi-category',label:'range'},{num:'Ghost',label:'voice-matched'},{num:'Published',label:'& sold'}]}
 };
 
 function openModal(key){
