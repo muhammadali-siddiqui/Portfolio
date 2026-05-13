@@ -251,6 +251,182 @@ hr.rule { border:none; border-top:1px solid var(--rule); margin:0; }
 .exp-tag { font-size:11px; padding:2px 9px; background:var(--paper-2); border-radius:2px; color:var(--ink-3); border:1px solid var(--paper-3); transition:background 0.2s, color 0.2s; }
 .exp-item:hover .exp-tag { background:var(--accent-light); color:var(--accent); border-color:var(--accent-light); }
 
+/* ─── PORTFOLIO TIMELINE (1C) ─── */
+.portfolio-section { position:relative; background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+.portfolio-inner { max-width:980px; margin:0 auto; padding:80px 2.5rem; }
+.portfolio-year-group { margin-bottom:3.5rem; }
+.portfolio-year-group:last-child { margin-bottom:0; }
+.year-heading {
+  font-family:var(--font-display); font-size:clamp(32px,4vw,52px);
+  color:var(--paper-3); letter-spacing:-0.04em; line-height:1;
+  margin-bottom:1.5rem; user-select:none;
+  position:relative; display:inline-block;
+}
+.year-heading::after {
+  content:''; display:block;
+  width:100%; height:1px; background:var(--rule);
+  margin-top:0.75rem;
+}
+.portfolio-entries { display:flex; flex-direction:column; gap:2px; }
+.portfolio-entry {
+  display:grid; grid-template-columns:220px 1fr auto;
+  align-items:center; gap:1.5rem;
+  padding:0.85rem 1rem; border-radius:3px;
+  border:1px solid transparent;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.22s cubic-bezier(0.34,1.56,0.64,1);
+  text-decoration:none; color:inherit;
+}
+.portfolio-entry:hover {
+  background:#fff; border-color:var(--rule);
+  transform:translateX(6px);
+}
+@media(max-width:640px){
+  .portfolio-entry { grid-template-columns:1fr; gap:0.4rem; }
+  .pe-arrow { display:none; }
+}
+.pe-client { font-size:12px; color:var(--ink-4); font-weight:300; }
+.pe-title { font-size:14px; color:var(--ink); font-weight:400; line-height:1.4; }
+.portfolio-entry:hover .pe-title { color:var(--accent); }
+.pe-tag {
+  font-size:10px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase;
+  padding:2px 9px; border-radius:2px; white-space:nowrap; flex-shrink:0;
+}
+.pe-arrow {
+  font-size:14px; color:var(--ink-4);
+  opacity:0; transform:translateX(-4px);
+  transition:opacity 0.18s, transform 0.18s;
+  flex-shrink:0;
+}
+.portfolio-entry:hover .pe-arrow { opacity:1; transform:translateX(0); }
+
+/* ─── RESUME STRIP (2B) ─── */
+.resume-strip {
+  background:var(--ink); color:var(--paper);
+  padding:2rem 2.5rem;
+}
+.resume-strip-inner {
+  max-width:980px; margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap;
+}
+.resume-strip-left {}
+.resume-strip-name {
+  font-family:var(--font-display); font-size:20px; color:#fff;
+  letter-spacing:-0.02em; margin-bottom:4px;
+}
+.resume-strip-role { font-size:13px; color:rgba(247,244,239,0.45); font-weight:300; }
+.resume-strip-btns { display:flex; gap:0.75rem; flex-wrap:wrap; }
+.btn-resume-view {
+  display:inline-flex; align-items:center; gap:8px;
+  background:transparent; color:#fff;
+  border:1px solid rgba(247,244,239,0.25);
+  font-family:var(--font-body); font-size:13px; font-weight:400;
+  padding:9px 20px; border-radius:4px; text-decoration:none;
+  transition:border-color 0.2s, background 0.2s;
+}
+.btn-resume-view:hover { border-color:rgba(247,244,239,0.6); background:rgba(247,244,239,0.07); }
+.btn-resume-dl {
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--accent); color:#fff;
+  border:1px solid var(--accent);
+  font-family:var(--font-body); font-size:13px; font-weight:500;
+  padding:9px 20px; border-radius:4px; text-decoration:none;
+  transition:background 0.2s, transform 0.15s;
+}
+.btn-resume-dl:hover { background:#b04e24; transform:translateY(-1px); }
+
+/* ─── MARKETING PAGE OVERLAY (3A) ─── */
+.mkt-overlay {
+  display:none; position:fixed; inset:0; z-index:300;
+  background:var(--paper); overflow-y:auto;
+  animation:mktSlideIn 0.45s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+.mkt-overlay.open { display:block; }
+.mkt-overlay.closing { animation:mktSlideOut 0.35s cubic-bezier(0.4,0,0.2,1) forwards; }
+@keyframes mktSlideIn { from{transform:translateY(100%); opacity:0;} to{transform:translateY(0); opacity:1;} }
+@keyframes mktSlideOut { from{transform:translateY(0); opacity:1;} to{transform:translateY(100%); opacity:0;} }
+
+.mkt-close {
+  position:fixed; top:1.25rem; right:1.5rem; z-index:10;
+  width:40px; height:40px; border-radius:50%;
+  background:var(--ink); color:var(--paper); border:none;
+  font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  transition:background 0.2s, transform 0.2s;
+}
+.mkt-close:hover { background:var(--accent); transform:rotate(90deg); }
+
+/* Hero */
+.mkt-hero {
+  background:var(--ink); color:var(--paper);
+  padding:100px 2.5rem 80px; position:relative; overflow:hidden;
+}
+.mkt-hero-inner { max-width:980px; margin:0 auto; }
+.mkt-eyebrow { font-size:11px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:1.25rem; display:flex; align-items:center; gap:10px; }
+.mkt-eyebrow::before { content:''; width:28px; height:1px; background:var(--accent); display:block; }
+.mkt-hero h1 { font-family:var(--font-display); font-size:clamp(36px,5vw,68px); line-height:1.05; letter-spacing:-0.03em; color:#fff; margin-bottom:1.25rem; max-width:780px; }
+.mkt-hero h1 em { color:var(--accent); font-style:italic; }
+.mkt-hero-sub { font-size:17px; color:rgba(247,244,239,0.6); max-width:520px; line-height:1.65; font-weight:300; margin-bottom:2.5rem; }
+.mkt-hero-proof { display:flex; gap:2.5rem; flex-wrap:wrap; padding-top:2rem; border-top:1px solid rgba(247,244,239,0.1); }
+.mkt-proof-item .pnum { font-family:var(--font-display); font-size:34px; color:#fff; line-height:1; }
+.mkt-proof-item .pnum em { font-style:italic; color:var(--accent); }
+.mkt-proof-item .plabel { font-size:12px; color:rgba(247,244,239,0.38); font-weight:300; margin-top:3px; }
+/* Animated background lines */
+.mkt-hero-lines {
+  position:absolute; inset:0; pointer-events:none; overflow:hidden; opacity:0.04;
+}
+.mkt-hero-lines span {
+  position:absolute; display:block; width:1px; background:var(--paper);
+  animation:lineRise 6s ease-in-out infinite;
+}
+@keyframes lineRise { 0%,100%{transform:scaleY(0.3);opacity:0;} 50%{transform:scaleY(1);opacity:1;} }
+
+/* Services */
+.mkt-services { max-width:980px; margin:0 auto; padding:80px 2.5rem; }
+.mkt-services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule); margin-top:2rem; }
+.mkt-service-card {
+  background:var(--paper); padding:2rem;
+  transition:background 0.2s;
+  position:relative; overflow:hidden;
+}
+.mkt-service-card::before {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:2px;
+  background:var(--accent); transform:scaleX(0); transform-origin:left;
+  transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.mkt-service-card:hover { background:var(--paper-2); }
+.mkt-service-card:hover::before { transform:scaleX(1); }
+.mkt-service-icon { font-size:22px; margin-bottom:1rem; }
+.mkt-service-name { font-family:var(--font-display); font-size:19px; color:var(--ink); margin-bottom:0.6rem; letter-spacing:-0.01em; }
+.mkt-service-desc { font-size:14px; color:var(--ink-3); line-height:1.65; font-weight:300; }
+.mkt-service-list { margin-top:0.75rem; }
+.mkt-service-list li { font-size:13px; color:var(--ink-3); line-height:1.6; padding-left:14px; position:relative; list-style:none; font-weight:300; }
+.mkt-service-list li::before { content:''; position:absolute; left:0; top:10px; width:4px; height:4px; border-radius:50%; background:var(--accent); }
+
+/* Why me */
+.mkt-why { background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:80px 2.5rem; }
+.mkt-why-inner { max-width:980px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+@media(max-width:640px){ .mkt-why-inner { grid-template-columns:1fr; gap:2rem; } }
+.mkt-why h2 { font-family:var(--font-display); font-size:clamp(24px,3.5vw,38px); color:var(--ink); line-height:1.15; letter-spacing:-0.02em; margin-bottom:1rem; }
+.mkt-why h2 em { color:var(--accent); font-style:italic; }
+.mkt-why p { font-size:15px; color:var(--ink-2); line-height:1.75; font-weight:300; margin-bottom:0.85rem; }
+.mkt-differentiators { display:flex; flex-direction:column; gap:1rem; }
+.mkt-diff {
+  display:flex; gap:1rem; align-items:flex-start;
+  padding:1rem 1.25rem; background:var(--paper);
+  border:1px solid var(--rule); border-radius:3px;
+  transition:border-color 0.2s, transform 0.22s cubic-bezier(0.34,1.56,0.64,1);
+}
+.mkt-diff:hover { border-color:var(--accent); transform:translateX(4px); }
+.mkt-diff-icon { font-size:18px; flex-shrink:0; margin-top:2px; }
+.mkt-diff-title { font-size:13px; font-weight:500; color:var(--ink); margin-bottom:2px; }
+.mkt-diff-text { font-size:13px; color:var(--ink-3); font-weight:300; line-height:1.5; }
+
+/* CTA */
+.mkt-cta { max-width:980px; margin:0 auto; padding:80px 2.5rem; text-align:center; }
+.mkt-cta h2 { font-family:var(--font-display); font-size:clamp(28px,4vw,48px); color:var(--ink); letter-spacing:-0.025em; line-height:1.1; margin-bottom:1rem; }
+.mkt-cta h2 em { color:var(--accent); font-style:italic; }
+.mkt-cta p { font-size:16px; color:var(--ink-3); font-weight:300; max-width:480px; margin:0 auto 2rem; line-height:1.65; }
+.mkt-cta-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
 /* ─── CONTACT ─── */
 .contact-section { background:var(--paper-2); border-top:1px solid var(--rule); }
 .contact-inner { max-width:980px; margin:0 auto; padding:80px 2.5rem; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
@@ -293,8 +469,10 @@ footer { background:var(--ink); color:rgba(247,244,239,0.35); text-align:center;
   <a href="#" class="nav-logo">Muhammad Ali Siddiqui</a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
+    <li><a href="#" onclick="openMkt(event)" style="color:var(--accent);">Marketing ↗</a></li>
     <li><a href="#contact" class="nav-cta">Get in touch</a></li>
   </ul>
 </nav>
@@ -421,7 +599,7 @@ footer { background:var(--ink); color:rgba(247,244,239,0.35); text-align:center;
       <h2>From zero to 1.24M impressions: the Alliance Shipping content strategy</h2>
       <div class="case-body">
         <div><div class="case-block-label">The challenge</div><div class="case-block-text">Alliance Shipping had no organic search presence. The brief was to build topical authority in the Dubai logistics niche from scratch — aligned with the CEO's brand vision and lead-generation targets — without an agency budget.</div></div>
-        <div><div class="case-block-label">The approach</div><div class="case-block-text">Worked across the full content lifecycle - planning, writing, editing, documentation, publishing, and content optimization. Built editorial SOPs, collaborated with writers and product teams, and created systems that improve both content quality and AI visibility.</div></div>
+        <div><div class="case-block-label">The approach</div><div class="case-block-text">Worked across the full content lifecycle — planning, writing, editing, documentation, publishing, and content optimization. Built editorial SOPs, collaborated with writers and product teams, and created systems that improve both content quality and AI visibility.</div></div>
       </div>
       <div class="case-results">
         <div class="case-result-item">
@@ -495,14 +673,11 @@ footer { background:var(--ink); color:rgba(247,244,239,0.35); text-align:center;
       </div>
     </div>
     <div>
-<p>I come from a slightly unusual background for a content writer and strategist — I started in Applied Physics, worked with sensor systems and hardware, and eventually found my way into content writing as I loved storytelling.</p>
-<p>That mixed skillset of critical thinking, problem solving, storytelling, and writing helps me do more than just “create content.” I understand the systems behind the products I write about. Whether it’s WordPress plugins, SaaS platforms, eBooks, CVs, or anything thrown at me, I can translate complex ideas into content that is clear to understand and follow.</p>
-<p>Over the years, I’ve worked across blogs, technical documentation, tutorials, ebooks, website copy, CVs and resumes, personal statements, presentations, knowledge bases, and long-form content strategy. I enjoy building content ecosystems — structures, workflows, and content that support long-term organic growth.</p>
-<p>Currently, I’m working as a Content Producer at Objects in Karachi, where I write documentation and tutorials for WordPress plugins. Alongside that, I’m actively looking for remote opportunities and freelance collaborations with SaaS or Fintech companies, startups, and technical product organizations.</p>
-
-<p>
-If you’re looking for someone who can help you generate more business through content or convert your complex things into easy to understand pieces, I’d love to connect.
-</p>
+      <p>I come from a slightly unusual background for a content writer and strategist — I started in Applied Physics, worked with sensor systems and hardware, and eventually found my way into content writing as I loved storytelling.</p>
+      <p>That mixed skillset of critical thinking, problem solving, storytelling, and writing helps me do more than just "create content." I understand the systems behind the products I write about. Whether it's WordPress plugins, SaaS platforms, eBooks, CVs, or anything thrown at me, I can translate complex ideas into content that is clear to understand and follow.</p>
+      <p>Over the years, I've worked across blogs, technical documentation, tutorials, ebooks, website copy, CVs and resumes, personal statements, presentations, knowledge bases, and long-form content strategy. I enjoy building content ecosystems — structures, workflows, and content that support long-term organic growth.</p>
+      <p>Currently, I'm working as a Content Producer at Objects in Karachi, where I write documentation and tutorials for WordPress plugins. Alongside that, I'm actively looking for remote opportunities and freelance collaborations with SaaS or Fintech companies, startups, and technical product organizations.</p>
+      <p>If you're looking for someone who can help you generate more business through content or convert your complex things into easy to understand pieces, I'd love to connect.</p>
       <a href="#contact" class="btn-secondary" style="display:inline-flex;margin-top:0.5rem;">Work with me →</a>
     </div>
   </div>
@@ -555,7 +730,7 @@ If you’re looking for someone who can help you generate more business through 
 
     <div class="exp-item" style="position:relative;">
       <div><div class="exp-date">Jan – Oct 2024</div><div class="exp-company">Divinatory Solutions</div><div class="exp-loc">Karachi, Pakistan</div></div>
-      <div><div class="exp-role">Technical Content Writer</div><div class="exp-desc">Produced technical documentation including process guides, RFPs, and fuel systems manuals. Created ATS-optimised CVs. Developed interactive client presentations. Wrote and published eBooks as a ghostwriter.</div><div class="exp-tags"><span class="exp-tag">Technical writing</span><span class="exp-tag">Documentation</span><span class="exp-tag">RFPs</span></div><span class="exp-tag">eBooks</span></div></div>
+      <div><div class="exp-role">Technical Content Writer</div><div class="exp-desc">Produced technical documentation including process guides, RFPs, and fuel systems manuals. Created ATS-optimised CVs. Developed interactive client presentations. Wrote and published eBooks as a ghostwriter.</div><div class="exp-tags"><span class="exp-tag">Technical writing</span><span class="exp-tag">Documentation</span><span class="exp-tag">RFPs</span><span class="exp-tag">eBooks</span></div></div>
     </div>
 
     <div class="exp-item" style="position:relative;">
@@ -570,6 +745,281 @@ If you’re looking for someone who can help you generate more business through 
 
   </div>
 </section>
+
+<!-- ═══ PORTFOLIO TIMELINE (1C) ═══ -->
+<div class="portfolio-section" id="portfolio">
+  <div class="portfolio-inner">
+    <div class="section-label">Publication record</div>
+    <div class="section-title" style="margin-bottom:0.5rem;">Everything I've written</div>
+    <p style="font-size:14px;color:var(--ink-3);font-weight:300;margin-bottom:3rem;max-width:520px;">A chronological log of selected client work. Items marked with a link icon are available on request via Google Doc. Click any row to view.</p>
+
+    <!-- 2026 -->
+    <div class="portfolio-year-group">
+      <div class="year-heading">2026</div>
+      <div class="portfolio-entries">
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">Objects</div><div class="pe-title">Post SMTP Pro v1.5.0 — One-Click Microsoft 365 Email Setup Press Release</div></div>
+          <span class="pe-tag tag-press">Press Release</span><span class="pe-arrow">→</span>
+        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">Objects</div><div class="pe-title">AIO Login Pro Adds WooCommerce Integration and hCAPTCHA Press Release</div></div>
+          <span class="pe-tag tag-docs">Documentation</span><span class="pe-arrow">→</span>
+        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">Objects</div><div class="pe-title">8 Best SMTP Plugins for WordPress [Ultimate Guide 2026]</div></div>
+          <span class="pe-tag tag-docs">Technical Article</span><span class="pe-arrow">→</span>
+        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">Objects</div><div class="pe-title">How to Increase WooCommerce Conversions (10 Effective Tips)</div></div>
+          <span class="pe-tag tag-docs">Technical Article</span><span class="pe-arrow">→</span>
+        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">B2B Apparel Client</div><div class="pe-title">Top 10 Custom Hoodie Manufacturers in USA (2026 Guide)</div></div>
+          <span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span>
+        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">B2B Apparel Client</div><div class="pe-title">How to Start a T-shirt Business — The Ultimate Guide 2026</div></div>
+          <span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span>
+        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">B2B Apparel Client</div><div class="pe-title">How to Create a Tech Pack for Clothing: Complete Guide 2026</div></div>
+          <span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 2025 -->
+    <div class="portfolio-year-group">
+      <div class="year-heading">2025</div>
+      <div class="portfolio-entries">
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">Alliance Shipping</div><div class="pe-title">Air Freight Charges in Dubai: Cost per KG, Rate Calculation & Complete Guide</div></div>
+          <span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span>
+        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">Alliance Shipping</div><div class="pe-title">Sea Freight Rates from Dubai: Cost per KG & Rate Calculation Guide</div></div>
+          <span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span>
+        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">Alliance Shipping</div><div class="pe-title">How Much Does Customs Clearance Cost at Jebel Ali Port?</div></div>
+          <span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span>
+        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">Alliance Shipping</div><div class="pe-title">Sustainable Logistics Practices in Dubai: The Future of Modern Shipping</div></div>
+          <span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span>
+        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">Alliance Shipping</div><div class="pe-title">Demurrage and Detention Charges in Logistics</div></div>
+          <span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span>
+        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">B2B Apparel Client</div><div class="pe-title">The Best List of Different Types of Hoodies – 30 Plus Styles Explained</div></div>
+          <span class="pe-tag tag-apparel">Apparel</span><span class="pe-arrow">→</span>
+        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">B2B Apparel Client</div><div class="pe-title">How to Start a Fitness Clothing Line: Complete Guide</div></div>
+          <span class="pe-tag tag-apparel">Apparel</span><span class="pe-arrow">→</span>
+        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">Various</div><div class="pe-title">Entrepreneurship Book (ghostwritten, full manuscript)</div></div>
+          <span class="pe-tag tag-saas">Ebook</span><span class="pe-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 2024 -->
+    <div class="portfolio-year-group">
+      <div class="year-heading">2024</div>
+      <div class="portfolio-entries">
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">BOSAL Belgium / Divinatory Solutions</div><div class="pe-title">Technical Overview of Flexible Fuel Tank Production Line</div></div>
+          <span class="pe-tag tag-docs">Technical Doc</span><span class="pe-arrow">→</span>
+        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">Real Estate Client</div><div class="pe-title">Dubai's Property Laws – What Indians Need to Know</div></div>
+          <span class="pe-tag tag-finance">Real Estate</span><span class="pe-arrow">→</span>
+        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">Real Estate Client</div><div class="pe-title">Guide to Buying Off-Plan Properties in Dubai for UK Investors</div></div>
+          <span class="pe-tag tag-finance">Real Estate</span><span class="pe-arrow">→</span>
+        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">B2B SaaS Client</div><div class="pe-title">The 8 Best B2B Data Providers in Sweden / Portugal / Denmark (series)</div></div>
+          <span class="pe-tag tag-saas">SaaS Content</span><span class="pe-arrow">→</span>
+        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">Finance Client</div><div class="pe-title">Essential Investing Principles Every Smart Investor Should Know</div></div>
+          <span class="pe-tag tag-finance">Finance</span><span class="pe-arrow">→</span>
+        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">Finance Client</div><div class="pe-title">E-Wallets Competitive Analysis (PPT)</div></div>
+          <span class="pe-tag tag-finance">Finance</span><span class="pe-arrow">→</span>
+        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">Ghostwriting</div><div class="pe-title">Gut Health Weight Loss (full ebook, ghostwritten)</div></div>
+          <span class="pe-tag tag-saas">Ebook</span><span class="pe-arrow">→</span>
+        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">Ghostwriting</div><div class="pe-title">Simply Passive (full ebook, ghostwritten)</div></div>
+          <span class="pe-tag tag-saas">Ebook</span><span class="pe-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 2020–2023 -->
+    <div class="portfolio-year-group">
+      <div class="year-heading">2020–23</div>
+      <div class="portfolio-entries">
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">HiQain</div><div class="pe-title">SEO web content for handyman services brand (ongoing series)</div></div>
+          <span class="pe-tag tag-strategy">Web Content</span><span class="pe-arrow">→</span>
+        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">Medium / Ghostwriting</div><div class="pe-title">100+ ghostwritten articles across business, tech, lifestyle, and finance</div></div>
+          <span class="pe-tag tag-strategy">Ghostwriting</span><span class="pe-arrow">→</span>
+        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
+          <div><div class="pe-client">Ghostwriting</div><div class="pe-title">Raising Little Leaders Parts 2 & 3 (full ebooks, ghostwritten)</div></div>
+          <span class="pe-tag tag-saas">Ebook</span><span class="pe-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:var(--ink-4);font-weight:300;margin-top:2rem;">* Replace <code style="font-size:12px;background:var(--paper-3);padding:2px 6px;border-radius:2px;">YOUR_LINK</code> placeholders with your actual Google Doc URLs.</p>
+  </div>
+</div>
+
+<!-- ═══ RESUME STRIP (2B) ═══ -->
+<div class="resume-strip">
+  <div class="resume-strip-inner">
+    <div class="resume-strip-left">
+      <div class="resume-strip-name">Muhammad Ali Siddiqui</div>
+      <div class="resume-strip-role">Technical Content Strategist · 5+ years · Karachi, Pakistan · Open to remote</div>
+    </div>
+    <div class="resume-strip-btns">
+      <a href="https://docs.google.com/document/d/YOUR_RESUME_LINK" target="_blank" class="btn-resume-view">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        View Resume
+      </a>
+      <a href="https://docs.google.com/document/d/YOUR_RESUME_LINK/export?format=pdf" target="_blank" class="btn-resume-dl">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v7M4 6l3 3 3-3M2 11h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Download PDF
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MARKETING PAGE OVERLAY (3A) ═══ -->
+<div class="mkt-overlay" id="mkt-overlay">
+  <button class="mkt-close" onclick="closeMkt()">✕</button>
+
+  <!-- Hero -->
+  <div class="mkt-hero">
+    <div class="mkt-hero-lines" id="mkt-lines"></div>
+    <div class="mkt-hero-inner">
+      <div class="mkt-eyebrow">Content Marketing Services</div>
+      <h1>I don't just write.<br>I make your content <em>work.</em></h1>
+      <p class="mkt-hero-sub">Strategy-first content marketing for SaaS companies, WordPress plugin teams, and technical product brands that want organic growth — not just word count.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="#contact" onclick="closeMkt()" class="btn-primary">Let's talk →</a>
+        <a href="#portfolio" onclick="closeMkt()" class="btn-resume-view" style="border-color:rgba(247,244,239,0.3);color:#fff;">See my work</a>
+      </div>
+      <div class="mkt-hero-proof">
+        <div class="mkt-proof-item"><div class="pnum">1.24<em>M</em></div><div class="plabel">impressions in 7 months</div></div>
+        <div class="mkt-proof-item"><div class="pnum">17.3<em>K</em></div><div class="plabel">organic clicks driven</div></div>
+        <div class="mkt-proof-item"><div class="pnum">5<em>+</em></div><div class="plabel">years in content marketing</div></div>
+        <div class="mkt-proof-item"><div class="pnum">85<em>K</em></div><div class="plabel">audience growth delivered</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <div class="mkt-services">
+    <div class="section-label">What I offer</div>
+    <div class="section-title" style="margin-bottom:0;">Three ways to work together</div>
+    <div class="mkt-services-grid">
+      <div class="mkt-service-card">
+        <div class="mkt-service-icon">📐</div>
+        <div class="mkt-service-name">Content Strategy</div>
+        <div class="mkt-service-desc">Full content strategy from scratch — keyword research, topic clustering, funnel mapping, editorial calendars, and KPI frameworks.</div>
+        <ul class="mkt-service-list">
+          <li>Competitor content audit</li>
+          <li>E-E-A-T framework design</li>
+          <li>Topic authority mapping</li>
+          <li>Search intent alignment</li>
+          <li>Performance reporting setup</li>
+        </ul>
+      </div>
+      <div class="mkt-service-card">
+        <div class="mkt-service-icon">✍️</div>
+        <div class="mkt-service-name">SEO & Organic Growth</div>
+        <div class="mkt-service-desc">Content that ranks and converts — blogs, landing pages, service pages, and GMB listings built around real search intent.</div>
+        <ul class="mkt-service-list">
+          <li>Long-form SEO articles</li>
+          <li>Landing page copywriting</li>
+          <li>GMB optimisation</li>
+          <li>On-page SEO implementation</li>
+          <li>Content refresh & optimisation</li>
+        </ul>
+      </div>
+      <div class="mkt-service-card">
+        <div class="mkt-service-icon">🚀</div>
+        <div class="mkt-service-name">Launch & Campaign Content</div>
+        <div class="mkt-service-desc">Product launches, feature announcements, and campaign content for SaaS and technical product teams — from press releases to onboarding sequences.</div>
+        <ul class="mkt-service-list">
+          <li>Product launch content</li>
+          <li>Press releases & release emails</li>
+          <li>Plugin & SaaS documentation</li>
+          <li>Onboarding & help content</li>
+          <li>Email & newsletter copy</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why me -->
+  <div class="mkt-why">
+    <div class="mkt-why-inner">
+      <div>
+        <h2>Why hire a marketer with a <em>physics degree?</em></h2>
+        <p>Most content marketers can write. Very few actually understand what they're writing about. My MSc in Applied Physics and hands-on experience with sensor systems and hardware means I can work with technical teams, understand complex products, and produce content that earns trust from engineers and executives alike.</p>
+        <p>That technical literacy — combined with 5+ years of SEO strategy, E-E-A-T frameworks, and measurable growth results — is what makes my marketing work different.</p>
+      </div>
+      <div class="mkt-differentiators">
+        <div class="mkt-diff">
+          <div class="mkt-diff-icon">🧠</div>
+          <div><div class="mkt-diff-title">Technical domain comprehension</div><div class="mkt-diff-text">I understand SaaS products, plugin architectures, and hardware systems. I don't just interview SMEs — I comprehend what they build.</div></div>
+        </div>
+        <div class="mkt-diff">
+          <div class="mkt-diff-icon">📈</div>
+          <div><div class="mkt-diff-title">Proven results, not just output</div><div class="mkt-diff-text">1.24M impressions built from zero. Every strategy I design is tied to measurable business outcomes — not word counts.</div></div>
+        </div>
+        <div class="mkt-diff">
+          <div class="mkt-diff-icon">⚙️</div>
+          <div><div class="mkt-diff-title">Systems thinker, not a task executor</div><div class="mkt-diff-text">I build content pipelines, editorial SOPs, and QA workflows that keep producing after the engagement ends.</div></div>
+        </div>
+        <div class="mkt-diff">
+          <div class="mkt-diff-icon">🌐</div>
+          <div><div class="mkt-diff-title">Remote-native, async-fluent</div><div class="mkt-diff-text">Managed cross-timezone teams and remote projects across Dubai, China, and Pakistan. I deliver without hand-holding.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="mkt-cta">
+    <h2>Ready to make your content <em>matter?</em></h2>
+    <p>Whether you need a one-off strategy audit or an ongoing content partnership — let's talk about what you're building.</p>
+    <div class="mkt-cta-btns">
+      <a href="mailto:masid.writer@gmail.com" class="btn-primary">Email me directly →</a>
+      <a href="https://linkedin.com/in/muhammadalisiddiqui-technical/" target="_blank" class="btn-secondary">Connect on LinkedIn</a>
+    </div>
+  </div>
+
+  <footer style="background:var(--ink);color:rgba(247,244,239,0.35);text-align:center;padding:1.5rem 2rem;font-size:12px;font-weight:300;letter-spacing:0.03em;">
+    © 2026 Muhammad Ali Siddiqui — Content Marketing Services
+  </footer>
+</div>
 
 <!-- ═══ CONTACT ═══ -->
 <div class="contact-section" id="contact" style="position:relative; overflow:hidden;">
@@ -820,7 +1270,31 @@ function closeModal(){
   document.getElementById('modal-overlay').classList.remove('open');
   document.body.style.overflow='';
 }
-document.addEventListener('keydown',e=>{ if(e.key==='Escape')closeModal(); });
+/* ── MARKETING OVERLAY ── */
+function openMkt(e){
+  if(e) e.preventDefault();
+  const o = document.getElementById('mkt-overlay');
+  o.classList.remove('closing');
+  o.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  buildMktLines();
+}
+function closeMkt(){
+  const o = document.getElementById('mkt-overlay');
+  o.classList.add('closing');
+  setTimeout(()=>{ o.classList.remove('open','closing'); document.body.style.overflow=''; }, 360);
+}
+function buildMktLines(){
+  const c = document.getElementById('mkt-lines');
+  if(!c || c.children.length) return;
+  for(let i=0;i<18;i++){
+    const s = document.createElement('span');
+    const h = 40 + Math.random()*120;
+    s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;height:${h}px;animation-delay:${Math.random()*5}s;animation-duration:${4+Math.random()*4}s;`;
+    c.appendChild(s);
+  }
+}
+document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeMkt(); closeModal(); } });
 </script>
 </body>
 </html>
