@@ -6,622 +6,683 @@
 <title>Muhammad Ali Siddiqui — Technical Content Strategist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --ink: #0f0e0d; --ink-2: #3a3835; --ink-3: #7a7671; --ink-4: #b0aca6;
-  --paper: #f7f4ef; --paper-2: #ede9e2; --paper-3: #e2ddd5;
-  --accent: #c85a2a; --accent-light: #f0e6df;
-  --teal: #1a6b5a; --teal-light: #e0ede9; --rule: #d4cfc8;
-  --font-display: 'DM Serif Display', Georgia, serif;
-  --font-body: 'DM Sans', system-ui, sans-serif;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:       #06060f;
+  --bg-1:     #0d0d1a;
+  --bg-2:     #111122;
+  --bg-3:     #16162a;
+  --border:   rgba(99,102,241,0.15);
+  --border-2: rgba(99,102,241,0.28);
+  --indigo:   #6366f1;
+  --indigo-2: #818cf8;
+  --cyan:     #22d3ee;
+  --cyan-dim: rgba(34,211,238,0.12);
+  --text:     #e8e8f4;
+  --text-2:   #9898b8;
+  --text-3:   #5a5a7a;
+  --accent:   #6366f1;
+  --glow:     0 0 40px rgba(99,102,241,0.18);
+  --font-display:'DM Serif Display',Georgia,serif;
+  --font-body:'Syne',system-ui,sans-serif;
+  --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+  --ease-spring:cubic-bezier(0.34,1.56,0.64,1);
 }
-html { scroll-behavior: smooth; }
-body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-::selection { background: var(--accent-light); color: var(--accent); }
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+::selection{background:rgba(99,102,241,0.3);color:#fff;}
 
-/* ─── NAV ─── */
-nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:0 2.5rem; height:56px; display:flex; align-items:center; justify-content:space-between; background:rgba(247,244,239,0.93); backdrop-filter:blur(14px); border-bottom:1px solid var(--rule); }
-.nav-logo { font-family:var(--font-display); font-size:17px; color:var(--ink); text-decoration:none; letter-spacing:-0.01em; }
-.nav-links { display:flex; gap:2rem; list-style:none; }
-.nav-links a { font-size:13px; color:var(--ink-3); text-decoration:none; letter-spacing:0.02em; transition:color 0.2s; }
-.nav-links a:hover { color:var(--ink); }
-.nav-cta { font-size:13px !important; font-weight:500 !important; color:var(--accent) !important; border:1px solid var(--accent); padding:5px 14px; border-radius:4px; transition:background 0.2s, color 0.2s !important; }
-.nav-cta:hover { background:var(--accent) !important; color:#fff !important; }
-@media(max-width:640px){ .nav-links { display:none; } }
-
-/* ─── DOODLE WRAPPER ─── */
-/* Each section is position:relative; doodles are absolute, pointer-events:none */
-.doodle {
-  position: absolute;
-  pointer-events: none;
-  opacity: 0.13;
-  z-index: 0;
-}
-.doodle svg { display:block; }
-/* alternating placement */
-.doodle-right { right: -20px; top: 50%; transform: translateY(-50%); }
-.doodle-left  { left:  -20px; top: 50%; transform: translateY(-50%); }
-
-/* Float animations */
-@keyframes doodleFloat {
-  0%,100% { transform: translateY(-50%) rotate(-3deg); }
-  50%      { transform: translateY(calc(-50% - 14px)) rotate(3deg); }
-}
-@keyframes doodleFloatL {
-  0%,100% { transform: translateY(-50%) rotate(3deg); }
-  50%      { transform: translateY(calc(-50% - 14px)) rotate(-3deg); }
-}
-.doodle-right { animation: doodleFloat 8s ease-in-out infinite; }
-.doodle-left  { animation: doodleFloatL 9s ease-in-out infinite; }
-
-/* ─── HERO ─── */
-.hero { position:relative; padding:140px 2.5rem 80px; max-width:980px; margin:0 auto; }
-.hero-eyebrow { font-size:11px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:1.5rem; display:flex; align-items:center; gap:10px; }
-.hero-eyebrow::before { content:''; display:block; width:32px; height:1px; background:var(--accent); }
-.hero h1 { font-family:var(--font-display); font-size:clamp(36px,5.5vw,64px); line-height:1.08; letter-spacing:-0.025em; color:var(--ink); margin-bottom:1.5rem; max-width:800px; }
-.tw-word { color:var(--accent); font-style:italic; position:relative; display:inline-block; }
-.tw-cursor { display:inline-block; color:var(--accent); font-style:normal; animation:blink 0.75s step-end infinite; margin-left:1px; }
-@keyframes blink { 50%{opacity:0;} }
-.hero-sub { font-size:17px; color:var(--ink-2); max-width:560px; line-height:1.65; margin-bottom:2.5rem; font-weight:300; }
-.hero-actions { display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
-.btn-primary { display:inline-flex; align-items:center; gap:8px; background:var(--ink); color:var(--paper); font-family:var(--font-body); font-size:14px; font-weight:500; padding:12px 24px; border-radius:4px; text-decoration:none; transition:background 0.2s, transform 0.15s; }
-.btn-primary:hover { background:var(--ink-2); transform:translateY(-1px); }
-.btn-secondary { display:inline-flex; align-items:center; gap:8px; color:var(--ink-2); font-size:14px; font-weight:400; text-decoration:none; border-bottom:1px solid var(--rule); padding-bottom:2px; transition:color 0.2s, border-color 0.2s; }
-.btn-secondary:hover { color:var(--accent); border-color:var(--accent); }
-
-/* ─── STATS ─── */
-.stats-strip { background:var(--ink); padding:2.25rem 2.5rem; }
-.stats-inner { max-width:980px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:2rem; }
-.stat-num { font-family:var(--font-display); font-size:38px; line-height:1; color:#fff; margin-bottom:4px; }
-.stat-num span { color:var(--accent); font-style:italic; }
-.stat-desc { font-size:13px; color:rgba(247,244,239,0.5); line-height:1.4; font-weight:300; }
-
-/* ─── SECTION ─── */
-.section { position:relative; max-width:980px; margin:0 auto; padding:80px 2.5rem; }
-.section-label { font-size:11px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-4); margin-bottom:0.5rem; }
-.section-title { font-family:var(--font-display); font-size:clamp(26px,3.5vw,40px); line-height:1.12; letter-spacing:-0.02em; color:var(--ink); margin-bottom:2.5rem; }
-hr.rule { border:none; border-top:1px solid var(--rule); margin:0; }
-
-/* ─── FLIP CARDS ─── */
-.work-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.25rem; }
-.flip-card { height:280px; perspective:1200px; cursor:pointer; }
-.flip-inner { position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform 0.7s cubic-bezier(0.4,0.2,0.2,1); }
-.flip-card:hover .flip-inner { transform:rotateY(180deg); }
-.flip-front, .flip-back { position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:3px; padding:1.75rem; display:flex; flex-direction:column; justify-content:space-between; }
-.flip-front { background:var(--paper); border:1px solid var(--rule); }
-.flip-back { background:var(--ink); transform:rotateY(180deg); }
-.work-tag { display:inline-block; font-size:10px; font-weight:500; letter-spacing:0.09em; text-transform:uppercase; padding:3px 10px; border-radius:2px; margin-bottom:0.75rem; width:fit-content; }
-.tag-strategy{background:var(--accent-light);color:var(--accent);}
-.tag-docs{background:var(--teal-light);color:var(--teal);}
-.tag-seo{background:#e8e4f5;color:#4a3f8a;}
-.tag-iot{background:#faeeda;color:#633806;}
-.tag-saas{background:#e3f0fb;color:#1a4f7a;}
-.tag-apparel{background:#fce8f0;color:#8a1a45;}
-.tag-finance{background:#e8f5e9;color:#1b5e20;}
-.tag-press{background:#fff3e0;color:#7c4206;}
-.flip-front h3 { font-family:var(--font-display); font-size:17px; line-height:1.25; letter-spacing:-0.01em; color:var(--ink); flex:1; margin-bottom:0.75rem; }
-.work-meta { font-size:11px; color:var(--ink-4); display:flex; gap:6px; align-items:center; flex-wrap:wrap; }
-.wdot { width:3px; height:3px; border-radius:50%; background:var(--ink-4); display:inline-block; }
-.back-label { font-size:10px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(247,244,239,0.4); margin-bottom:0.5rem; }
-.back-title { font-family:var(--font-display); font-size:15px; line-height:1.3; color:#fff; margin-bottom:0.9rem; letter-spacing:-0.01em; }
-.back-desc { font-size:13px; color:rgba(247,244,239,0.7); line-height:1.6; font-weight:300; flex:1; }
-.back-cta { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:500; color:var(--accent); margin-top:1rem; cursor:pointer; background:none; border:none; padding:0; font-family:var(--font-body); transition:gap 0.2s; }
-.flip-card:hover .back-cta { gap:10px; }
-
-/* ─── FEATURED CASE STUDY ─── */
-.featured-wrap { position:relative; overflow:visible; }
-.featured-case {
-  position: relative;
-  background: #0f0e0d;
-  color: var(--paper);
-  padding: 3.5rem; margin: 0 2.5rem; border-radius: 6px;
-  overflow: hidden;
-  cursor: default;
-  /* subtle inner glow that brightens on hover */
-  box-shadow: 0 0 0 1px rgba(200,90,42,0), 0 24px 60px rgba(15,14,13,0.18);
-  transition: box-shadow 0.5s ease;
-}
-.featured-case:hover {
-  box-shadow: 0 0 0 1px rgba(200,90,42,0.35), 0 32px 80px rgba(15,14,13,0.28);
-}
-@media(max-width:600px){ .featured-case { margin:0 1rem; padding:2rem 1.5rem; } }
-
-/* Particle canvas — sits behind all content */
-#fc-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  border-radius: 6px;
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:0.35;
 }
 
-/* All content above canvas */
-.fc-content { position: relative; z-index: 1; }
+/* ── AMBIENT GLOW ORBS ── */
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px);opacity:0.12;}
+.orb-1{width:600px;height:600px;background:radial-gradient(circle,#6366f1,transparent 70%);top:-200px;right:-150px;}
+.orb-2{width:500px;height:500px;background:radial-gradient(circle,#22d3ee,transparent 70%);bottom:-100px;left:-150px;}
 
-/* shimmer sweep on scroll-in */
-.featured-case::before {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%; width: 55%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.035), transparent);
-  transform: skewX(-12deg);
-  z-index: 2;
-  pointer-events: none;
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:0 3rem;height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(6,6,15,0.8);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  transition:background 0.3s var(--ease);
 }
-.featured-case.swept::before {
-  animation: shimmerSweep 1.2s ease forwards;
+.nav-logo{
+  font-family:var(--font-display);font-size:16px;color:var(--text);
+  text-decoration:none;letter-spacing:-0.01em;
 }
-@keyframes shimmerSweep {
-  0%   { left: -100%; }
-  100% { left: 160%; }
+.nav-logo span{color:var(--indigo);}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{
+  font-size:13px;font-weight:500;letter-spacing:0.05em;
+  color:var(--text-2);text-decoration:none;
+  transition:color 0.2s var(--ease);position:relative;
 }
+.nav-links a::after{
+  content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;
+  background:var(--indigo);transition:width 0.3s var(--ease);
+}
+.nav-links a:hover{color:var(--text);}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{
+  font-size:13px!important;font-weight:600!important;
+  color:#fff!important;
+  background:var(--indigo);
+  padding:7px 18px;border-radius:6px;
+  transition:opacity 0.2s,transform 0.2s!important;
+  border:none!important;
+}
+.nav-cta::after{display:none!important;}
+.nav-cta:hover{opacity:0.85;transform:translateY(-1px)!important;}
+.nav-mkt{color:var(--cyan)!important;}
+@media(max-width:768px){.nav-links{display:none;}}
 
-.featured-case .section-label { color:rgba(247,244,239,0.35); }
-.featured-case h2 { font-family:var(--font-display); font-size:clamp(22px,3vw,34px); line-height:1.15; color:#fff; margin:0.5rem 0 2rem; letter-spacing:-0.02em; max-width:620px; }
-.case-body { display:grid; grid-template-columns:1fr 1fr; gap:3rem; }
-@media(max-width:640px){ .case-body { grid-template-columns:1fr; gap:1.5rem; } }
-.case-block-label { font-size:10px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(247,244,239,0.32); margin-bottom:0.5rem; }
-.case-block-text { font-size:15px; color:rgba(247,244,239,0.72); line-height:1.7; font-weight:300; }
-
-/* Stat results */
-.case-results { display:flex; gap:2.5rem; flex-wrap:wrap; margin-top:2rem; padding-top:2rem; border-top:1px solid rgba(247,244,239,0.08); }
-.case-result-item {
-  cursor: default;
-  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+/* ── HERO ── */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;align-items:center;
+  padding:120px 3rem 80px;
+  max-width:1100px;margin:0 auto;
+  z-index:1;
 }
-.case-result-item:hover { transform: translateY(-4px) scale(1.05); }
-.case-result-item .num {
-  font-family:var(--font-display); font-size:30px; color:#fff; line-height:1; margin-bottom:4px;
+.hero-inner{max-width:800px;}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--indigo-2);margin-bottom:1.75rem;
 }
-.case-result-item:hover .num { color: #fff; }
-.case-result-item .num em { font-style:italic; color:var(--accent); }
-.case-result-item .num .count-val { display:inline-block; }
-.case-result-item .label { font-size:12px; color:rgba(247,244,239,0.38); font-weight:300; transition: color 0.2s; }
-.case-result-item:hover .label { color:rgba(247,244,239,0.7); }
-
-/* bar that fills under each stat */
-.stat-bar-wrap { margin-top:7px; height:2px; background:rgba(247,244,239,0.08); border-radius:1px; width:80px; overflow:hidden; }
-.stat-bar-fill { height:100%; width:0%; background:var(--accent); border-radius:1px; transition:width 1.6s cubic-bezier(0.4,0,0.2,1); }
-.featured-case.swept .stat-bar-fill { width:100%; }
-
-/* ─── ABOUT ─── */
-.about-section { position:relative; }
-.about-grid { display:grid; grid-template-columns:1fr 1.4fr; gap:4rem; align-items:start; }
-@media(max-width:680px){ .about-grid { grid-template-columns:1fr; gap:2rem; } }
-.about-initials { width:72px; height:72px; background:var(--ink); border-radius:3px; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-size:26px; color:var(--paper); margin-bottom:1.25rem; letter-spacing:-0.02em; }
-.about-name { font-family:var(--font-display); font-size:26px; letter-spacing:-0.02em; color:var(--ink); margin-bottom:0.2rem; }
-.about-role { font-size:13px; color:var(--ink-3); margin-bottom:1.5rem; font-weight:300; }
-.about-detail { font-size:13px; color:var(--ink-3); line-height:1.6; margin-bottom:0.35rem; display:flex; gap:8px; }
-.about-detail strong { font-weight:500; color:var(--ink-2); min-width:70px; }
-.skills-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-top:1.5rem; }
-.skill-group-label { font-size:10px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-4); margin-bottom:6px; }
-.skill-list { font-size:13px; color:var(--ink-2); line-height:1.7; font-weight:300; }
-.about-right p { font-size:15px; color:var(--ink-2); line-height:1.75; font-weight:300; margin-bottom:1rem; }
-
-/* ─── EXPERIENCE — POP HOVER ─── */
-.exp-section { position:relative; }
-.exp-item {
-  display:grid; grid-template-columns:180px 1fr; gap:2rem;
-  padding:1.75rem; margin-bottom:2px;
-  border-radius:4px;
-  border: 1px solid transparent;
-  transition:
-    transform 0.28s cubic-bezier(0.34,1.56,0.64,1),
-    box-shadow 0.28s ease,
-    background 0.2s ease,
-    border-color 0.2s ease;
-  cursor: default;
-  will-change: transform;
+.hero-eyebrow::before{
+  content:'';width:20px;height:1px;background:var(--indigo);
 }
-/* subtle top/bottom separator in normal state */
-.exp-item + .exp-item { border-top: 1px solid var(--rule); }
-.exp-list { border-top: 1px solid var(--rule); }
+.hero-eyebrow::after{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--indigo);animation:pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.7);}}
 
-.exp-item:hover {
-  transform: scale(1.025) translateY(-3px);
-  box-shadow: 0 12px 40px rgba(15,14,13,0.1), 0 4px 12px rgba(15,14,13,0.06);
-  background: #fff;
-  border-color: var(--rule) !important;
-  z-index: 2;
-  position: relative;
+.hero h1{
+  font-family:var(--font-display);
+  font-size:clamp(42px,6vw,80px);
+  line-height:1.05;letter-spacing:-0.03em;
+  color:#fff;margin-bottom:1.5rem;
 }
-/* accent left stripe on hover */
-.exp-item::before {
-  content:'';
-  position:absolute;
-  left:0; top:20%; height:60%;
-  width:2px; background:var(--accent);
-  border-radius:0 2px 2px 0;
-  opacity:0;
-  transition:opacity 0.25s ease, height 0.3s ease, top 0.3s ease;
+.hero h1 .tw-word{
+  color:transparent;
+  background:linear-gradient(90deg,var(--indigo),var(--cyan));
+  -webkit-background-clip:text;background-clip:text;
+  font-style:italic;
 }
-.exp-item:hover::before { opacity:1; top:10%; height:80%; }
+.tw-cursor{color:var(--indigo);animation:blink 0.75s step-end infinite;}
+@keyframes blink{50%{opacity:0;}}
 
-@media(max-width:600px){ .exp-item { grid-template-columns:1fr; gap:0.5rem; } }
-.exp-date { font-size:12px; color:var(--ink-4); font-weight:300; margin-bottom:3px; }
-.exp-company { font-size:13px; font-weight:500; color:var(--ink-2); transition:color 0.2s; }
-.exp-item:hover .exp-company { color:var(--accent); }
-.exp-loc { font-size:12px; color:var(--ink-4); font-weight:300; }
-.exp-role { font-size:16px; font-weight:500; color:var(--ink); margin-bottom:0.5rem; }
-.exp-desc { font-size:14px; color:var(--ink-3); line-height:1.65; font-weight:300; }
-.exp-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:0.75rem; }
-.exp-tag { font-size:11px; padding:2px 9px; background:var(--paper-2); border-radius:2px; color:var(--ink-3); border:1px solid var(--paper-3); transition:background 0.2s, color 0.2s; }
-.exp-item:hover .exp-tag { background:var(--accent-light); color:var(--accent); border-color:var(--accent-light); }
+.hero-sub{
+  font-size:16px;color:var(--text-2);max-width:520px;
+  line-height:1.75;margin-bottom:3rem;font-weight:400;
+}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;}
 
-/* ─── PORTFOLIO TIMELINE (1C) ─── */
-.portfolio-section { position:relative; background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
-.portfolio-inner { max-width:980px; margin:0 auto; padding:80px 2.5rem; }
-.portfolio-year-group { margin-bottom:3.5rem; }
-.portfolio-year-group:last-child { margin-bottom:0; }
-.year-heading {
-  font-family:var(--font-display); font-size:clamp(32px,4vw,52px);
-  color:var(--paper-3); letter-spacing:-0.04em; line-height:1;
-  margin-bottom:1.5rem; user-select:none;
-  position:relative; display:inline-block;
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--indigo);color:#fff;
+  font-family:var(--font-body);font-size:14px;font-weight:600;
+  padding:13px 28px;border-radius:8px;text-decoration:none;
+  transition:transform 0.2s var(--ease),box-shadow 0.2s var(--ease),opacity 0.2s;
+  box-shadow:0 0 0 0 rgba(99,102,241,0);
 }
-.year-heading::after {
-  content:''; display:block;
-  width:100%; height:1px; background:var(--rule);
-  margin-top:0.75rem;
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(99,102,241,0.4);opacity:0.9;}
+
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  color:var(--text-2);font-size:14px;font-weight:500;
+  text-decoration:none;
+  border:1px solid var(--border-2);
+  padding:12px 24px;border-radius:8px;
+  transition:color 0.2s,border-color 0.2s,background 0.2s;
 }
-.portfolio-entries { display:flex; flex-direction:column; gap:2px; }
-.portfolio-entry {
-  display:grid; grid-template-columns:220px 1fr auto;
-  align-items:center; gap:1.5rem;
-  padding:0.85rem 1rem; border-radius:3px;
+.btn-ghost:hover{color:var(--text);border-color:var(--indigo);background:rgba(99,102,241,0.08);}
+
+/* ── STATS STRIP ── */
+.stats-strip{
+  position:relative;z-index:1;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  background:var(--bg-1);
+}
+.stats-inner{
+  max-width:1100px;margin:0 auto;padding:2.5rem 3rem;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:2rem;
+}
+.stat-num{
+  font-family:var(--font-display);font-size:40px;line-height:1;
+  color:#fff;margin-bottom:6px;
+}
+.stat-num span{
+  background:linear-gradient(90deg,var(--indigo),var(--cyan));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.stat-desc{font-size:13px;color:var(--text-3);line-height:1.4;font-weight:400;letter-spacing:0.02em;}
+
+/* ── SECTION WRAPPER ── */
+.section{position:relative;max-width:1100px;margin:0 auto;padding:100px 3rem;z-index:1;}
+.section-label{
+  font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--indigo-2);margin-bottom:0.6rem;
+  display:flex;align-items:center;gap:8px;
+}
+.section-label::before{content:'';width:16px;height:1px;background:var(--indigo);}
+.section-title{
+  font-family:var(--font-display);
+  font-size:clamp(28px,4vw,46px);
+  line-height:1.1;letter-spacing:-0.025em;color:#fff;margin-bottom:3rem;
+}
+hr.rule{border:none;border-top:1px solid var(--border);margin:0;position:relative;z-index:1;}
+
+/* ── FLIP CARDS ── */
+.work-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;}
+.flip-card{height:290px;perspective:1200px;cursor:pointer;}
+.flip-inner{
+  position:relative;width:100%;height:100%;
+  transform-style:preserve-3d;
+  transition:transform 0.7s var(--ease);
+}
+.flip-card:hover .flip-inner{transform:rotateY(180deg);}
+.flip-front,.flip-back{
+  position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  border-radius:12px;padding:1.75rem;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.flip-front{
+  background:var(--bg-2);
+  border:1px solid var(--border);
+  transition:border-color 0.3s;
+}
+.flip-card:hover .flip-front{border-color:var(--border-2);}
+.flip-back{
+  background:linear-gradient(135deg,var(--bg-3),var(--bg-2));
+  border:1px solid var(--border-2);
+  transform:rotateY(180deg);
+}
+.work-tag{
+  display:inline-block;font-size:10px;font-weight:600;
+  letter-spacing:0.1em;text-transform:uppercase;
+  padding:3px 10px;border-radius:4px;margin-bottom:0.75rem;width:fit-content;
+}
+.tag-strategy{background:rgba(99,102,241,0.15);color:var(--indigo-2);}
+.tag-docs{background:rgba(34,211,238,0.12);color:var(--cyan);}
+.tag-seo{background:rgba(167,139,250,0.12);color:#a78bfa;}
+.tag-iot{background:rgba(251,191,36,0.12);color:#fbbf24;}
+.tag-saas{background:rgba(52,211,153,0.12);color:#34d399;}
+.tag-apparel{background:rgba(251,113,133,0.12);color:#fb7185;}
+.tag-finance{background:rgba(74,222,128,0.12);color:#4ade80;}
+.tag-press{background:rgba(251,146,60,0.12);color:#fb923c;}
+.flip-front h3{
+  font-family:var(--font-display);font-size:17px;line-height:1.3;
+  letter-spacing:-0.01em;color:#fff;flex:1;margin-bottom:0.75rem;
+}
+.work-meta{font-size:11px;color:var(--text-3);display:flex;gap:6px;align-items:center;flex-wrap:wrap;letter-spacing:0.03em;}
+.wdot{width:3px;height:3px;border-radius:50%;background:var(--text-3);display:inline-block;}
+.back-label{font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-3);margin-bottom:0.5rem;}
+.back-title{font-family:var(--font-display);font-size:16px;line-height:1.3;color:#fff;margin-bottom:0.9rem;}
+.back-desc{font-size:13px;color:var(--text-2);line-height:1.6;font-weight:400;flex:1;}
+.back-cta{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:600;letter-spacing:0.05em;
+  color:var(--indigo-2);margin-top:1rem;cursor:pointer;
+  background:none;border:none;padding:0;font-family:var(--font-body);
+  transition:gap 0.2s var(--ease),color 0.2s;
+}
+.back-cta:hover{color:var(--cyan);gap:10px;}
+
+/* ── FEATURED CASE ── */
+.featured-wrap{position:relative;z-index:1;}
+.featured-case{
+  position:relative;
+  background:var(--bg-2);
+  border:1px solid var(--border);
+  border-radius:16px;margin:0 3rem;padding:4rem;
+  overflow:hidden;cursor:default;
+  transition:border-color 0.5s var(--ease),box-shadow 0.5s var(--ease);
+}
+.featured-case:hover{
+  border-color:rgba(99,102,241,0.4);
+  box-shadow:0 0 60px rgba(99,102,241,0.12);
+}
+@media(max-width:600px){.featured-case{margin:0 1rem;padding:2rem 1.5rem;}}
+
+/* top accent line */
+.featured-case::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--indigo),var(--cyan),transparent);
+  opacity:0;transition:opacity 0.6s var(--ease);
+}
+.featured-case:hover::before{opacity:1;}
+
+#fc-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;border-radius:16px;}
+.fc-content{position:relative;z-index:1;}
+
+/* shimmer */
+.featured-case .shimmer-bar{
+  position:absolute;top:0;left:-100%;width:50%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(99,102,241,0.04),transparent);
+  transform:skewX(-12deg);pointer-events:none;z-index:2;
+}
+.featured-case.swept .shimmer-bar{animation:fcSweep 1.2s var(--ease) forwards;}
+@keyframes fcSweep{0%{left:-100%;}100%{left:160%;}}
+
+.featured-case .section-label{color:var(--text-3);}
+.featured-case .section-label::before{background:var(--text-3);}
+.featured-case h2{
+  font-family:var(--font-display);
+  font-size:clamp(22px,3vw,36px);line-height:1.15;
+  color:#fff;margin:0.5rem 0 2.5rem;letter-spacing:-0.02em;max-width:640px;
+}
+.case-body{display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
+@media(max-width:640px){.case-body{grid-template-columns:1fr;gap:1.5rem;}}
+.case-block-label{
+  font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:0.5rem;
+}
+.case-block-text{font-size:15px;color:var(--text-2);line-height:1.75;font-weight:400;}
+.case-results{
+  display:flex;gap:3rem;flex-wrap:wrap;
+  margin-top:2.5rem;padding-top:2.5rem;
+  border-top:1px solid var(--border);
+}
+.case-result-item{
+  cursor:default;
+  transition:transform 0.3s var(--ease-spring);
+}
+.case-result-item:hover{transform:translateY(-4px);}
+.case-result-item .num{
+  font-family:var(--font-display);font-size:32px;color:#fff;line-height:1;margin-bottom:4px;
+}
+.case-result-item .num em{
+  font-style:italic;
+  background:linear-gradient(90deg,var(--indigo),var(--cyan));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.case-result-item .count-val{display:inline-block;}
+.case-result-item .label{font-size:12px;color:var(--text-3);font-weight:400;letter-spacing:0.03em;transition:color 0.2s;}
+.case-result-item:hover .label{color:var(--text-2);}
+.stat-bar-wrap{margin-top:8px;height:2px;background:rgba(255,255,255,0.06);border-radius:1px;width:80px;overflow:hidden;}
+.stat-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--indigo),var(--cyan));border-radius:1px;transition:width 1.6s var(--ease);}
+.featured-case.swept .stat-bar-fill{width:100%;}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:5rem;align-items:start;}
+@media(max-width:720px){.about-grid{grid-template-columns:1fr;gap:3rem;}}
+.about-badge{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:80px;height:80px;border-radius:12px;
+  background:linear-gradient(135deg,var(--indigo),var(--bg-3));
+  border:1px solid var(--border-2);
+  font-family:var(--font-display);font-size:26px;color:#fff;
+  margin-bottom:1.5rem;letter-spacing:-0.02em;
+}
+.about-name{font-family:var(--font-display);font-size:24px;letter-spacing:-0.02em;color:#fff;margin-bottom:0.3rem;}
+.about-role{font-size:13px;color:var(--indigo-2);margin-bottom:1.75rem;font-weight:500;letter-spacing:0.04em;}
+.about-detail{font-size:13px;color:var(--text-2);line-height:1.6;margin-bottom:0.4rem;display:flex;gap:10px;align-items:baseline;}
+.about-detail strong{font-weight:600;color:var(--text);min-width:72px;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem;}
+.skill-group-label{font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px;}
+.skill-list{font-size:13px;color:var(--text-2);line-height:1.8;font-weight:400;}
+.about-right p{font-size:15px;color:var(--text-2);line-height:1.8;font-weight:400;margin-bottom:1.1rem;}
+
+/* ── EXPERIENCE ── */
+.exp-list{border-top:1px solid var(--border);}
+.exp-item{
+  display:grid;grid-template-columns:200px 1fr;gap:2.5rem;
+  padding:2rem 1rem;
+  border-bottom:1px solid var(--border);
+  border-radius:8px;
   border:1px solid transparent;
-  transition: background 0.18s ease, border-color 0.18s ease, transform 0.22s cubic-bezier(0.34,1.56,0.64,1);
-  text-decoration:none; color:inherit;
+  border-top:1px solid var(--border);
+  margin-bottom:-1px;
+  transition:
+    transform 0.3s var(--ease-spring),
+    background 0.25s var(--ease),
+    border-color 0.25s var(--ease),
+    box-shadow 0.25s var(--ease);
+  cursor:default;will-change:transform;position:relative;
 }
-.portfolio-entry:hover {
-  background:#fff; border-color:var(--rule);
-  transform:translateX(6px);
+.exp-item:hover{
+  transform:scale(1.018) translateY(-2px);
+  background:var(--bg-2);
+  border-color:var(--border-2)!important;
+  box-shadow:0 8px 32px rgba(0,0,0,0.3),0 0 0 1px var(--border-2);
+  z-index:2;
 }
-@media(max-width:640px){
-  .portfolio-entry { grid-template-columns:1fr; gap:0.4rem; }
-  .pe-arrow { display:none; }
+.exp-item::before{
+  content:'';position:absolute;left:0;top:15%;height:70%;width:2px;
+  background:linear-gradient(180deg,var(--indigo),var(--cyan));
+  border-radius:0 2px 2px 0;opacity:0;
+  transition:opacity 0.25s var(--ease);
 }
-.pe-client { font-size:12px; color:var(--ink-4); font-weight:300; }
-.pe-title { font-size:14px; color:var(--ink); font-weight:400; line-height:1.4; }
-.portfolio-entry:hover .pe-title { color:var(--accent); }
-.pe-tag {
-  font-size:10px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase;
-  padding:2px 9px; border-radius:2px; white-space:nowrap; flex-shrink:0;
+.exp-item:hover::before{opacity:1;}
+@media(max-width:640px){.exp-item{grid-template-columns:1fr;gap:0.5rem;}}
+.exp-date{font-size:12px;color:var(--text-3);font-weight:400;margin-bottom:4px;letter-spacing:0.03em;}
+.exp-company{font-size:13px;font-weight:600;color:var(--text);transition:color 0.2s;letter-spacing:0.02em;}
+.exp-item:hover .exp-company{color:var(--indigo-2);}
+.exp-loc{font-size:12px;color:var(--text-3);font-weight:400;}
+.exp-role{font-size:16px;font-weight:600;color:#fff;margin-bottom:0.5rem;}
+.exp-desc{font-size:14px;color:var(--text-2);line-height:1.7;font-weight:400;}
+.exp-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:0.85rem;}
+.exp-tag{
+  font-size:11px;padding:3px 10px;
+  background:rgba(99,102,241,0.08);border-radius:4px;
+  color:var(--text-3);border:1px solid var(--border);
+  transition:background 0.2s,color 0.2s,border-color 0.2s;
+  letter-spacing:0.03em;font-weight:500;
 }
-.pe-arrow {
-  font-size:14px; color:var(--ink-4);
-  opacity:0; transform:translateX(-4px);
-  transition:opacity 0.18s, transform 0.18s;
-  flex-shrink:0;
-}
-.portfolio-entry:hover .pe-arrow { opacity:1; transform:translateX(0); }
+.exp-item:hover .exp-tag{background:rgba(99,102,241,0.15);color:var(--indigo-2);border-color:rgba(99,102,241,0.3);}
 
-/* ─── RESUME STRIP (2B) ─── */
-.resume-strip {
-  background:var(--ink); color:var(--paper);
-  padding:2rem 2.5rem;
+/* ── PORTFOLIO TIMELINE ── */
+.portfolio-section{
+  position:relative;z-index:1;
+  background:var(--bg-1);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
 }
-.resume-strip-inner {
-  max-width:980px; margin:0 auto;
-  display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap;
+.portfolio-inner{max-width:1100px;margin:0 auto;padding:100px 3rem;}
+.portfolio-year-group{margin-bottom:4rem;}
+.portfolio-year-group:last-child{margin-bottom:0;}
+.year-heading{
+  font-family:var(--font-display);font-size:clamp(36px,5vw,64px);
+  color:rgba(99,102,241,0.15);letter-spacing:-0.05em;line-height:1;
+  margin-bottom:1.5rem;user-select:none;display:inline-block;
 }
-.resume-strip-left {}
-.resume-strip-name {
-  font-family:var(--font-display); font-size:20px; color:#fff;
-  letter-spacing:-0.02em; margin-bottom:4px;
+.year-heading::after{content:'';display:block;width:100%;height:1px;background:var(--border);margin-top:0.75rem;}
+.portfolio-entries{display:flex;flex-direction:column;gap:2px;}
+.portfolio-entry{
+  display:grid;grid-template-columns:220px 1fr auto;
+  align-items:center;gap:1.5rem;
+  padding:0.9rem 1.25rem;border-radius:8px;
+  border:1px solid transparent;
+  transition:background 0.2s var(--ease),border-color 0.2s var(--ease),transform 0.25s var(--ease-spring);
+  text-decoration:none;color:inherit;
 }
-.resume-strip-role { font-size:13px; color:rgba(247,244,239,0.45); font-weight:300; }
-.resume-strip-btns { display:flex; gap:0.75rem; flex-wrap:wrap; }
-.btn-resume-view {
-  display:inline-flex; align-items:center; gap:8px;
-  background:transparent; color:#fff;
-  border:1px solid rgba(247,244,239,0.25);
-  font-family:var(--font-body); font-size:13px; font-weight:400;
-  padding:9px 20px; border-radius:4px; text-decoration:none;
-  transition:border-color 0.2s, background 0.2s;
+.portfolio-entry:hover{background:var(--bg-2);border-color:var(--border);transform:translateX(8px);}
+@media(max-width:640px){.portfolio-entry{grid-template-columns:1fr;gap:0.4rem;}.pe-arrow{display:none;}}
+.pe-client{font-size:12px;color:var(--text-3);font-weight:400;letter-spacing:0.03em;}
+.pe-title{font-size:14px;color:var(--text);font-weight:500;line-height:1.4;transition:color 0.2s;}
+.portfolio-entry:hover .pe-title{color:var(--indigo-2);}
+.pe-tag{
+  font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+  padding:3px 9px;border-radius:4px;white-space:nowrap;flex-shrink:0;
 }
-.btn-resume-view:hover { border-color:rgba(247,244,239,0.6); background:rgba(247,244,239,0.07); }
-.btn-resume-dl {
-  display:inline-flex; align-items:center; gap:8px;
-  background:var(--accent); color:#fff;
-  border:1px solid var(--accent);
-  font-family:var(--font-body); font-size:13px; font-weight:500;
-  padding:9px 20px; border-radius:4px; text-decoration:none;
-  transition:background 0.2s, transform 0.15s;
+.pe-arrow{
+  font-size:14px;color:var(--text-3);
+  opacity:0;transform:translateX(-4px);
+  transition:opacity 0.2s,transform 0.2s;flex-shrink:0;
 }
-.btn-resume-dl:hover { background:#b04e24; transform:translateY(-1px); }
+.portfolio-entry:hover .pe-arrow{opacity:1;transform:translateX(0);}
 
-/* ─── MARKETING PAGE OVERLAY (3A) ─── */
-.mkt-overlay {
-  display:none; position:fixed; inset:0; z-index:300;
-  background:var(--paper); overflow-y:auto;
-  animation:mktSlideIn 0.45s cubic-bezier(0.4,0,0.2,1) forwards;
+/* ── RESUME STRIP ── */
+.resume-strip{
+  position:relative;z-index:1;
+  background:linear-gradient(90deg,var(--bg-2),var(--bg-3));
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:2rem 3rem;
 }
-.mkt-overlay.open { display:block; }
-.mkt-overlay.closing { animation:mktSlideOut 0.35s cubic-bezier(0.4,0,0.2,1) forwards; }
-@keyframes mktSlideIn { from{transform:translateY(100%); opacity:0;} to{transform:translateY(0); opacity:1;} }
-@keyframes mktSlideOut { from{transform:translateY(0); opacity:1;} to{transform:translateY(100%); opacity:0;} }
-
-.mkt-close {
-  position:fixed; top:1.25rem; right:1.5rem; z-index:10;
-  width:40px; height:40px; border-radius:50%;
-  background:var(--ink); color:var(--paper); border:none;
-  font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center;
-  transition:background 0.2s, transform 0.2s;
+.resume-strip-inner{
+  max-width:1100px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;
 }
-.mkt-close:hover { background:var(--accent); transform:rotate(90deg); }
-
-/* Hero */
-.mkt-hero {
-  background:var(--ink); color:var(--paper);
-  padding:100px 2.5rem 80px; position:relative; overflow:hidden;
+.resume-strip-name{font-family:var(--font-display);font-size:20px;color:#fff;letter-spacing:-0.02em;margin-bottom:4px;}
+.resume-strip-role{font-size:13px;color:var(--text-3);font-weight:400;letter-spacing:0.03em;}
+.resume-strip-btns{display:flex;gap:0.75rem;flex-wrap:wrap;}
+.btn-resume-view{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;color:var(--text-2);
+  border:1px solid var(--border-2);
+  font-family:var(--font-body);font-size:13px;font-weight:500;
+  padding:9px 20px;border-radius:7px;text-decoration:none;
+  transition:border-color 0.2s,background 0.2s,color 0.2s;
 }
-.mkt-hero-inner { max-width:980px; margin:0 auto; }
-.mkt-eyebrow { font-size:11px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:1.25rem; display:flex; align-items:center; gap:10px; }
-.mkt-eyebrow::before { content:''; width:28px; height:1px; background:var(--accent); display:block; }
-.mkt-hero h1 { font-family:var(--font-display); font-size:clamp(36px,5vw,68px); line-height:1.05; letter-spacing:-0.03em; color:#fff; margin-bottom:1.25rem; max-width:780px; }
-.mkt-hero h1 em { color:var(--accent); font-style:italic; }
-.mkt-hero-sub { font-size:17px; color:rgba(247,244,239,0.6); max-width:520px; line-height:1.65; font-weight:300; margin-bottom:2.5rem; }
-.mkt-hero-proof { display:flex; gap:2.5rem; flex-wrap:wrap; padding-top:2rem; border-top:1px solid rgba(247,244,239,0.1); }
-.mkt-proof-item .pnum { font-family:var(--font-display); font-size:34px; color:#fff; line-height:1; }
-.mkt-proof-item .pnum em { font-style:italic; color:var(--accent); }
-.mkt-proof-item .plabel { font-size:12px; color:rgba(247,244,239,0.38); font-weight:300; margin-top:3px; }
-/* Animated background lines */
-.mkt-hero-lines {
-  position:absolute; inset:0; pointer-events:none; overflow:hidden; opacity:0.04;
+.btn-resume-view:hover{border-color:var(--indigo);background:rgba(99,102,241,0.1);color:#fff;}
+.btn-resume-dl{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--indigo);color:#fff;
+  border:1px solid var(--indigo);
+  font-family:var(--font-body);font-size:13px;font-weight:600;
+  padding:9px 20px;border-radius:7px;text-decoration:none;
+  transition:opacity 0.2s,transform 0.2s;
 }
-.mkt-hero-lines span {
-  position:absolute; display:block; width:1px; background:var(--paper);
-  animation:lineRise 6s ease-in-out infinite;
+.btn-resume-dl:hover{opacity:0.85;transform:translateY(-1px);}
+
+/* ── MARKETING OVERLAY ── */
+.mkt-overlay{
+  display:none;position:fixed;inset:0;z-index:300;
+  background:var(--bg);overflow-y:auto;
 }
-@keyframes lineRise { 0%,100%{transform:scaleY(0.3);opacity:0;} 50%{transform:scaleY(1);opacity:1;} }
-
-/* Services */
-.mkt-services { max-width:980px; margin:0 auto; padding:80px 2.5rem; }
-.mkt-services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule); margin-top:2rem; }
-.mkt-service-card {
-  background:var(--paper); padding:2rem;
-  transition:background 0.2s;
-  position:relative; overflow:hidden;
+.mkt-overlay.open{display:block;animation:mktIn 0.5s var(--ease) forwards;}
+.mkt-overlay.closing{animation:mktOut 0.35s var(--ease) forwards;}
+@keyframes mktIn{from{transform:translateY(60px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+@keyframes mktOut{from{transform:translateY(0);opacity:1;}to{transform:translateY(40px);opacity:0;}}
+.mkt-close{
+  position:fixed;top:1.25rem;right:1.5rem;z-index:10;
+  width:40px;height:40px;border-radius:50%;
+  background:var(--bg-2);color:var(--text);border:1px solid var(--border-2);
+  font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background 0.2s,transform 0.3s;
 }
-.mkt-service-card::before {
-  content:''; position:absolute; bottom:0; left:0; right:0; height:2px;
-  background:var(--accent); transform:scaleX(0); transform-origin:left;
-  transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);
+.mkt-close:hover{background:var(--indigo);transform:rotate(90deg);}
+.mkt-hero{
+  background:var(--bg-1);color:var(--text);
+  padding:100px 3rem 80px;position:relative;overflow:hidden;
+  border-bottom:1px solid var(--border);
 }
-.mkt-service-card:hover { background:var(--paper-2); }
-.mkt-service-card:hover::before { transform:scaleX(1); }
-.mkt-service-icon { font-size:22px; margin-bottom:1rem; }
-.mkt-service-name { font-family:var(--font-display); font-size:19px; color:var(--ink); margin-bottom:0.6rem; letter-spacing:-0.01em; }
-.mkt-service-desc { font-size:14px; color:var(--ink-3); line-height:1.65; font-weight:300; }
-.mkt-service-list { margin-top:0.75rem; }
-.mkt-service-list li { font-size:13px; color:var(--ink-3); line-height:1.6; padding-left:14px; position:relative; list-style:none; font-weight:300; }
-.mkt-service-list li::before { content:''; position:absolute; left:0; top:10px; width:4px; height:4px; border-radius:50%; background:var(--accent); }
-
-/* Why me */
-.mkt-why { background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:80px 2.5rem; }
-.mkt-why-inner { max-width:980px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
-@media(max-width:640px){ .mkt-why-inner { grid-template-columns:1fr; gap:2rem; } }
-.mkt-why h2 { font-family:var(--font-display); font-size:clamp(24px,3.5vw,38px); color:var(--ink); line-height:1.15; letter-spacing:-0.02em; margin-bottom:1rem; }
-.mkt-why h2 em { color:var(--accent); font-style:italic; }
-.mkt-why p { font-size:15px; color:var(--ink-2); line-height:1.75; font-weight:300; margin-bottom:0.85rem; }
-.mkt-differentiators { display:flex; flex-direction:column; gap:1rem; }
-.mkt-diff {
-  display:flex; gap:1rem; align-items:flex-start;
-  padding:1rem 1.25rem; background:var(--paper);
-  border:1px solid var(--rule); border-radius:3px;
-  transition:border-color 0.2s, transform 0.22s cubic-bezier(0.34,1.56,0.64,1);
+.mkt-hero-lines{position:absolute;inset:0;pointer-events:none;overflow:hidden;opacity:0.05;}
+.mkt-hero-lines span{position:absolute;display:block;width:1px;background:var(--indigo);animation:lineRise 6s ease-in-out infinite;}
+@keyframes lineRise{0%,100%{transform:scaleY(0.2);opacity:0;}50%{transform:scaleY(1);opacity:1;}}
+.mkt-hero-inner{max-width:1100px;margin:0 auto;}
+.mkt-eyebrow{font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--indigo-2);margin-bottom:1.25rem;display:flex;align-items:center;gap:8px;}
+.mkt-eyebrow::before{content:'';width:20px;height:1px;background:var(--indigo);}
+.mkt-hero h1{font-family:var(--font-display);font-size:clamp(38px,5.5vw,72px);line-height:1.05;letter-spacing:-0.03em;color:#fff;margin-bottom:1.25rem;max-width:780px;}
+.mkt-hero h1 em{font-style:italic;background:linear-gradient(90deg,var(--indigo),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.mkt-hero-sub{font-size:16px;color:var(--text-2);max-width:520px;line-height:1.7;font-weight:400;margin-bottom:2.5rem;}
+.mkt-hero-proof{display:flex;gap:3rem;flex-wrap:wrap;padding-top:2.5rem;border-top:1px solid var(--border);}
+.mkt-proof-item .pnum{font-family:var(--font-display);font-size:36px;color:#fff;line-height:1;}
+.mkt-proof-item .pnum em{font-style:italic;background:linear-gradient(90deg,var(--indigo),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.mkt-proof-item .plabel{font-size:12px;color:var(--text-3);font-weight:400;margin-top:4px;letter-spacing:0.03em;}
+.mkt-services{max-width:1100px;margin:0 auto;padding:80px 3rem;}
+.mkt-services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:2rem;}
+.mkt-service-card{
+  background:var(--bg-1);padding:2.25rem;
+  transition:background 0.2s;position:relative;overflow:hidden;
 }
-.mkt-diff:hover { border-color:var(--accent); transform:translateX(4px); }
-.mkt-diff-icon { font-size:18px; flex-shrink:0; margin-top:2px; }
-.mkt-diff-title { font-size:13px; font-weight:500; color:var(--ink); margin-bottom:2px; }
-.mkt-diff-text { font-size:13px; color:var(--ink-3); font-weight:300; line-height:1.5; }
+.mkt-service-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--indigo),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform 0.35s var(--ease);}
+.mkt-service-card:hover{background:var(--bg-2);}
+.mkt-service-card:hover::before{transform:scaleX(1);}
+.mkt-service-icon{font-size:22px;margin-bottom:1rem;}
+.mkt-service-name{font-family:var(--font-display);font-size:20px;color:#fff;margin-bottom:0.65rem;letter-spacing:-0.01em;}
+.mkt-service-desc{font-size:14px;color:var(--text-2);line-height:1.65;font-weight:400;}
+.mkt-service-list{margin-top:0.85rem;}
+.mkt-service-list li{font-size:13px;color:var(--text-2);line-height:1.65;padding-left:14px;position:relative;list-style:none;font-weight:400;}
+.mkt-service-list li::before{content:'';position:absolute;left:0;top:10px;width:4px;height:4px;border-radius:50%;background:var(--indigo);}
+.mkt-why{background:var(--bg-1);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 3rem;}
+.mkt-why-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+@media(max-width:640px){.mkt-why-inner{grid-template-columns:1fr;gap:2rem;}}
+.mkt-why h2{font-family:var(--font-display);font-size:clamp(24px,3.5vw,38px);color:#fff;line-height:1.15;letter-spacing:-0.025em;margin-bottom:1rem;}
+.mkt-why h2 em{font-style:italic;background:linear-gradient(90deg,var(--indigo),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.mkt-why p{font-size:15px;color:var(--text-2);line-height:1.8;font-weight:400;margin-bottom:0.85rem;}
+.mkt-differentiators{display:flex;flex-direction:column;gap:0.85rem;}
+.mkt-diff{
+  display:flex;gap:1rem;align-items:flex-start;
+  padding:1rem 1.25rem;background:var(--bg-2);
+  border:1px solid var(--border);border-radius:8px;
+  transition:border-color 0.2s,transform 0.25s var(--ease-spring),background 0.2s;
+}
+.mkt-diff:hover{border-color:var(--border-2);transform:translateX(4px);background:var(--bg-3);}
+.mkt-diff-icon{font-size:18px;flex-shrink:0;margin-top:2px;}
+.mkt-diff-title{font-size:13px;font-weight:600;color:#fff;margin-bottom:2px;}
+.mkt-diff-text{font-size:13px;color:var(--text-2);font-weight:400;line-height:1.5;}
+.mkt-cta{max-width:1100px;margin:0 auto;padding:80px 3rem;text-align:center;}
+.mkt-cta h2{font-family:var(--font-display);font-size:clamp(28px,4vw,50px);color:#fff;letter-spacing:-0.025em;line-height:1.1;margin-bottom:1rem;}
+.mkt-cta h2 em{font-style:italic;background:linear-gradient(90deg,var(--indigo),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.mkt-cta p{font-size:16px;color:var(--text-2);font-weight:400;max-width:480px;margin:0 auto 2.5rem;line-height:1.7;}
+.mkt-cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
 
-/* CTA */
-.mkt-cta { max-width:980px; margin:0 auto; padding:80px 2.5rem; text-align:center; }
-.mkt-cta h2 { font-family:var(--font-display); font-size:clamp(28px,4vw,48px); color:var(--ink); letter-spacing:-0.025em; line-height:1.1; margin-bottom:1rem; }
-.mkt-cta h2 em { color:var(--accent); font-style:italic; }
-.mkt-cta p { font-size:16px; color:var(--ink-3); font-weight:300; max-width:480px; margin:0 auto 2rem; line-height:1.65; }
-.mkt-cta-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+/* ── CONTACT ── */
+.contact-section{
+  position:relative;z-index:1;
+  background:var(--bg-1);
+  border-top:1px solid var(--border);
+}
+.contact-inner{
+  max-width:1100px;margin:0 auto;padding:100px 3rem;
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+}
+@media(max-width:640px){.contact-inner{grid-template-columns:1fr;gap:2.5rem;}}
+.contact-inner h2{font-family:var(--font-display);font-size:clamp(26px,3.5vw,44px);line-height:1.12;letter-spacing:-0.025em;color:#fff;margin-bottom:1rem;}
+.contact-inner h2 em{font-style:italic;background:linear-gradient(90deg,var(--indigo),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.contact-sub{font-size:15px;color:var(--text-2);font-weight:400;line-height:1.7;margin-bottom:1.75rem;}
+.contact-links{display:flex;flex-direction:column;gap:0.85rem;}
+.contact-link{
+  display:flex;align-items:center;gap:14px;
+  text-decoration:none;color:var(--text-2);font-size:14px;
+  transition:color 0.2s,transform 0.2s var(--ease-spring);font-weight:400;
+}
+.contact-link:hover{color:var(--text);transform:translateX(4px);}
+.contact-link-icon{
+  width:36px;height:36px;border:1px solid var(--border);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  background:var(--bg-2);font-size:12px;font-weight:600;color:var(--text-2);
+  transition:border-color 0.2s,background 0.2s,color 0.2s;
+}
+.contact-link:hover .contact-link-icon{border-color:var(--indigo);background:rgba(99,102,241,0.12);color:var(--indigo-2);}
+footer{
+  background:var(--bg);
+  color:var(--text-3);text-align:center;
+  padding:1.75rem 2rem;font-size:12px;font-weight:400;
+  letter-spacing:0.04em;border-top:1px solid var(--border);
+  position:relative;z-index:1;
+}
 
-/* ─── CONTACT ─── */
-.contact-section { background:var(--paper-2); border-top:1px solid var(--rule); }
-.contact-inner { max-width:980px; margin:0 auto; padding:80px 2.5rem; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
-@media(max-width:640px){ .contact-inner { grid-template-columns:1fr; gap:2rem; } }
-.contact-inner h2 { font-family:var(--font-display); font-size:clamp(24px,3.5vw,40px); line-height:1.12; letter-spacing:-0.02em; color:var(--ink); margin-bottom:1rem; }
-.contact-inner h2 em { color:var(--accent); font-style:italic; }
-.contact-sub { font-size:15px; color:var(--ink-3); font-weight:300; line-height:1.65; margin-bottom:1.5rem; }
-.contact-links { display:flex; flex-direction:column; gap:0.75rem; }
-.contact-link { display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--ink-2); font-size:14px; transition:color 0.2s; font-weight:300; }
-.contact-link:hover { color:var(--accent); }
-.contact-link-icon { width:32px; height:32px; border:1px solid var(--rule); border-radius:2px; display:flex; align-items:center; justify-content:center; flex-shrink:0; background:var(--paper); font-size:12px; font-weight:500; }
-footer { background:var(--ink); color:rgba(247,244,239,0.35); text-align:center; padding:1.5rem 2rem; font-size:12px; font-weight:300; letter-spacing:0.03em; }
+/* ── MODAL ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,8,0.8);z-index:200;overflow-y:auto;padding:2rem;backdrop-filter:blur(8px);}
+.modal-overlay.open{display:flex;align-items:flex-start;justify-content:center;}
+.modal{
+  background:var(--bg-2);max-width:760px;width:100%;
+  border-radius:16px;padding:3rem;position:relative;margin:auto;
+  border:1px solid var(--border-2);
+  box-shadow:0 24px 80px rgba(0,0,0,0.5);
+}
+@media(max-width:600px){.modal{padding:2rem 1.5rem;}}
+.modal-close{
+  position:absolute;top:1.5rem;right:1.5rem;width:32px;height:32px;
+  border:1px solid var(--border);border-radius:6px;background:var(--bg-3);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text-2);
+  transition:background 0.15s,color 0.15s;
+}
+.modal-close:hover{background:var(--indigo);color:#fff;}
+.modal-tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:3px 10px;border-radius:4px;margin-bottom:1rem;}
+.modal h2{font-family:var(--font-display);font-size:clamp(20px,3vw,28px);line-height:1.2;letter-spacing:-0.02em;color:#fff;margin-bottom:0.4rem;}
+.modal-company{font-size:13px;color:var(--text-3);margin-bottom:2rem;font-weight:400;letter-spacing:0.03em;}
+.modal-section{margin-bottom:1.5rem;}
+.modal-section-label{font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-3);margin-bottom:0.4rem;}
+.modal-section p{font-size:15px;color:var(--text-2);line-height:1.75;font-weight:400;}
+.modal-results{display:flex;gap:1.5rem;flex-wrap:wrap;padding:1.5rem;background:var(--bg-3);border-radius:8px;margin-top:1.5rem;border:1px solid var(--border);}
+.modal-result-item .r-num{font-family:var(--font-display);font-size:24px;color:#fff;line-height:1;margin-bottom:3px;}
+.modal-result-item .r-label{font-size:12px;color:var(--text-3);font-weight:400;}
 
-/* ─── MODAL ─── */
-.modal-overlay { display:none; position:fixed; inset:0; background:rgba(15,14,13,0.75); z-index:200; overflow-y:auto; padding:2rem; }
-.modal-overlay.open { display:flex; align-items:flex-start; justify-content:center; }
-.modal { background:var(--paper); max-width:740px; width:100%; border-radius:3px; padding:3rem; position:relative; margin:auto; }
-@media(max-width:600px){ .modal { padding:2rem 1.5rem; } }
-.modal-close { position:absolute; top:1.5rem; right:1.5rem; width:32px; height:32px; border:1px solid var(--rule); border-radius:2px; background:none; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:16px; color:var(--ink-3); transition:background 0.15s; }
-.modal-close:hover { background:var(--paper-2); }
-.modal-tag { display:inline-block; font-size:10px; font-weight:500; letter-spacing:0.09em; text-transform:uppercase; padding:3px 10px; border-radius:2px; margin-bottom:1rem; }
-.modal h2 { font-family:var(--font-display); font-size:clamp(20px,3vw,28px); line-height:1.2; letter-spacing:-0.02em; color:var(--ink); margin-bottom:0.4rem; }
-.modal-company { font-size:13px; color:var(--ink-4); margin-bottom:2rem; font-weight:300; }
-.modal-section { margin-bottom:1.5rem; }
-.modal-section-label { font-size:10px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-4); margin-bottom:0.4rem; }
-.modal-section p { font-size:15px; color:var(--ink-2); line-height:1.7; font-weight:300; }
-.modal-results { display:flex; gap:1.5rem; flex-wrap:wrap; padding:1.5rem; background:var(--paper-2); border-radius:3px; margin-top:1.5rem; }
-.modal-result-item .r-num { font-family:var(--font-display); font-size:24px; color:var(--ink); line-height:1; margin-bottom:3px; }
-.modal-result-item .r-label { font-size:12px; color:var(--ink-3); font-weight:300; }
-
-/* ─── ANIMATIONS ─── */
-@keyframes fadeUp { from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);} }
-.fade-up { opacity:0; animation:fadeUp 0.65s ease forwards; }
-.d1{animation-delay:0.1s;}.d2{animation-delay:0.25s;}.d3{animation-delay:0.4s;}.d4{animation-delay:0.55s;}
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s var(--ease),transform 0.7s var(--ease);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-1{transition-delay:0.05s;}
+.reveal-2{transition-delay:0.12s;}
+.reveal-3{transition-delay:0.2s;}
+.reveal-4{transition-delay:0.28s;}
+.reveal-5{transition-delay:0.36s;}
 </style>
 </head>
 <body>
 
+<!-- ambient orbs -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
 <nav>
-  <a href="#" class="nav-logo">Muhammad Ali Siddiqui</a>
+  <a href="#" class="nav-logo">MAS<span>.</span></a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
-    <li><a href="#" onclick="openMkt(event)" style="color:var(--accent);">Marketing ↗</a></li>
+    <li><a href="#" onclick="openMkt(event)" class="nav-mkt">Marketing ↗</a></li>
     <li><a href="#contact" class="nav-cta">Get in touch</a></li>
   </ul>
 </nav>
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
-  <!-- Doodle 1: right side — content graph / rising trend line -->
-  <div class="doodle doodle-right" style="width:180px;height:200px;">
-    <svg width="180" height="200" viewBox="0 0 180 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Grid lines -->
-      <line x1="20" y1="20" x2="20" y2="170" stroke="#0f0e0d" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="20" y1="170" x2="160" y2="170" stroke="#0f0e0d" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="20" y1="140" x2="160" y2="140" stroke="#0f0e0d" stroke-width="0.8" stroke-dasharray="4 3"/>
-      <line x1="20" y1="110" x2="160" y2="110" stroke="#0f0e0d" stroke-width="0.8" stroke-dasharray="4 3"/>
-      <line x1="20" y1="80" x2="160" y2="80" stroke="#0f0e0d" stroke-width="0.8" stroke-dasharray="4 3"/>
-      <!-- Rising line -->
-      <polyline points="30,155 55,148 80,130 105,100 130,65 155,30" stroke="#c85a2a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      <!-- Dots on line -->
-      <circle cx="30" cy="155" r="3.5" fill="#c85a2a"/>
-      <circle cx="80" cy="130" r="3.5" fill="#c85a2a"/>
-      <circle cx="130" cy="65" r="3.5" fill="#c85a2a"/>
-      <circle cx="155" cy="30" r="5" fill="#c85a2a"/>
-      <!-- Star burst at top -->
-      <line x1="155" y1="10" x2="155" y2="20" stroke="#0f0e0d" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="145" y1="20" x2="155" y2="30" stroke="#0f0e0d" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="165" y1="20" x2="155" y2="30" stroke="#0f0e0d" stroke-width="1.5" stroke-linecap="round"/>
-      <!-- Label squiggle -->
-      <path d="M 35 185 Q 55 180 75 185 Q 95 190 115 185 Q 135 180 155 185" stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-      <!-- small x labels on axis -->
-      <line x1="55"  y1="167" x2="55"  y2="173" stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round"/>
-      <line x1="90"  y1="167" x2="90"  y2="173" stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round"/>
-      <line x1="125" y1="167" x2="125" y2="173" stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round"/>
-    </svg>
-  </div>
-
-  <div class="hero-eyebrow fade-up">Technical Content Strategist</div>
-  <h1 class="fade-up d1">I turn technical complexity into content that <span class="tw-word" id="tw-word"><span class="tw-cursor" id="tw-cursor">|</span></span></h1>
-  <p class="hero-sub fade-up d2">I work closely with products, workflows, and user intent, not just keywords, to create content that is accurate, useful, easy to understand and marketable. Looking for clarity and scalable content experiences that support businesses? Entrust me with your work.</p>
-  <div class="hero-actions fade-up d3">
-    <a href="#work" class="btn-primary">See my work ↓</a>
-    <a href="#contact" class="btn-secondary">Available for remote contracts</a>
+  <div class="hero-inner">
+    <div class="hero-eyebrow reveal">Technical Content Strategist</div>
+    <h1 class="reveal reveal-1">I turn technical complexity into content that <span class="tw-word" id="tw-word"><span class="tw-cursor" id="tw-cursor">|</span></span></h1>
+    <p class="hero-sub reveal reveal-2">I work closely with products, workflows, and user intent — not just keywords — to create content that is accurate, useful, easy to understand and marketable. Looking for clarity and scalable content experiences that support businesses? Entrust me with your work.</p>
+    <div class="hero-actions reveal reveal-3">
+      <a href="#work" class="btn-primary">See my work ↓</a>
+      <a href="#contact" class="btn-ghost">Available for remote contracts</a>
+    </div>
   </div>
 </section>
 
-<div class="stats-strip fade-up d4">
+<!-- STATS -->
+<div class="stats-strip">
   <div class="stats-inner">
-    <div class="stat"><div class="stat-num">1.24<span>M</span></div><div class="stat-desc">organic impressions in 7 months</div></div>
-    <div class="stat"><div class="stat-num">17.3<span>K</span></div><div class="stat-desc">clicks from SEO-led strategy</div></div>
-    <div class="stat"><div class="stat-num">5<span>+</span></div><div class="stat-desc">years perfecting content & strategy</div></div>
-    <div class="stat"><div class="stat-num">85<span>K</span></div><div class="stat-desc">audience growth via ghostwriting</div></div>
+    <div class="stat reveal"><div class="stat-num">1.24<span>M</span></div><div class="stat-desc">organic impressions in 7 months</div></div>
+    <div class="stat reveal reveal-1"><div class="stat-num">17.3<span>K</span></div><div class="stat-desc">clicks from SEO-led strategy</div></div>
+    <div class="stat reveal reveal-2"><div class="stat-num">5<span>+</span></div><div class="stat-desc">years perfecting content & strategy</div></div>
+    <div class="stat reveal reveal-3"><div class="stat-num">85<span>K</span></div><div class="stat-desc">audience growth via ghostwriting</div></div>
   </div>
 </div>
 
 <hr class="rule">
 
 <!-- ═══ WORK ═══ -->
-<section class="section" id="work" style="overflow:visible;">
-  <!-- Doodle 2: left side — pen nib / writing -->
-  <div class="doodle doodle-left" style="width:160px;height:210px;">
-    <svg width="160" height="210" viewBox="0 0 160 210" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Pen nib -->
-      <path d="M 80 20 L 110 60 L 80 80 L 50 60 Z" stroke="#0f0e0d" stroke-width="1.8" stroke-linejoin="round" fill="none"/>
-      <line x1="80" y1="80" x2="80" y2="130" stroke="#0f0e0d" stroke-width="1.8" stroke-linecap="round"/>
-      <path d="M 80 130 Q 60 145 65 160 Q 70 175 80 180 Q 90 175 95 160 Q 100 145 80 130 Z" stroke="#0f0e0d" stroke-width="1.8" stroke-linejoin="round" fill="none"/>
-      <line x1="80" y1="80" x2="80" y2="95" stroke="#c85a2a" stroke-width="2.5" stroke-linecap="round"/>
-      <!-- Ink drop -->
-      <circle cx="80" cy="195" r="4" fill="#c85a2a" opacity="0.8"/>
-      <path d="M 78 188 Q 80 183 82 188" stroke="#c85a2a" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-      <!-- Lines being written -->
-      <line x1="100" y1="95"  x2="145" y2="95"  stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round"/>
-      <line x1="100" y1="105" x2="140" y2="105" stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="3 2"/>
-      <line x1="100" y1="115" x2="135" y2="115" stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round"/>
-      <line x1="100" y1="125" x2="130" y2="125" stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="3 2"/>
-    </svg>
-  </div>
-
-  <div class="section-label">Selected work</div>
-  <div class="section-title">Case Studies &amp; Projects</div>
+<section class="section" id="work">
+  <div class="section-label reveal">Selected work</div>
+  <div class="section-title reveal reveal-1">Case Studies &amp; Projects</div>
   <div class="work-grid">
-    <div class="flip-card" onclick="openModal('alliance')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-strategy">Content Strategy</span><h3>Building Alliance Shipping's Content Engine from Scratch</h3></div><div class="work-meta"><span>Alliance Shipping · Dubai</span><span class="wdot"></span><span>2024–2026</span></div></div><div class="flip-back"><div><div class="back-label">The result</div><div class="back-title">1.24M impressions. 17.3K clicks. 7 months.</div><div class="back-desc">Full-funnel strategy from zero — topic clusters, E-E-A-T frameworks, editorial SOPs, and a scalable pipeline that outlasted my tenure.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('alliance')">Read case study →</button></div></div></div>
-    <div class="flip-card" onclick="openModal('objects')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-docs">Documentation</span><h3>WordPress Plugin Documentation Users Actually Read</h3></div><div class="work-meta"><span>Objects</span><span class="wdot"></span><span>2026–present</span></div></div><div class="flip-back"><div><div class="back-label">The challenge</div><div class="back-title">Technical accuracy meets plain language.</div><div class="back-desc">Press releases, feature tutorials, onboarding guides, and technical blogs for WordPress plugins — written with developer input, optimised for users and search.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('objects')">Read case study →</button></div></div></div>
-    <div class="flip-card" onclick="openModal('logistics_seo')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-seo">SEO Content</span><h3>35+ Logistics Articles that Built Topical Authority in Dubai</h3></div><div class="work-meta"><span>Alliance Shipping</span><span class="wdot"></span><span>AI ranking strategy</span></div></div><div class="flip-back"><div><div class="back-label">The approach</div><div class="back-title">Topic clustering for a niche no one owned.</div><div class="back-desc">From "What is a Bill of Lading?" to air freight pricing guides — a content map covering every search intent in the Dubai logistics space.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('logistics_seo')">Read case study →</button></div></div></div>
-    <div class="flip-card" onclick="openModal('apparel')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-apparel">Apparel / B2B</span><h3>30+ Manufacturer Guides for a B2B Apparel Brand</h3></div><div class="work-meta"><span>B2B Fashion Manufacturing</span><span class="wdot"></span><span>2025–2026</span></div></div><div class="flip-back"><div><div class="back-label">The scope</div><div class="back-title">Complete content library for a clothing manufacturer.</div><div class="back-desc">Landing pages, buying guides, and deep-dive articles covering hoodie manufacturing, fabric selection, MOQ guides, and how-to-start-a-brand series.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('apparel')">Read case study →</button></div></div></div>
-    <div class="flip-card" onclick="openModal('saas_b2b')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-saas">SaaS / B2B Data</span><h3>B2B Data Provider Comparisons Across 6 EU Markets</h3></div><div class="work-meta"><span>B2B SaaS client</span><span class="wdot"></span><span>2024</span></div></div><div class="flip-back"><div><div class="back-label">The deliverable</div><div class="back-title">High-intent comparison content that converts.</div><div class="back-desc">Six long-form articles covering Sweden, Portugal, Denmark, Finland, Greece, and Austria — targeting decision-stage B2B buyers.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('saas_b2b')">Read case study →</button></div></div></div>
-    <div class="flip-card" onclick="openModal('real_estate')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-finance">Real Estate</span><h3>Dubai Real Estate Content for Indian and UK Investors</h3></div><div class="work-meta"><span>Real estate client · Dubai</span><span class="wdot"></span><span>2024</span></div></div><div class="flip-back"><div><div class="back-label">The audience</div><div class="back-title">Cross-border investment guides that build trust.</div><div class="back-desc">Property laws for Indian buyers, off-plan guides for UK investors, tax landscape analysis, and 2024 market forecasts.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('real_estate')">Read case study →</button></div></div></div>
-    <div class="flip-card" onclick="openModal('technical_docs')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-docs">Technical Writing</span><h3>Fuel Tank Process Guide and RFP Documentation</h3></div><div class="work-meta"><span>Divinatory Solutions</span><span class="wdot"></span><span>BOSAL Belgium</span></div></div><div class="flip-back"><div><div class="back-label">The brief</div><div class="back-title">Engineering documentation for non-technical readers.</div><div class="back-desc">Technical overview of a flexible fuel tank production line, plus RFP writing — requiring physics-level comprehension of manufacturing systems.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('technical_docs')">Read case study →</button></div></div></div>
-    <div class="flip-card" onclick="openModal('iot_biotech')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-iot">IoT / Hardware</span><h3>Sensor Testing, Research and Documentation for a Chinese Biotech Firm</h3></div><div class="work-meta"><span>JANUS Biotechnology · China</span><span class="wdot"></span><span>2024</span></div></div><div class="flip-back"><div><div class="back-label">What made it different</div><div class="back-title">I didn't just write about sensors. I tested them.</div><div class="back-desc">Configured, tested, and documented biosensor hardware for a remote engineering team — applying my Applied Physics degree in a real hardware environment.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('iot_biotech')">Read case study →</button></div></div></div>
-    <div class="flip-card" onclick="openModal('press_releases')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-press">Press Releases</span><h3>WordPress Plugin Launch Releases and Feature Announcements</h3></div><div class="work-meta"><span>Objects · Post SMTP · AIO Login</span><span class="wdot"></span><span>2026</span></div></div><div class="flip-back"><div><div class="back-label">The deliverables</div><div class="back-title">Product launches that get read and shared.</div><div class="back-desc">Press releases for Post SMTP Pro v1.5.0, Post SMTP v3.8.0, and AIO Login Pro v1.4.0 — plus release emails for developer audiences.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('press_releases')">Read case study →</button></div></div></div>
-    <div class="flip-card" onclick="openModal('ghostwriting')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-seo">Ghostwriting</span><h3>100+ Ghostwritten Articles Driving 85K+ Audience Growth</h3></div><div class="work-meta"><span>Medium (remote)</span><span class="wdot"></span><span>2020–2024</span></div></div><div class="flip-back"><div><div class="back-label">The track record</div><div class="back-title">92% on-time. Consistently ranked. Client-invisible.</div><div class="back-desc">Four years of high-volume ghostwriting across business, tech, lifestyle, real estate, and finance — every piece written to rank and built to the client's voice.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('ghostwriting')">Read case study →</button></div></div></div>
-    <div class="flip-card" onclick="openModal('finance_writing')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-finance">Finance Content</span><h3>Long-Form Investment Guides and E-Wallet Competitive Analysis</h3></div><div class="work-meta"><span>Finance clients</span><span class="wdot"></span><span>2024</span></div></div><div class="flip-back"><div><div class="back-label">The work</div><div class="back-title">Research-led writing for high-trust financial audiences.</div><div class="back-desc">Investment principles guides, long-term strategy articles, and a comprehensive e-wallet competitive analysis deck for decision-makers.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('finance_writing')">Read case study →</button></div></div></div>
-    <div class="flip-card" onclick="openModal('ebooks')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-saas">Long-Form</span><h3>7 Full eBooks across Health, Business, and Entrepreneurship</h3></div><div class="work-meta"><span>Various ghostwriting clients</span><span class="wdot"></span><span>2020–2024</span></div></div><div class="flip-back"><div><div class="back-label">The scope</div><div class="back-title">Book-length content that educates and sells.</div><div class="back-desc">Gut health, passive income, children's leadership, entrepreneurship, Moissanite jewelry, and a gluten-free cookbook — all ghost, all structured for engagement.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('ebooks')">Read case study →</button></div></div></div>
+    <div class="flip-card reveal reveal-1" onclick="openModal('alliance')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-strategy">Content Strategy</span><h3>Building Alliance Shipping's Content Engine from Scratch</h3></div><div class="work-meta"><span>Alliance Shipping · Dubai</span><span class="wdot"></span><span>2024–2026</span></div></div><div class="flip-back"><div><div class="back-label">The result</div><div class="back-title">1.24M impressions. 17.3K clicks. 7 months.</div><div class="back-desc">Full-funnel strategy from zero — topic clusters, E-E-A-T frameworks, editorial SOPs, and a scalable pipeline that outlasted my tenure.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('alliance')">Read case study →</button></div></div></div>
+    <div class="flip-card reveal reveal-2" onclick="openModal('objects')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-docs">Documentation</span><h3>WordPress Plugin Documentation Users Actually Read</h3></div><div class="work-meta"><span>Objects</span><span class="wdot"></span><span>2026–present</span></div></div><div class="flip-back"><div><div class="back-label">The challenge</div><div class="back-title">Technical accuracy meets plain language.</div><div class="back-desc">Press releases, feature tutorials, onboarding guides, and technical blogs for WordPress plugins — written with developer input, optimised for users and search.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('objects')">Read case study →</button></div></div></div>
+    <div class="flip-card reveal reveal-3" onclick="openModal('logistics_seo')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-seo">SEO Content</span><h3>35+ Logistics Articles that Built Topical Authority in Dubai</h3></div><div class="work-meta"><span>Alliance Shipping</span><span class="wdot"></span><span>AI ranking strategy</span></div></div><div class="flip-back"><div><div class="back-label">The approach</div><div class="back-title">Topic clustering for a niche no one owned.</div><div class="back-desc">From "What is a Bill of Lading?" to air freight pricing guides — a content map covering every search intent in the Dubai logistics space.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('logistics_seo')">Read case study →</button></div></div></div>
+    <div class="flip-card reveal reveal-1" onclick="openModal('apparel')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-apparel">Apparel / B2B</span><h3>30+ Manufacturer Guides for a B2B Apparel Brand</h3></div><div class="work-meta"><span>B2B Fashion Manufacturing</span><span class="wdot"></span><span>2025–2026</span></div></div><div class="flip-back"><div><div class="back-label">The scope</div><div class="back-title">Complete content library for a clothing manufacturer.</div><div class="back-desc">Landing pages, buying guides, and deep-dive articles covering hoodie manufacturing, fabric selection, MOQ guides, and how-to-start-a-brand series.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('apparel')">Read case study →</button></div></div></div>
+    <div class="flip-card reveal reveal-2" onclick="openModal('saas_b2b')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-saas">SaaS / B2B Data</span><h3>B2B Data Provider Comparisons Across 6 EU Markets</h3></div><div class="work-meta"><span>B2B SaaS client</span><span class="wdot"></span><span>2024</span></div></div><div class="flip-back"><div><div class="back-label">The deliverable</div><div class="back-title">High-intent comparison content that converts.</div><div class="back-desc">Six long-form articles covering Sweden, Portugal, Denmark, Finland, Greece, and Austria — targeting decision-stage B2B buyers.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('saas_b2b')">Read case study →</button></div></div></div>
+    <div class="flip-card reveal reveal-3" onclick="openModal('real_estate')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-finance">Real Estate</span><h3>Dubai Real Estate Content for Indian and UK Investors</h3></div><div class="work-meta"><span>Real estate client · Dubai</span><span class="wdot"></span><span>2024</span></div></div><div class="flip-back"><div><div class="back-label">The audience</div><div class="back-title">Cross-border investment guides that build trust.</div><div class="back-desc">Property laws for Indian buyers, off-plan guides for UK investors, tax landscape analysis, and 2024 market forecasts.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('real_estate')">Read case study →</button></div></div></div>
+    <div class="flip-card reveal reveal-1" onclick="openModal('technical_docs')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-docs">Technical Writing</span><h3>Fuel Tank Process Guide and RFP Documentation</h3></div><div class="work-meta"><span>Divinatory Solutions</span><span class="wdot"></span><span>BOSAL Belgium</span></div></div><div class="flip-back"><div><div class="back-label">The brief</div><div class="back-title">Engineering documentation for non-technical readers.</div><div class="back-desc">Technical overview of a flexible fuel tank production line, plus RFP writing — requiring physics-level comprehension of manufacturing systems.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('technical_docs')">Read case study →</button></div></div></div>
+    <div class="flip-card reveal reveal-2" onclick="openModal('iot_biotech')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-iot">IoT / Hardware</span><h3>Sensor Testing, Research and Documentation for a Chinese Biotech Firm</h3></div><div class="work-meta"><span>JANUS Biotechnology · China</span><span class="wdot"></span><span>2024</span></div></div><div class="flip-back"><div><div class="back-label">What made it different</div><div class="back-title">I didn't just write about sensors. I tested them.</div><div class="back-desc">Configured, tested, and documented biosensor hardware for a remote engineering team — applying my Applied Physics degree in a real hardware environment.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('iot_biotech')">Read case study →</button></div></div></div>
+    <div class="flip-card reveal reveal-3" onclick="openModal('press_releases')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-press">Press Releases</span><h3>WordPress Plugin Launch Releases and Feature Announcements</h3></div><div class="work-meta"><span>Objects · Post SMTP · AIO Login</span><span class="wdot"></span><span>2026</span></div></div><div class="flip-back"><div><div class="back-label">The deliverables</div><div class="back-title">Product launches that get read and shared.</div><div class="back-desc">Press releases for Post SMTP Pro v1.5.0, Post SMTP v3.8.0, and AIO Login Pro v1.4.0 — plus release emails for developer audiences.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('press_releases')">Read case study →</button></div></div></div>
+    <div class="flip-card reveal reveal-1" onclick="openModal('ghostwriting')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-seo">Ghostwriting</span><h3>100+ Ghostwritten Articles Driving 85K+ Audience Growth</h3></div><div class="work-meta"><span>Medium (remote)</span><span class="wdot"></span><span>2020–2024</span></div></div><div class="flip-back"><div><div class="back-label">The track record</div><div class="back-title">92% on-time. Consistently ranked. Client-invisible.</div><div class="back-desc">Four years of high-volume ghostwriting across business, tech, lifestyle, real estate, and finance — every piece written to rank and built to the client's voice.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('ghostwriting')">Read case study →</button></div></div></div>
+    <div class="flip-card reveal reveal-2" onclick="openModal('finance_writing')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-finance">Finance Content</span><h3>Long-Form Investment Guides and E-Wallet Competitive Analysis</h3></div><div class="work-meta"><span>Finance clients</span><span class="wdot"></span><span>2024</span></div></div><div class="flip-back"><div><div class="back-label">The work</div><div class="back-title">Research-led writing for high-trust financial audiences.</div><div class="back-desc">Investment principles guides, long-term strategy articles, and a comprehensive e-wallet competitive analysis deck for decision-makers.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('finance_writing')">Read case study →</button></div></div></div>
+    <div class="flip-card reveal reveal-3" onclick="openModal('ebooks')"><div class="flip-inner"><div class="flip-front"><div><span class="work-tag tag-saas">Long-Form</span><h3>7 Full eBooks across Health, Business, and Entrepreneurship</h3></div><div class="work-meta"><span>Various ghostwriting clients</span><span class="wdot"></span><span>2020–2024</span></div></div><div class="flip-back"><div><div class="back-label">The scope</div><div class="back-title">Book-length content that educates and sells.</div><div class="back-desc">Gut health, passive income, children's leadership, entrepreneurship, Moissanite jewelry, and a gluten-free cookbook — all ghost, all structured for engagement.</div></div><button class="back-cta" onclick="event.stopPropagation();openModal('ebooks')">Read case study →</button></div></div></div>
   </div>
 </section>
 
 <!-- ═══ FEATURED CASE ═══ -->
-<div class="featured-wrap" style="position:relative; overflow:visible;">
-  <!-- Doodle 3: right side — compass / strategy circle -->
-  <div class="doodle doodle-right" style="width:170px;height:200px;right:0;top:50%;transform:translateY(-50%);">
-    <svg width="170" height="200" viewBox="0 0 170 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Outer circle -->
-      <circle cx="85" cy="100" r="65" stroke="#0f0e0d" stroke-width="1.5" stroke-dasharray="6 4"/>
-      <!-- Inner circle -->
-      <circle cx="85" cy="100" r="40" stroke="#0f0e0d" stroke-width="1.2"/>
-      <!-- Cross hairs -->
-      <line x1="85" y1="35" x2="85" y2="165" stroke="#0f0e0d" stroke-width="1"/>
-      <line x1="20" y1="100" x2="150" y2="100" stroke="#0f0e0d" stroke-width="1"/>
-      <!-- Compass needle -->
-      <polygon points="85,60 80,100 85,95 90,100" fill="#c85a2a"/>
-      <polygon points="85,140 80,100 85,105 90,100" fill="#0f0e0d" opacity="0.4"/>
-      <!-- Center dot -->
-      <circle cx="85" cy="100" r="4" fill="#0f0e0d"/>
-      <!-- N S E W -->
-      <text x="82" y="28" font-size="10" fill="#0f0e0d" font-family="Georgia">N</text>
-      <text x="82" y="182" font-size="10" fill="#0f0e0d" font-family="Georgia">S</text>
-      <text x="153" y="104" font-size="10" fill="#0f0e0d" font-family="Georgia">E</text>
-      <text x="10" y="104" font-size="10" fill="#0f0e0d" font-family="Georgia">W</text>
-    </svg>
-  </div>
-
+<div class="featured-wrap reveal">
   <div class="featured-case" id="featured-case">
     <canvas id="fc-canvas"></canvas>
+    <div class="shimmer-bar"></div>
     <div class="fc-content">
       <div class="section-label">Featured case study</div>
       <h2>From zero to 1.24M impressions: the Alliance Shipping content strategy</h2>
       <div class="case-body">
         <div><div class="case-block-label">The challenge</div><div class="case-block-text">Alliance Shipping had no organic search presence. The brief was to build topical authority in the Dubai logistics niche from scratch — aligned with the CEO's brand vision and lead-generation targets — without an agency budget.</div></div>
-        <div><div class="case-block-label">The approach</div><div class="case-block-text">Worked across the full content lifecycle — planning, writing, editing, documentation, publishing, and content optimization. Built editorial SOPs, collaborated with writers and product teams, and created systems that improve both content quality and AI visibility.</div></div>
+        <div><div class="case-block-label">The approach</div><div class="case-block-text">Worked across the full content lifecycle — planning, writing, editing, documentation, publishing, and content optimisation. Built editorial SOPs, collaborated with writers and product teams, and created systems that improve both content quality and AI visibility.</div></div>
       </div>
       <div class="case-results">
-        <div class="case-result-item">
-          <div class="num"><span class="count-val" data-target="1.24" data-suffix="M">0</span></div>
-          <div class="label">impressions in 7 months</div>
-          <div class="stat-bar-wrap"><div class="stat-bar-fill"></div></div>
-        </div>
-        <div class="case-result-item">
-          <div class="num"><span class="count-val" data-target="17.3" data-suffix="K">0</span></div>
-          <div class="label">organic clicks</div>
-          <div class="stat-bar-wrap"><div class="stat-bar-fill"></div></div>
-        </div>
-        <div class="case-result-item">
-          <div class="num"><span class="count-val" data-target="35" data-suffix="+">0</span></div>
-          <div class="label">articles published</div>
-          <div class="stat-bar-wrap"><div class="stat-bar-fill"></div></div>
-        </div>
-        <div class="case-result-item">
-          <div class="num"><em>Full</em></div>
-          <div class="label">funnel coverage built</div>
-          <div class="stat-bar-wrap"><div class="stat-bar-fill"></div></div>
-        </div>
+        <div class="case-result-item"><div class="num"><span class="count-val" data-target="1.24" data-suffix="M">0</span></div><div class="label">impressions in 7 months</div><div class="stat-bar-wrap"><div class="stat-bar-fill"></div></div></div>
+        <div class="case-result-item"><div class="num"><span class="count-val" data-target="17.3" data-suffix="K">0</span></div><div class="label">organic clicks</div><div class="stat-bar-wrap"><div class="stat-bar-fill"></div></div></div>
+        <div class="case-result-item"><div class="num"><span class="count-val" data-target="35" data-suffix="+">0</span></div><div class="label">articles published</div><div class="stat-bar-wrap"><div class="stat-bar-fill"></div></div></div>
+        <div class="case-result-item"><div class="num"><em>Full</em></div><div class="label">funnel coverage built</div><div class="stat-bar-wrap"><div class="stat-bar-fill"></div></div></div>
       </div>
     </div>
   </div>
@@ -630,35 +691,11 @@ footer { background:var(--ink); color:rgba(247,244,239,0.35); text-align:center;
 <hr class="rule" style="margin-top:0;">
 
 <!-- ═══ ABOUT ═══ -->
-<section class="section about-section" id="about">
-  <!-- Doodle 4: left — atom (physics nod) -->
-  <div class="doodle doodle-left" style="width:180px;height:190px;">
-    <svg width="180" height="190" viewBox="0 0 180 190" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Nucleus -->
-      <circle cx="90" cy="95" r="10" stroke="#0f0e0d" stroke-width="1.8" fill="none"/>
-      <circle cx="87" cy="93" r="3.5" fill="#c85a2a"/>
-      <circle cx="93" cy="97" r="3.5" fill="#0f0e0d" opacity="0.5"/>
-      <!-- Orbit 1 -->
-      <ellipse cx="90" cy="95" rx="60" ry="22" stroke="#0f0e0d" stroke-width="1.4" fill="none"/>
-      <!-- Orbit 2 rotated 60deg -->
-      <ellipse cx="90" cy="95" rx="60" ry="22" stroke="#0f0e0d" stroke-width="1.4" fill="none" transform="rotate(60 90 95)"/>
-      <!-- Orbit 3 rotated 120deg -->
-      <ellipse cx="90" cy="95" rx="60" ry="22" stroke="#0f0e0d" stroke-width="1.4" fill="none" transform="rotate(120 90 95)"/>
-      <!-- Electrons on orbits -->
-      <circle cx="150" cy="95" r="5" fill="#c85a2a"/>
-      <circle cx="60" cy="69" r="4" fill="#0f0e0d" opacity="0.6"/>
-      <circle cx="119" cy="130" r="4" fill="#0f0e0d" opacity="0.6"/>
-      <!-- Little spark dots -->
-      <circle cx="35"  cy="160" r="2.5" fill="#c85a2a" opacity="0.7"/>
-      <circle cx="145" cy="25"  r="2"   fill="#c85a2a" opacity="0.5"/>
-      <circle cx="20"  cy="50"  r="1.5" fill="#0f0e0d" opacity="0.4"/>
-    </svg>
-  </div>
-
-  <div class="section-label">About</div>
+<section class="section" id="about">
+  <div class="section-label reveal">About</div>
   <div class="about-grid">
-    <div>
-      <div class="about-initials">MAS</div>
+    <div class="reveal reveal-1">
+      <div class="about-badge">MAS</div>
       <div class="about-name">Muhammad Ali Siddiqui</div>
       <div class="about-role">Technical Content Strategist</div>
       <div class="about-detail"><strong>Based</strong> Karachi, Pakistan</div>
@@ -666,19 +703,19 @@ footer { background:var(--ink); color:rgba(247,244,239,0.35); text-align:center;
       <div class="about-detail"><strong>Education</strong> MSc Applied Physics, University of Karachi</div>
       <div class="about-detail"><strong>Languages</strong> English (C1)</div>
       <div class="skills-grid">
-        <div><div class="skill-group-label">Content</div><div class="skill-list">Technical writing<br>Articles/Blogs<br>Documentation<br>eBooks<br>Webcontent, etc</div></div>
+        <div><div class="skill-group-label">Content</div><div class="skill-list">Technical writing<br>Articles/Blogs<br>Documentation<br>eBooks<br>Web content</div></div>
         <div><div class="skill-group-label">Tools</div><div class="skill-list">Ahrefs · Semrush<br>SurferSEO<br>WordPress<br>Google Search Console<br>ChatGPT · Claude</div></div>
         <div><div class="skill-group-label">Technical</div><div class="skill-list">Python<br>Arduino / IoT<br>PLC systems<br>Sensor integration<br>MATLAB</div></div>
-        <div><div class="skill-group-label"></div><div class="skill-list"></div></div>
+        <div></div>
       </div>
     </div>
-    <div>
+    <div class="reveal reveal-2">
       <p>I come from a slightly unusual background for a content writer and strategist — I started in Applied Physics, worked with sensor systems and hardware, and eventually found my way into content writing as I loved storytelling.</p>
       <p>That mixed skillset of critical thinking, problem solving, storytelling, and writing helps me do more than just "create content." I understand the systems behind the products I write about. Whether it's WordPress plugins, SaaS platforms, eBooks, CVs, or anything thrown at me, I can translate complex ideas into content that is clear to understand and follow.</p>
       <p>Over the years, I've worked across blogs, technical documentation, tutorials, ebooks, website copy, CVs and resumes, personal statements, presentations, knowledge bases, and long-form content strategy. I enjoy building content ecosystems — structures, workflows, and content that support long-term organic growth.</p>
       <p>Currently, I'm working as a Content Producer at Objects in Karachi, where I write documentation and tutorials for WordPress plugins. Alongside that, I'm actively looking for remote opportunities and freelance collaborations with SaaS or Fintech companies, startups, and technical product organizations.</p>
       <p>If you're looking for someone who can help you generate more business through content or convert your complex things into easy to understand pieces, I'd love to connect.</p>
-      <a href="#contact" class="btn-secondary" style="display:inline-flex;margin-top:0.5rem;">Work with me →</a>
+      <a href="#contact" class="btn-ghost" style="display:inline-flex;margin-top:1rem;">Work with me →</a>
     </div>
   </div>
 </section>
@@ -686,213 +723,98 @@ footer { background:var(--ink); color:rgba(247,244,239,0.35); text-align:center;
 <hr class="rule">
 
 <!-- ═══ EXPERIENCE ═══ -->
-<section class="section exp-section" id="experience">
-  <!-- Doodle 5: right — circuit board / nodes -->
-  <div class="doodle doodle-right" style="width:175px;height:220px;">
-    <svg width="175" height="220" viewBox="0 0 175 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Circuit paths -->
-      <path d="M 30 40 H 70 V 80 H 110 V 40 H 145" stroke="#0f0e0d" stroke-width="1.4" stroke-linecap="round" fill="none"/>
-      <path d="M 70 80 V 130 H 30 V 170" stroke="#0f0e0d" stroke-width="1.4" stroke-linecap="round" fill="none"/>
-      <path d="M 110 80 V 110 H 145 V 155 H 110 V 180 H 70 V 210" stroke="#0f0e0d" stroke-width="1.4" stroke-linecap="round" fill="none"/>
-      <path d="M 30 170 H 70 V 210" stroke="#0f0e0d" stroke-width="1.4" stroke-linecap="round" fill="none"/>
-      <path d="M 145 40 V 20 H 165" stroke="#0f0e0d" stroke-width="1.4" stroke-linecap="round" fill="none"/>
-      <!-- Component — resistor box -->
-      <rect x="58" y="100" width="25" height="12" rx="2" stroke="#0f0e0d" stroke-width="1.4" fill="none"/>
-      <!-- Component — capacitor -->
-      <line x1="125" y1="125" x2="125" y2="140" stroke="#0f0e0d" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="117" y1="130" x2="133" y2="130" stroke="#0f0e0d" stroke-width="2" stroke-linecap="round"/>
-      <line x1="117" y1="135" x2="133" y2="135" stroke="#0f0e0d" stroke-width="2" stroke-linecap="round"/>
-      <!-- Nodes -->
-      <circle cx="70"  cy="80"  r="4" fill="#c85a2a"/>
-      <circle cx="110" cy="80"  r="4" fill="#0f0e0d"/>
-      <circle cx="30"  cy="170" r="4" fill="#0f0e0d"/>
-      <circle cx="110" cy="180" r="4" fill="#c85a2a"/>
-      <circle cx="70"  cy="210" r="4" fill="#0f0e0d"/>
-      <!-- Glow dot -->
-      <circle cx="145" cy="20" r="5" fill="#c85a2a" opacity="0.9"/>
-      <circle cx="145" cy="20" r="9" fill="#c85a2a" opacity="0.2"/>
-    </svg>
-  </div>
-
-  <div class="section-label">Experience</div>
-  <div class="section-title">Where I've Worked</div>
+<section class="section" id="experience">
+  <div class="section-label reveal">Experience</div>
+  <div class="section-title reveal reveal-1">Where I've Worked</div>
   <div class="exp-list">
-
-    <div class="exp-item" style="position:relative;">
+    <div class="exp-item reveal reveal-1" style="position:relative;">
       <div><div class="exp-date">Apr 2026 – Present</div><div class="exp-company">Objects</div><div class="exp-loc">Karachi, Pakistan</div></div>
       <div><div class="exp-role">Content Producer</div><div class="exp-desc">Writing technical documentation, onboarding guides, press releases, and feature tutorials for WordPress plugins. Collaborating with developers to ensure technical accuracy. Optimising product pages and knowledge base content for search visibility and user task completion.</div><div class="exp-tags"><span class="exp-tag">WordPress</span><span class="exp-tag">Technical docs</span><span class="exp-tag">SEO</span><span class="exp-tag">Press releases</span></div></div>
     </div>
-
-    <div class="exp-item" style="position:relative;">
+    <div class="exp-item reveal reveal-2" style="position:relative;">
       <div><div class="exp-date">Oct 2024 – Mar 2026</div><div class="exp-company">Alliance Shipping</div><div class="exp-loc">Dubai (remote)</div></div>
-      <div><div class="exp-role">Content Manager <span style="font-weight:300;color:var(--ink-4);font-size:13px;">↑ promoted</span></div><div class="exp-desc">Built and owned full content strategy from scratch — driving 1.24M impressions and 17.3K clicks in 7 months. Designed scalable pipelines, managed writers, established editorial SOPs and E-E-A-T frameworks.</div><div class="exp-tags"><span class="exp-tag">Content strategy</span><span class="exp-tag">SEO</span><span class="exp-tag">E-E-A-T</span><span class="exp-tag">Team management</span></div></div>
+      <div><div class="exp-role">Content Manager <span style="font-weight:400;color:var(--text-3);font-size:13px;">↑ promoted</span></div><div class="exp-desc">Built and owned full content strategy from scratch — driving 1.24M impressions and 17.3K clicks in 7 months. Designed scalable pipelines, managed writers, established editorial SOPs and E-E-A-T frameworks.</div><div class="exp-tags"><span class="exp-tag">Content strategy</span><span class="exp-tag">SEO</span><span class="exp-tag">E-E-A-T</span><span class="exp-tag">Team management</span></div></div>
     </div>
-
-    <div class="exp-item" style="position:relative;">
+    <div class="exp-item reveal reveal-3" style="position:relative;">
       <div><div class="exp-date">Jan – Oct 2024</div><div class="exp-company">Divinatory Solutions</div><div class="exp-loc">Karachi, Pakistan</div></div>
       <div><div class="exp-role">Technical Content Writer</div><div class="exp-desc">Produced technical documentation including process guides, RFPs, and fuel systems manuals. Created ATS-optimised CVs. Developed interactive client presentations. Wrote and published eBooks as a ghostwriter.</div><div class="exp-tags"><span class="exp-tag">Technical writing</span><span class="exp-tag">Documentation</span><span class="exp-tag">RFPs</span><span class="exp-tag">eBooks</span></div></div>
     </div>
-
-    <div class="exp-item" style="position:relative;">
+    <div class="exp-item reveal reveal-4" style="position:relative;">
       <div><div class="exp-date">Jan – Aug 2024</div><div class="exp-company">JANUS Biotechnology</div><div class="exp-loc">Guangdong, China (remote)</div></div>
       <div><div class="exp-role">Project Assistant</div><div class="exp-desc">Configured and tested biosensor hardware. Documented test results, reported findings to the project lead, and supported cross-timezone technical troubleshooting.</div><div class="exp-tags"><span class="exp-tag">Sensor systems</span><span class="exp-tag">Hardware testing</span><span class="exp-tag">IoT</span></div></div>
     </div>
-
-    <div class="exp-item" style="position:relative;">
+    <div class="exp-item reveal reveal-5" style="position:relative;">
       <div><div class="exp-date">Sep 2021 – Jan 2023</div><div class="exp-company">HiQain</div><div class="exp-loc">Remote</div></div>
       <div><div class="exp-role">Web Content Writer (part-time)</div><div class="exp-desc">SEO-driven web content for a handyman services brand. Improved content structure, internal linking, and crawlability.</div><div class="exp-tags"><span class="exp-tag">SEO writing</span><span class="exp-tag">Web content</span></div></div>
     </div>
-
   </div>
 </section>
 
-<!-- ═══ PORTFOLIO TIMELINE (1C) ═══ -->
+<!-- ═══ PORTFOLIO TIMELINE ═══ -->
 <div class="portfolio-section" id="portfolio">
   <div class="portfolio-inner">
-    <div class="section-label">Publication record</div>
-    <div class="section-title" style="margin-bottom:0.5rem;">Everything I've written</div>
-    <p style="font-size:14px;color:var(--ink-3);font-weight:300;margin-bottom:3rem;max-width:520px;">A chronological log of selected client work. Items marked with a link icon are available on request via Google Doc. Click any row to view.</p>
+    <div class="section-label reveal">Publication record</div>
+    <div class="section-title reveal reveal-1" style="margin-bottom:0.5rem;">Everything I've written</div>
+    <p class="reveal reveal-2" style="font-size:14px;color:var(--text-3);font-weight:400;margin-bottom:3.5rem;max-width:520px;line-height:1.7;">A chronological log of selected client work. Click any row to view the piece.</p>
 
-    <!-- 2026 -->
-    <div class="portfolio-year-group">
+    <div class="portfolio-year-group reveal">
       <div class="year-heading">2026</div>
       <div class="portfolio-entries">
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">Objects</div><div class="pe-title">Post SMTP Pro v1.5.0 — One-Click Microsoft 365 Email Setup Press Release</div></div>
-          <span class="pe-tag tag-press">Press Release</span><span class="pe-arrow">→</span>
-        </a>
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">Objects</div><div class="pe-title">AIO Login Pro Adds WooCommerce Integration and hCAPTCHA Press Release</div></div>
-          <span class="pe-tag tag-docs">Documentation</span><span class="pe-arrow">→</span>
-        </a>
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">Objects</div><div class="pe-title">8 Best SMTP Plugins for WordPress [Ultimate Guide 2026]</div></div>
-          <span class="pe-tag tag-docs">Technical Article</span><span class="pe-arrow">→</span>
-        </a>
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">Objects</div><div class="pe-title">How to Increase WooCommerce Conversions (10 Effective Tips)</div></div>
-          <span class="pe-tag tag-docs">Technical Article</span><span class="pe-arrow">→</span>
-        </a>
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">B2B Apparel Client</div><div class="pe-title">Top 10 Custom Hoodie Manufacturers in USA (2026 Guide)</div></div>
-          <span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span>
-        </a>
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">B2B Apparel Client</div><div class="pe-title">How to Start a T-shirt Business — The Ultimate Guide 2026</div></div>
-          <span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span>
-        </a>
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">B2B Apparel Client</div><div class="pe-title">How to Create a Tech Pack for Clothing: Complete Guide 2026</div></div>
-          <span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span>
-        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">Objects</div><div class="pe-title">Post SMTP Pro v1.5.0 — One-Click Microsoft 365 Email Setup Press Release</div></div><span class="pe-tag tag-press">Press Release</span><span class="pe-arrow">→</span></a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">Objects</div><div class="pe-title">AIO Login Pro Adds WooCommerce Integration and hCAPTCHA Press Release</div></div><span class="pe-tag tag-docs">Documentation</span><span class="pe-arrow">→</span></a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">Objects</div><div class="pe-title">8 Best SMTP Plugins for WordPress [Ultimate Guide 2026]</div></div><span class="pe-tag tag-docs">Technical Article</span><span class="pe-arrow">→</span></a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">Objects</div><div class="pe-title">How to Increase WooCommerce Conversions (10 Effective Tips)</div></div><span class="pe-tag tag-docs">Technical Article</span><span class="pe-arrow">→</span></a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">B2B Apparel Client</div><div class="pe-title">Top 10 Custom Hoodie Manufacturers in USA (2026 Guide)</div></div><span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span></a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">B2B Apparel Client</div><div class="pe-title">How to Start a T-shirt Business — The Ultimate Guide 2026</div></div><span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span></a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">B2B Apparel Client</div><div class="pe-title">How to Create a Tech Pack for Clothing: Complete Guide 2026</div></div><span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span></a>
       </div>
     </div>
 
-    <!-- 2025 -->
-    <div class="portfolio-year-group">
+    <div class="portfolio-year-group reveal">
       <div class="year-heading">2025</div>
       <div class="portfolio-entries">
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">Alliance Shipping</div><div class="pe-title">Air Freight Charges in Dubai: Cost per KG, Rate Calculation & Complete Guide</div></div>
-          <span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span>
-        </a>
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">Alliance Shipping</div><div class="pe-title">Sea Freight Rates from Dubai: Cost per KG & Rate Calculation Guide</div></div>
-          <span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span>
-        </a>
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">Alliance Shipping</div><div class="pe-title">How Much Does Customs Clearance Cost at Jebel Ali Port?</div></div>
-          <span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span>
-        </a>
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">Alliance Shipping</div><div class="pe-title">Sustainable Logistics Practices in Dubai: The Future of Modern Shipping</div></div>
-          <span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span>
-        </a>
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">Alliance Shipping</div><div class="pe-title">Demurrage and Detention Charges in Logistics</div></div>
-          <span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span>
-        </a>
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">B2B Apparel Client</div><div class="pe-title">The Best List of Different Types of Hoodies – 30 Plus Styles Explained</div></div>
-          <span class="pe-tag tag-apparel">Apparel</span><span class="pe-arrow">→</span>
-        </a>
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">B2B Apparel Client</div><div class="pe-title">How to Start a Fitness Clothing Line: Complete Guide</div></div>
-          <span class="pe-tag tag-apparel">Apparel</span><span class="pe-arrow">→</span>
-        </a>
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">Various</div><div class="pe-title">Entrepreneurship Book (ghostwritten, full manuscript)</div></div>
-          <span class="pe-tag tag-saas">Ebook</span><span class="pe-arrow">→</span>
-        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">Alliance Shipping</div><div class="pe-title">Air Freight Charges in Dubai: Cost per KG, Rate Calculation & Complete Guide</div></div><span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span></a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">Alliance Shipping</div><div class="pe-title">Sea Freight Rates from Dubai: Cost per KG & Rate Calculation Guide</div></div><span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span></a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">Alliance Shipping</div><div class="pe-title">How Much Does Customs Clearance Cost at Jebel Ali Port?</div></div><span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span></a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">Alliance Shipping</div><div class="pe-title">Sustainable Logistics Practices in Dubai: The Future of Modern Shipping</div></div><span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span></a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">Alliance Shipping</div><div class="pe-title">Demurrage and Detention Charges in Logistics</div></div><span class="pe-tag tag-strategy">SEO Article</span><span class="pe-arrow">→</span></a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">B2B Apparel Client</div><div class="pe-title">The Best List of Different Types of Hoodies – 30 Plus Styles Explained</div></div><span class="pe-tag tag-apparel">Apparel</span><span class="pe-arrow">→</span></a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">B2B Apparel Client</div><div class="pe-title">How to Start a Fitness Clothing Line: Complete Guide</div></div><span class="pe-tag tag-apparel">Apparel</span><span class="pe-arrow">→</span></a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">Various</div><div class="pe-title">Entrepreneurship Book (ghostwritten, full manuscript)</div></div><span class="pe-tag tag-saas">Ebook</span><span class="pe-arrow">→</span></a>
       </div>
     </div>
 
-    <!-- 2024 -->
-    <div class="portfolio-year-group">
+    <div class="portfolio-year-group reveal">
       <div class="year-heading">2024</div>
       <div class="portfolio-entries">
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">BOSAL Belgium / Divinatory Solutions</div><div class="pe-title">Technical Overview of Flexible Fuel Tank Production Line</div></div>
-          <span class="pe-tag tag-docs">Technical Doc</span><span class="pe-arrow">→</span>
-        </a>
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">Real Estate Client</div><div class="pe-title">Dubai's Property Laws – What Indians Need to Know</div></div>
-          <span class="pe-tag tag-finance">Real Estate</span><span class="pe-arrow">→</span>
-        </a>
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">Real Estate Client</div><div class="pe-title">Guide to Buying Off-Plan Properties in Dubai for UK Investors</div></div>
-          <span class="pe-tag tag-finance">Real Estate</span><span class="pe-arrow">→</span>
-        </a>
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">B2B SaaS Client</div><div class="pe-title">The 8 Best B2B Data Providers in Sweden / Portugal / Denmark (series)</div></div>
-          <span class="pe-tag tag-saas">SaaS Content</span><span class="pe-arrow">→</span>
-        </a>
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">Finance Client</div><div class="pe-title">Essential Investing Principles Every Smart Investor Should Know</div></div>
-          <span class="pe-tag tag-finance">Finance</span><span class="pe-arrow">→</span>
-        </a>
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">Finance Client</div><div class="pe-title">E-Wallets Competitive Analysis (PPT)</div></div>
-          <span class="pe-tag tag-finance">Finance</span><span class="pe-arrow">→</span>
-        </a>
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">Ghostwriting</div><div class="pe-title">Gut Health Weight Loss (full ebook, ghostwritten)</div></div>
-          <span class="pe-tag tag-saas">Ebook</span><span class="pe-arrow">→</span>
-        </a>
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">Ghostwriting</div><div class="pe-title">Simply Passive (full ebook, ghostwritten)</div></div>
-          <span class="pe-tag tag-saas">Ebook</span><span class="pe-arrow">→</span>
-        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">BOSAL Belgium / Divinatory Solutions</div><div class="pe-title">Technical Overview of Flexible Fuel Tank Production Line</div></div><span class="pe-tag tag-docs">Technical Doc</span><span class="pe-arrow">→</span></a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">Real Estate Client</div><div class="pe-title">Dubai's Property Laws – What Indians Need to Know</div></div><span class="pe-tag tag-finance">Real Estate</span><span class="pe-arrow">→</span></a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">Real Estate Client</div><div class="pe-title">Guide to Buying Off-Plan Properties in Dubai for UK Investors</div></div><span class="pe-tag tag-finance">Real Estate</span><span class="pe-arrow">→</span></a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">B2B SaaS Client</div><div class="pe-title">The 8 Best B2B Data Providers in Sweden / Portugal / Denmark (series)</div></div><span class="pe-tag tag-saas">SaaS Content</span><span class="pe-arrow">→</span></a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">Finance Client</div><div class="pe-title">Essential Investing Principles Every Smart Investor Should Know</div></div><span class="pe-tag tag-finance">Finance</span><span class="pe-arrow">→</span></a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">Finance Client</div><div class="pe-title">E-Wallets Competitive Analysis (PPT)</div></div><span class="pe-tag tag-finance">Finance</span><span class="pe-arrow">→</span></a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">Ghostwriting</div><div class="pe-title">Gut Health Weight Loss (full ebook, ghostwritten)</div></div><span class="pe-tag tag-saas">Ebook</span><span class="pe-arrow">→</span></a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">Ghostwriting</div><div class="pe-title">Simply Passive (full ebook, ghostwritten)</div></div><span class="pe-tag tag-saas">Ebook</span><span class="pe-arrow">→</span></a>
       </div>
     </div>
 
-    <!-- 2020–2023 -->
-    <div class="portfolio-year-group">
+    <div class="portfolio-year-group reveal">
       <div class="year-heading">2020–23</div>
       <div class="portfolio-entries">
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">HiQain</div><div class="pe-title">SEO web content for handyman services brand (ongoing series)</div></div>
-          <span class="pe-tag tag-strategy">Web Content</span><span class="pe-arrow">→</span>
-        </a>
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">Medium / Ghostwriting</div><div class="pe-title">100+ ghostwritten articles across business, tech, lifestyle, and finance</div></div>
-          <span class="pe-tag tag-strategy">Ghostwriting</span><span class="pe-arrow">→</span>
-        </a>
-        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry">
-          <div><div class="pe-client">Ghostwriting</div><div class="pe-title">Raising Little Leaders Parts 2 & 3 (full ebooks, ghostwritten)</div></div>
-          <span class="pe-tag tag-saas">Ebook</span><span class="pe-arrow">→</span>
-        </a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">HiQain</div><div class="pe-title">SEO web content for handyman services brand (ongoing series)</div></div><span class="pe-tag tag-strategy">Web Content</span><span class="pe-arrow">→</span></a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">Medium / Ghostwriting</div><div class="pe-title">100+ ghostwritten articles across business, tech, lifestyle, and finance</div></div><span class="pe-tag tag-strategy">Ghostwriting</span><span class="pe-arrow">→</span></a>
+        <a href="https://docs.google.com/document/d/YOUR_LINK" target="_blank" class="portfolio-entry"><div><div class="pe-client">Ghostwriting</div><div class="pe-title">Raising Little Leaders Parts 2 & 3 (full ebooks, ghostwritten)</div></div><span class="pe-tag tag-saas">Ebook</span><span class="pe-arrow">→</span></a>
       </div>
     </div>
 
-    <p style="font-size:13px;color:var(--ink-4);font-weight:300;margin-top:2rem;">* Replace <code style="font-size:12px;background:var(--paper-3);padding:2px 6px;border-radius:2px;">YOUR_LINK</code> placeholders with your actual Google Doc URLs.</p>
+    <p class="reveal" style="font-size:13px;color:var(--text-3);font-weight:400;margin-top:2.5rem;">Replace <code style="font-size:12px;background:var(--bg-3);padding:2px 7px;border-radius:4px;color:var(--indigo-2);">YOUR_LINK</code> placeholders with your actual Google Doc URLs.</p>
   </div>
 </div>
 
-<!-- ═══ RESUME STRIP (2B) ═══ -->
+<!-- ═══ RESUME STRIP ═══ -->
 <div class="resume-strip">
   <div class="resume-strip-inner">
-    <div class="resume-strip-left">
+    <div>
       <div class="resume-strip-name">Muhammad Ali Siddiqui</div>
       <div class="resume-strip-role">Technical Content Strategist · 5+ years · Karachi, Pakistan · Open to remote</div>
     </div>
@@ -909,11 +831,9 @@ footer { background:var(--ink); color:rgba(247,244,239,0.35); text-align:center;
   </div>
 </div>
 
-<!-- ═══ MARKETING PAGE OVERLAY (3A) ═══ -->
+<!-- ═══ MARKETING OVERLAY ═══ -->
 <div class="mkt-overlay" id="mkt-overlay">
   <button class="mkt-close" onclick="closeMkt()">✕</button>
-
-  <!-- Hero -->
   <div class="mkt-hero">
     <div class="mkt-hero-lines" id="mkt-lines"></div>
     <div class="mkt-hero-inner">
@@ -922,7 +842,7 @@ footer { background:var(--ink); color:rgba(247,244,239,0.35); text-align:center;
       <p class="mkt-hero-sub">Strategy-first content marketing for SaaS companies, WordPress plugin teams, and technical product brands that want organic growth — not just word count.</p>
       <div style="display:flex;gap:1rem;flex-wrap:wrap;">
         <a href="#contact" onclick="closeMkt()" class="btn-primary">Let's talk →</a>
-        <a href="#portfolio" onclick="closeMkt()" class="btn-resume-view" style="border-color:rgba(247,244,239,0.3);color:#fff;">See my work</a>
+        <a href="#portfolio" onclick="closeMkt()" class="btn-ghost">See my work</a>
       </div>
       <div class="mkt-hero-proof">
         <div class="mkt-proof-item"><div class="pnum">1.24<em>M</em></div><div class="plabel">impressions in 7 months</div></div>
@@ -932,52 +852,15 @@ footer { background:var(--ink); color:rgba(247,244,239,0.35); text-align:center;
       </div>
     </div>
   </div>
-
-  <!-- Services -->
   <div class="mkt-services">
     <div class="section-label">What I offer</div>
     <div class="section-title" style="margin-bottom:0;">Three ways to work together</div>
     <div class="mkt-services-grid">
-      <div class="mkt-service-card">
-        <div class="mkt-service-icon">📐</div>
-        <div class="mkt-service-name">Content Strategy</div>
-        <div class="mkt-service-desc">Full content strategy from scratch — keyword research, topic clustering, funnel mapping, editorial calendars, and KPI frameworks.</div>
-        <ul class="mkt-service-list">
-          <li>Competitor content audit</li>
-          <li>E-E-A-T framework design</li>
-          <li>Topic authority mapping</li>
-          <li>Search intent alignment</li>
-          <li>Performance reporting setup</li>
-        </ul>
-      </div>
-      <div class="mkt-service-card">
-        <div class="mkt-service-icon">✍️</div>
-        <div class="mkt-service-name">SEO & Organic Growth</div>
-        <div class="mkt-service-desc">Content that ranks and converts — blogs, landing pages, service pages, and GMB listings built around real search intent.</div>
-        <ul class="mkt-service-list">
-          <li>Long-form SEO articles</li>
-          <li>Landing page copywriting</li>
-          <li>GMB optimisation</li>
-          <li>On-page SEO implementation</li>
-          <li>Content refresh & optimisation</li>
-        </ul>
-      </div>
-      <div class="mkt-service-card">
-        <div class="mkt-service-icon">🚀</div>
-        <div class="mkt-service-name">Launch & Campaign Content</div>
-        <div class="mkt-service-desc">Product launches, feature announcements, and campaign content for SaaS and technical product teams — from press releases to onboarding sequences.</div>
-        <ul class="mkt-service-list">
-          <li>Product launch content</li>
-          <li>Press releases & release emails</li>
-          <li>Plugin & SaaS documentation</li>
-          <li>Onboarding & help content</li>
-          <li>Email & newsletter copy</li>
-        </ul>
-      </div>
+      <div class="mkt-service-card"><div class="mkt-service-icon">📐</div><div class="mkt-service-name">Content Strategy</div><div class="mkt-service-desc">Full content strategy from scratch — keyword research, topic clustering, funnel mapping, editorial calendars, and KPI frameworks.</div><ul class="mkt-service-list"><li>Competitor content audit</li><li>E-E-A-T framework design</li><li>Topic authority mapping</li><li>Search intent alignment</li><li>Performance reporting setup</li></ul></div>
+      <div class="mkt-service-card"><div class="mkt-service-icon">✍️</div><div class="mkt-service-name">SEO & Organic Growth</div><div class="mkt-service-desc">Content that ranks and converts — blogs, landing pages, service pages, and GMB listings built around real search intent.</div><ul class="mkt-service-list"><li>Long-form SEO articles</li><li>Landing page copywriting</li><li>GMB optimisation</li><li>On-page SEO implementation</li><li>Content refresh & optimisation</li></ul></div>
+      <div class="mkt-service-card"><div class="mkt-service-icon">🚀</div><div class="mkt-service-name">Launch & Campaign Content</div><div class="mkt-service-desc">Product launches, feature announcements, and campaign content for SaaS and technical product teams — from press releases to onboarding sequences.</div><ul class="mkt-service-list"><li>Product launch content</li><li>Press releases & release emails</li><li>Plugin & SaaS documentation</li><li>Onboarding & help content</li><li>Email & newsletter copy</li></ul></div>
     </div>
   </div>
-
-  <!-- Why me -->
   <div class="mkt-why">
     <div class="mkt-why-inner">
       <div>
@@ -986,74 +869,35 @@ footer { background:var(--ink); color:rgba(247,244,239,0.35); text-align:center;
         <p>That technical literacy — combined with 5+ years of SEO strategy, E-E-A-T frameworks, and measurable growth results — is what makes my marketing work different.</p>
       </div>
       <div class="mkt-differentiators">
-        <div class="mkt-diff">
-          <div class="mkt-diff-icon">🧠</div>
-          <div><div class="mkt-diff-title">Technical domain comprehension</div><div class="mkt-diff-text">I understand SaaS products, plugin architectures, and hardware systems. I don't just interview SMEs — I comprehend what they build.</div></div>
-        </div>
-        <div class="mkt-diff">
-          <div class="mkt-diff-icon">📈</div>
-          <div><div class="mkt-diff-title">Proven results, not just output</div><div class="mkt-diff-text">1.24M impressions built from zero. Every strategy I design is tied to measurable business outcomes — not word counts.</div></div>
-        </div>
-        <div class="mkt-diff">
-          <div class="mkt-diff-icon">⚙️</div>
-          <div><div class="mkt-diff-title">Systems thinker, not a task executor</div><div class="mkt-diff-text">I build content pipelines, editorial SOPs, and QA workflows that keep producing after the engagement ends.</div></div>
-        </div>
-        <div class="mkt-diff">
-          <div class="mkt-diff-icon">🌐</div>
-          <div><div class="mkt-diff-title">Remote-native, async-fluent</div><div class="mkt-diff-text">Managed cross-timezone teams and remote projects across Dubai, China, and Pakistan. I deliver without hand-holding.</div></div>
-        </div>
+        <div class="mkt-diff"><div class="mkt-diff-icon">🧠</div><div><div class="mkt-diff-title">Technical domain comprehension</div><div class="mkt-diff-text">I understand SaaS products, plugin architectures, and hardware systems. I don't just interview SMEs — I comprehend what they build.</div></div></div>
+        <div class="mkt-diff"><div class="mkt-diff-icon">📈</div><div><div class="mkt-diff-title">Proven results, not just output</div><div class="mkt-diff-text">1.24M impressions built from zero. Every strategy I design is tied to measurable business outcomes — not word counts.</div></div></div>
+        <div class="mkt-diff"><div class="mkt-diff-icon">⚙️</div><div><div class="mkt-diff-title">Systems thinker, not a task executor</div><div class="mkt-diff-text">I build content pipelines, editorial SOPs, and QA workflows that keep producing after the engagement ends.</div></div></div>
+        <div class="mkt-diff"><div class="mkt-diff-icon">🌐</div><div><div class="mkt-diff-title">Remote-native, async-fluent</div><div class="mkt-diff-text">Managed cross-timezone teams and remote projects across Dubai, China, and Pakistan. I deliver without hand-holding.</div></div></div>
       </div>
     </div>
   </div>
-
-  <!-- CTA -->
   <div class="mkt-cta">
     <h2>Ready to make your content <em>matter?</em></h2>
     <p>Whether you need a one-off strategy audit or an ongoing content partnership — let's talk about what you're building.</p>
     <div class="mkt-cta-btns">
       <a href="mailto:masid.writer@gmail.com" class="btn-primary">Email me directly →</a>
-      <a href="https://linkedin.com/in/muhammadalisiddiqui-technical/" target="_blank" class="btn-secondary">Connect on LinkedIn</a>
+      <a href="https://linkedin.com/in/muhammadalisiddiqui-technical/" target="_blank" class="btn-ghost">Connect on LinkedIn</a>
     </div>
   </div>
-
-  <footer style="background:var(--ink);color:rgba(247,244,239,0.35);text-align:center;padding:1.5rem 2rem;font-size:12px;font-weight:300;letter-spacing:0.03em;">
+  <footer style="background:var(--bg);color:var(--text-3);text-align:center;padding:1.5rem 2rem;font-size:12px;font-weight:400;letter-spacing:0.04em;border-top:1px solid var(--border);">
     © 2026 Muhammad Ali Siddiqui — Content Marketing Services
   </footer>
 </div>
 
 <!-- ═══ CONTACT ═══ -->
-<div class="contact-section" id="contact" style="position:relative; overflow:hidden;">
-  <!-- Doodle 6: left — envelope / mail -->
-  <div class="doodle doodle-left" style="width:155px;height:180px;opacity:0.1;">
-    <svg width="155" height="180" viewBox="0 0 155 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Envelope body -->
-      <rect x="15" y="50" width="125" height="90" rx="4" stroke="#0f0e0d" stroke-width="1.8" fill="none"/>
-      <!-- Flap -->
-      <path d="M 15 50 L 77 100 L 140 50" stroke="#0f0e0d" stroke-width="1.8" stroke-linejoin="round" fill="none"/>
-      <!-- Bottom fold lines -->
-      <line x1="15"  y1="140" x2="55"  y2="105" stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round"/>
-      <line x1="140" y1="140" x2="100" y2="105" stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round"/>
-      <!-- Stamp square -->
-      <rect x="105" y="58" width="22" height="18" rx="2" stroke="#c85a2a" stroke-width="1.4" fill="none" stroke-dasharray="2 1.5"/>
-      <!-- Stamp inner -->
-      <rect x="108" y="61" width="16" height="12" rx="1" stroke="#c85a2a" stroke-width="1" fill="none"/>
-      <!-- Wavy lines below envelope (address lines) -->
-      <path d="M 30 155 Q 50 150 70 155 Q 90 160 110 155" stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-      <path d="M 30 165 Q 45 160 65 165 Q 85 170 100 165" stroke="#0f0e0d" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-      <!-- Flying birds / dots above -->
-      <path d="M 30 25 Q 35 20 40 25" stroke="#0f0e0d" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-      <path d="M 55 15 Q 62 9 69 15"  stroke="#0f0e0d" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-      <path d="M 80 28 Q 86 23 92 28"  stroke="#0f0e0d" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-    </svg>
-  </div>
-
+<div class="contact-section" id="contact">
   <div class="contact-inner">
-    <div>
+    <div class="reveal">
       <h2>Let's work <em>together.</em></h2>
       <p class="contact-sub">Open to remote contracts and full-time roles with SaaS companies, WordPress plugin teams, Fintech firms, and technical product companies worldwide.</p>
       <a href="mailto:masid.writer@gmail.com" class="btn-primary" style="display:inline-flex;">Send an email →</a>
     </div>
-    <div class="contact-links">
+    <div class="contact-links reveal reveal-2">
       <a href="mailto:masid.writer@gmail.com" class="contact-link"><div class="contact-link-icon">@</div>masid.writer@gmail.com</a>
       <a href="https://linkedin.com/in/muhammadalisiddiqui-technical/" target="_blank" class="contact-link"><div class="contact-link-icon">in</div>linkedin.com/in/muhammadalisiddiqui-technical/</a>
       <a href="tel:+923452300197" class="contact-link"><div class="contact-link-icon">✆</div>+92 345 2300197</a>
@@ -1070,6 +914,14 @@ footer { background:var(--ink); color:rgba(247,244,239,0.35); text-align:center;
 </div>
 
 <script>
+/* ── SCROLL REVEAL ── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('visible'); revealObserver.unobserve(e.target); }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
 /* ── TYPEWRITER ── */
 (function(){
   const word = document.getElementById('tw-word');
@@ -1079,188 +931,110 @@ footer { background:var(--ink); color:rgba(247,244,239,0.35); text-align:center;
     if(i <= text.length){
       word.innerHTML = text.slice(0,i) + '<span class="tw-cursor" id="tw-cursor">|</span>';
       i++;
-      setTimeout(type, i===1 ? 50 : 85+Math.random()*45);
+      setTimeout(type, i===1 ? 200 : 90+Math.random()*50);
     } else {
-      setTimeout(()=>{
-        const c = document.getElementById('tw-cursor');
-        if(c) c.style.display='none';
-      }, 1600);
+      setTimeout(()=>{ const c=document.getElementById('tw-cursor'); if(c) c.style.display='none'; }, 1800);
     }
   }
-  setTimeout(type, 800);
+  setTimeout(type, 1000);
 })();
 
-/* ── FEATURED CASE: particle field + scroll shimmer + counters ── */
+/* ── PARTICLE FIELD ── */
 (function(){
-  const fc   = document.getElementById('featured-case');
-  const cvs  = document.getElementById('fc-canvas');
-  const ctx  = cvs.getContext('2d');
-  let W, H, particles = [], mouse = { x: -999, y: -999, inside: false };
-  let triggered = false;
-  let raf;
+  const fc  = document.getElementById('featured-case');
+  const cvs = document.getElementById('fc-canvas');
+  const ctx = cvs.getContext('2d');
+  let W, H, particles=[], mouse={x:-999,y:-999,inside:false}, triggered=false;
 
-  /* ── resize canvas to match panel ── */
   function resize(){
-    const r = fc.getBoundingClientRect();
-    W = cvs.width  = r.width;
-    H = cvs.height = r.height;
-    buildParticles();
+    const r=fc.getBoundingClientRect(); W=cvs.width=r.width; H=cvs.height=r.height; build();
   }
-
-  /* ── build particle cloud ── */
-  function buildParticles(){
-    particles = [];
-    const count = Math.floor((W * H) / 5200);  // density
-    for(let i = 0; i < count; i++){
-      const base = {
-        x: Math.random() * W,
-        y: Math.random() * H,
-      };
-      particles.push({
-        ox: base.x,       // origin x
-        oy: base.y,       // origin y
-        x:  base.x,
-        y:  base.y,
-        r:  0.6 + Math.random() * 1.4,
-        // orange accent or white — weighted toward subtle white
-        hue: Math.random() < 0.18 ? 'accent' : 'white',
-        opacity: 0.08 + Math.random() * 0.22,
-        speed:  0.3 + Math.random() * 0.5,
-        angle:  Math.random() * Math.PI * 2,
-        drift:  0.002 + Math.random() * 0.004,
+  function build(){
+    particles=[];
+    const n=Math.floor((W*H)/4800);
+    for(let i=0;i<n;i++){
+      const x=Math.random()*W, y=Math.random()*H;
+      particles.push({ox:x,oy:y,x,y,
+        r:0.5+Math.random()*1.2,
+        hue:Math.random()<0.25?'indigo':Math.random()<0.15?'cyan':'white',
+        opacity:0.06+Math.random()*0.18,
+        angle:Math.random()*Math.PI*2,
+        drift:0.002+Math.random()*0.003
       });
     }
   }
-
-  /* ── draw frame ── */
   function draw(){
-    ctx.clearRect(0, 0, W, H);
-
-    particles.forEach(p => {
-      /* gentle ambient drift */
-      p.angle += p.drift;
-      p.ox += Math.cos(p.angle) * 0.12;
-      p.oy += Math.sin(p.angle) * 0.12;
-      /* wrap */
-      if(p.ox < 0) p.ox = W; if(p.ox > W) p.ox = 0;
-      if(p.oy < 0) p.oy = H; if(p.oy > H) p.oy = 0;
-
-      /* magnetic pull toward mouse */
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(p=>{
+      p.angle+=p.drift;
+      p.ox+=Math.cos(p.angle)*0.1; p.oy+=Math.sin(p.angle)*0.1;
+      if(p.ox<0)p.ox=W; if(p.ox>W)p.ox=0;
+      if(p.oy<0)p.oy=H; if(p.oy>H)p.oy=0;
       if(mouse.inside){
-        const dx = mouse.x - p.ox;
-        const dy = mouse.y - p.oy;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        const radius = 130;
-        if(dist < radius){
-          const force = (1 - dist/radius) * 0.38;
-          p.x += (p.ox + dx * force - p.x) * 0.12;
-          p.y += (p.oy + dy * force - p.y) * 0.12;
-        } else {
-          p.x += (p.ox - p.x) * 0.06;
-          p.y += (p.oy - p.y) * 0.06;
-        }
-      } else {
-        p.x += (p.ox - p.x) * 0.05;
-        p.y += (p.oy - p.y) * 0.05;
-      }
-
-      /* draw dot */
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = p.hue === 'accent'
-        ? `rgba(200,90,42,${p.opacity})`
-        : `rgba(247,244,239,${p.opacity})`;
-      ctx.fill();
-
-      /* draw faint connection lines between nearby particles */
-      particles.forEach(q => {
-        if(q === p) return;
-        const dx = p.x - q.x, dy = p.y - q.y;
-        const d = Math.sqrt(dx*dx + dy*dy);
-        if(d < 55){
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(q.x, q.y);
-          ctx.strokeStyle = `rgba(247,244,239,${0.04 * (1 - d/55)})`;
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
+        const dx=mouse.x-p.ox, dy=mouse.y-p.oy;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<120){ const f=(1-d/120)*0.35; p.x+=(p.ox+dx*f-p.x)*0.12; p.y+=(p.oy+dy*f-p.y)*0.12; }
+        else{ p.x+=(p.ox-p.x)*0.06; p.y+=(p.oy-p.y)*0.06; }
+      } else { p.x+=(p.ox-p.x)*0.05; p.y+=(p.oy-p.y)*0.05; }
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      const col = p.hue==='indigo'?`rgba(99,102,241,${p.opacity})`:p.hue==='cyan'?`rgba(34,211,238,${p.opacity})`:`rgba(232,232,244,${p.opacity})`;
+      ctx.fillStyle=col; ctx.fill();
+      particles.forEach(q=>{
+        if(q===p)return;
+        const dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<50){ ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y);
+          ctx.strokeStyle=`rgba(99,102,241,${0.06*(1-d/50)})`; ctx.lineWidth=0.5; ctx.stroke(); }
       });
     });
-
-    raf = requestAnimationFrame(draw);
+    requestAnimationFrame(draw);
   }
+  fc.addEventListener('mousemove',e=>{const r=fc.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;mouse.inside=true;});
+  fc.addEventListener('mouseleave',()=>{mouse.inside=false;});
 
-  /* ── mouse tracking (relative to canvas) ── */
-  fc.addEventListener('mousemove', e => {
-    const r = fc.getBoundingClientRect();
-    mouse.x = e.clientX - r.left;
-    mouse.y = e.clientY - r.top;
-    mouse.inside = true;
-  });
-  fc.addEventListener('mouseleave', () => { mouse.inside = false; });
-
-  /* ── counter animation ── */
-  function animateCount(el, target, suffix, duration){
-    const isDecimal = String(target).includes('.');
-    const startTime = performance.now();
-    function update(now){
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = target * eased;
-      el.textContent = (isDecimal ? current.toFixed(2) : Math.floor(current)) + suffix;
-      if(progress < 1) requestAnimationFrame(update);
-      else el.textContent = target + suffix;
+  function animateCount(el,target,suffix,duration){
+    const dec=String(target).includes('.');
+    const t0=performance.now();
+    function upd(now){
+      const p=Math.min((now-t0)/duration,1),e=1-Math.pow(1-p,3),v=target*e;
+      el.textContent=(dec?v.toFixed(2):Math.floor(v))+suffix;
+      if(p<1)requestAnimationFrame(upd); else el.textContent=target+suffix;
     }
-    requestAnimationFrame(update);
+    requestAnimationFrame(upd);
   }
-
   function trigger(){
-    if(triggered) return;
-    triggered = true;
+    if(triggered)return; triggered=true;
     fc.classList.add('swept');
-    const vals = fc.querySelectorAll('.count-val');
-    vals.forEach((el, i) => {
-      const t = parseFloat(el.dataset.target);
-      const s = el.dataset.suffix || '';
-      setTimeout(() => animateCount(el, t, s, 1500), i * 130);
+    fc.querySelectorAll('.count-val').forEach((el,i)=>{
+      const t=parseFloat(el.dataset.target),s=el.dataset.suffix||'';
+      setTimeout(()=>animateCount(el,t,s,1500),i*130);
     });
   }
-
-  /* ── init ── */
-  resize();
-  window.addEventListener('resize', resize);
-  draw();
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting) trigger(); });
-  }, { threshold: 0.3 });
-  observer.observe(fc);
+  resize(); window.addEventListener('resize',resize); draw();
+  new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)trigger();}),{threshold:0.3}).observe(fc);
 })();
 
-/* ── CASE STUDIES DATA ── */
-const cases = {
+/* ── CASE DATA ── */
+const cases={
   alliance:{tag:'<span class="modal-tag tag-strategy">Content Strategy</span>',title:"Building Alliance Shipping's content engine from scratch",company:'Alliance Shipping · Dubai · Oct 2024 – Mar 2026',sections:[{label:'The challenge',text:"Alliance Shipping had no organic search presence. The brief was to build topical authority in the Dubai logistics and shipping niche from zero — aligned with the CEO's brand vision and direct lead-generation goals — without an agency budget or a large team."},{label:'My approach',text:"I designed a full-funnel content strategy starting with competitor analysis and keyword research, moving into topic clustering and search intent mapping, then building scalable editorial pipelines for blogs, service pages, landing pages, and Google My Business listings."},{label:'The content produced',text:'35+ long-form logistics articles covering everything from "What is a Bill of Lading?" to detailed air freight pricing guides and Jebel Ali customs clearance costs — every piece mapped to a specific search intent and stage of the funnel.'},{label:'The result',text:'1.24 million organic impressions and 17,300 clicks in 7 months — entirely through search-led content with no paid media.'},{label:"What I'd do differently",text:"I'd have built pillar page architecture from day one. We started with individual blog posts and layered structure in later — going pillar-first would have compounded authority faster in the first 90 days."}],results:[{num:'1.24M',label:'impressions in 7 months'},{num:'17.3K',label:'organic clicks'},{num:'35+',label:'articles published'},{num:'Promoted',label:'to Content Manager'}]},
-  objects:{tag:'<span class="modal-tag tag-docs">Documentation</span>',title:'WordPress plugin documentation users actually read',company:'Objects · Karachi · Apr 2026 – present',sections:[{label:'The context',text:'At Objects I produce content for WordPress plugins — press releases, product pages, knowledge base documentation, tutorials, and technical blog articles. The core challenge is translating complex plugin functionality into content that serves both non-technical users and developers without alienating either audience.'},{label:'Recent deliverables',text:'Press releases for Post SMTP Pro v1.5.0 (one-click Microsoft 365 email setup), Post SMTP v3.8.0 (Sweego SMTP mailer integration), and AIO Login Pro v1.4.0 (WooCommerce + hCAPTCHA). Plus release emails, B2B technical tutorials, and onboarding documentation.'},{label:'The technical articles',text:'How-to guides covering WooCommerce checkout flows, WordPress contact form plugins, SMTP configuration, CAPTCHA setup, recurring donation forms, and Google Postmaster Tools.'},{label:'My approach',text:'I collaborate directly with developers before writing a word. I map the user journey first: what task is someone trying to complete? Then I write from that task backwards — not from the feature forwards.'}],results:[{num:'WP',label:'plugin ecosystem'},{num:'Task-led',label:'doc structure'},{num:'Dev-reviewed',label:'for accuracy'},{num:'SEO',label:'optimised'}]},
-  logistics_seo:{tag:'<span class="modal-tag tag-seo">SEO Content</span>',title:'35+ logistics articles that built topical authority in Dubai',company:'Alliance Shipping · Dubai · 2024–2026',sections:[{label:'The brief',text:"Build a complete content map for the Dubai shipping and logistics space — covering every search intent from beginner education to decision-stage comparisons and pricing guides."},{label:'The strategy',text:"I mapped the entire logistics knowledge graph: shipping fundamentals, document types, freight methods, port operations, and cost guides. Each article targeted a specific keyword cluster."},{label:'Sample articles',text:'Air freight charges Dubai, sea freight rates per KG, Jebel Ali customs clearance costs, freight forwarder guide, reefer container guide, sustainable logistics Dubai.'},{label:'The outcome',text:"The content library became the backbone of the 1.24M impression result — educational articles pulling top-of-funnel traffic that converted to service page visits."}],results:[{num:'35+',label:'articles published'},{num:'Full',label:'intent coverage'},{num:'AI+human',label:'content workflow'},{num:'Topical',label:'authority built'}]},
-  apparel:{tag:'<span class="modal-tag tag-apparel">Apparel / B2B</span>',title:'30+ manufacturer guides for a B2B apparel brand',company:'B2B Apparel Manufacturing Client · 2025–2026',sections:[{label:'The scope',text:'A complete content library for a B2B clothing manufacturer targeting retailers, brand founders, and entrepreneurs looking to start clothing lines.'},{label:'Content types',text:'Landing pages for specific categories, buying guides, manufacturer comparison roundups, how-to-start-a-brand guides, fabric selection explainers, and production method deep dives.'},{label:'Sample articles',text:'Small batch hoodie production, cotton vs polyester comparison, tech pack creation guide, and 20+ types-of-apparel articles covering hoodies, leggings, shorts, tank tops, and pants.'},{label:'The result',text:"A scalable content system covering every stage of the B2B buyer journey — from discovery to decision."}],results:[{num:'30+',label:'articles and pages'},{num:'B2B',label:'buyer journey mapped'},{num:'USA',label:'market targeting'},{num:'2026',label:'content updated'}]},
-  saas_b2b:{tag:'<span class="modal-tag tag-saas">SaaS / B2B Data</span>',title:'B2B data provider comparison series across 6 EU markets',company:'B2B SaaS client · 2024',sections:[{label:'The brief',text:'Produce "Best B2B Data Providers in [Country]" articles targeting decision-stage buyers across Sweden, Portugal, Denmark, Finland, Greece, and Austria.'},{label:'The challenge',text:"Deep research into each market's data landscape, accurate provider positioning, and writing that serves both the algorithm and a sophisticated B2B audience."},{label:'My approach',text:"Each article was independently researched with providers evaluated on data coverage, integration options, compliance, and pricing."},{label:'The outcome',text:'Six published comparison articles covering the top data intelligence providers in each market.'}],results:[{num:'6',label:'EU markets covered'},{num:'High-intent',label:'decision-stage'},{num:'Series',label:'with internal linking'},{num:'Research-led',label:'per market'}]},
-  real_estate:{tag:'<span class="modal-tag tag-finance">Real Estate</span>',title:'Dubai real estate content for Indian and UK investors',company:'Real estate client · Dubai · 2024',sections:[{label:'The audience',text:"Two distinct audiences: Indian buyers navigating Dubai's property laws and tax landscape, and UK investors looking at off-plan properties."},{label:'Content produced',text:'Dubai 2024 forecast, property laws for Indian buyers, off-plan guide for UK investors, tax landscape analysis, and a marketing case study series.'},{label:'The approach',text:'Research-heavy and compliance-aware — each piece written with awareness of the regulatory differences between jurisdictions.'},{label:'Why this worked',text:'Real estate content fails when it is too generic. Specificity to national audiences is what earns trust and ranks for long-tail queries.'}],results:[{num:'2',label:'investor audiences'},{num:'5',label:'articles produced'},{num:'Compliance-aware',label:'writing'},{num:'High-trust',label:'format'}]},
-  technical_docs:{tag:'<span class="modal-tag tag-docs">Technical Writing</span>',title:'Fuel tank process guide and RFP documentation',company:'Divinatory Solutions · BOSAL Belgium · 2024',sections:[{label:'The brief',text:"Technical overview of BOSAL Belgium's flexible fuel tank production line — requiring real understanding of manufacturing systems, materials, and process engineering."},{label:'What made it challenging',text:"Fuel tank production involves fluid dynamics, materials science, and quality control. My Applied Physics background made me the right person — I could read the source materials and understand them."},{label:'My process',text:"Worked from engineering documentation and specs, structured for non-engineering readers (procurement decision-makers), with technical sections reviewed for accuracy."},{label:'The broader context',text:'This is the kind of technical writing most content writers cannot do — documentation that requires real domain comprehension.'}],results:[{num:'BOSAL',label:'Belgium — industrial'},{num:'RFPs',label:'and process guides'},{num:'Physics-led',label:'comprehension'},{num:'Client-ready',label:'documents'}]},
-  iot_biotech:{tag:'<span class="modal-tag tag-iot">IoT / Hardware</span>',title:'Biosensor testing and documentation for JANUS Biotechnology',company:'Guangdong JANUS Biotechnology Co. Ltd · Remote · 2024',sections:[{label:'The context',text:'JANUS Biotechnology develops sensor-based diagnostic devices. I joined as Project Assistant to support sensor configuration, testing, and documentation — working remotely with an engineering team in Guangdong, China.'},{label:'What I did',text:'Configured and tested biosensor hardware. Documented test results and reported findings to the project lead. Applied my Applied Physics degree in a working hardware environment.'},{label:'Why this matters for my content work',text:"I've held a sensor, configured it, documented its failure modes, and reported findings to engineers. When I produce documentation for technical products, that background comes with me."},{label:'The long-term signal',text:'This role opens the door to IoT documentation, robotics SaaS, industrial automation content, and developer tool writing — where technical writers with hardware experience are rare.'}],results:[{num:'MSc',label:'Applied Physics'},{num:'Hardware',label:'sensor config'},{num:'Biotech',label:'industry'},{num:'Cross-TZ',label:'eng team'}]},
-  press_releases:{tag:'<span class="modal-tag tag-press">Press Releases</span>',title:'WordPress plugin launch releases and feature announcements',company:'Objects · 2026',sections:[{label:'The deliverables',text:'Three press releases and two release emails: Post SMTP Pro v1.5.0 (Microsoft 365 setup), Post SMTP v3.8.0 (Sweego mailer), and AIO Login Pro v1.4.0 (WooCommerce + hCAPTCHA).'},{label:'What good plugin press releases require',text:"You need to understand the feature before explaining why it matters. A Microsoft 365 integration isn't a technical upgrade — it's a solution to a problem that's frustrated thousands of WordPress admins."},{label:'The release emails',text:'"Protect Your WooCommerce Store from Bots" and the Sweego mailer announcement — concise, benefit-led, technically accurate, reviewed by the dev team.'},{label:'The format',text:'Each press release: headline → what is new → why it matters → how to get it. No fluff, no passive voice.'}],results:[{num:'3',label:'press releases'},{num:'2',label:'release emails'},{num:'Dev-reviewed',label:'accuracy'},{num:'WordPress',label:'ecosystem'}]},
-  ghostwriting:{tag:'<span class="modal-tag tag-seo">Ghostwriting</span>',title:'100+ ghostwritten articles driving 85K+ audience growth',company:'Medium (remote ghostwriting) · Oct 2020 – Nov 2024',sections:[{label:'The work',text:"100+ client-commissioned articles across business, technology, lifestyle, real estate, finance, health, and culture — every piece written to the client's tone and optimised for Google."},{label:'The track record',text:'92% on-time delivery rate. Contributed to 85,000+ audience growth for clients. Consistently achieved high Google rankings through ethical keyword integration.'},{label:'What this discipline built',text:'Writing at volume across 15+ niches trains research instinct, tonal range, and structural fluency — skills that directly improve technical writing speed and accuracy.'},{label:'The ghost advantage',text:"The best ghost writing is invisible. Every piece I delivered felt like it came from the client — their voice, their expertise, their authority."}],results:[{num:'100+',label:'articles delivered'},{num:'85K+',label:'audience growth'},{num:'92%',label:'on-time delivery'},{num:'15+',label:'niches covered'}]},
-  finance_writing:{tag:'<span class="modal-tag tag-finance">Finance Content</span>',title:'Long-form investment guides and e-wallet competitive analysis',company:'Finance clients · 2024',sections:[{label:'The work',text:'Long-form content for financial audiences: investment principles guides, long-term strategy articles, and a comprehensive e-wallet competitive analysis as a PPT deck.'},{label:'The challenge',text:'Financial content requires a higher accuracy standard. Readers are educated, skeptical, and quick to spot shallow research.'},{label:'The e-wallet analysis',text:'Competitive analysis of major e-wallet providers — covering market positioning, feature comparison, regulatory compliance, and strategic recommendations.'},{label:'The investment articles',text:'"Essential Investing Principles Every Smart Investor Should Know" and "Long-Term Investment Strategies for Maximizing Returns."'}],results:[{num:'Finance',label:'specialist content'},{num:'PPT',label:'competitive deck'},{num:'Research-led',label:'writing'},{num:'Retail+pro',label:'audience range'}]},
-  ebooks:{tag:'<span class="modal-tag tag-saas">Long-Form</span>',title:'7 full ebooks across health, business, and entrepreneurship',company:'Various ghostwriting clients · 2020–2024',sections:[{label:'The scope',text:"Seven complete ebooks: gut health and weight loss, passive income, children's leadership (parts 2 & 3), entrepreneurship, Moissanite jewelry, and a gluten-free cookbook."},{label:'What long-form ghostwriting requires',text:"An ebook isn't a long blog post. It has arc, chapter structure, voice consistency across tens of thousands of words, and a reading experience that has to hold together as a product."},{label:'The process',text:"Detailed brief and chapter outline agreed with client, research phase, chapter-by-chapter drafts with revision rounds, delivered formatted for digital distribution."},{label:'The outcome',text:"All ebooks delivered on brief, on time. Several published and sold. The Moissanite guide became marketing collateral. The passive income book was self-published by the client."}],results:[{num:'7',label:'full ebooks'},{num:'Multi-category',label:'range'},{num:'Ghost',label:'voice-matched'},{num:'Published',label:'& sold'}]}
+  objects:{tag:'<span class="modal-tag tag-docs">Documentation</span>',title:'WordPress plugin documentation users actually read',company:'Objects · Karachi · Apr 2026 – present',sections:[{label:'The context',text:'At Objects I produce content for WordPress plugins — press releases, product pages, knowledge base documentation, tutorials, and technical blog articles. The core challenge is translating complex plugin functionality into content that serves both non-technical users and developers without alienating either audience.'},{label:'Recent deliverables',text:'Press releases for Post SMTP Pro v1.5.0, Post SMTP v3.8.0 (Sweego mailer), and AIO Login Pro v1.4.0 (WooCommerce + hCAPTCHA). Plus release emails, B2B technical tutorials, and onboarding documentation.'},{label:'The technical articles',text:'How-to guides covering WooCommerce checkout flows, WordPress contact form plugins, SMTP configuration, CAPTCHA setup, recurring donation forms, and Google Postmaster Tools.'},{label:'My approach',text:'I collaborate directly with developers before writing a word. I map the user journey first: what task is someone trying to complete? Then I write from that task backwards — not from the feature forwards.'}],results:[{num:'WP',label:'plugin ecosystem'},{num:'Task-led',label:'doc structure'},{num:'Dev-reviewed',label:'for accuracy'},{num:'SEO',label:'optimised'}]},
+  logistics_seo:{tag:'<span class="modal-tag tag-seo">SEO Content</span>',title:'35+ logistics articles that built topical authority in Dubai',company:'Alliance Shipping · Dubai · 2024–2026',sections:[{label:'The brief',text:"Build a complete content map for the Dubai shipping and logistics space — covering every search intent from beginner education to decision-stage comparisons and pricing guides."},{label:'The strategy',text:"I mapped the entire logistics knowledge graph: shipping fundamentals, document types, freight methods, port operations, and cost guides."},{label:'Sample articles',text:'Air freight charges Dubai, sea freight rates per KG, Jebel Ali customs clearance costs, freight forwarder guide, reefer container guide, sustainable logistics Dubai.'},{label:'The outcome',text:"The content library became the backbone of the 1.24M impression result."}],results:[{num:'35+',label:'articles published'},{num:'Full',label:'intent coverage'},{num:'AI+human',label:'content workflow'},{num:'Topical',label:'authority built'}]},
+  apparel:{tag:'<span class="modal-tag tag-apparel">Apparel / B2B</span>',title:'30+ manufacturer guides for a B2B apparel brand',company:'B2B Apparel Manufacturing Client · 2025–2026',sections:[{label:'The scope',text:'A complete content library for a B2B clothing manufacturer targeting retailers, brand founders, and entrepreneurs looking to start clothing lines.'},{label:'Content types',text:'Landing pages, buying guides, manufacturer comparison roundups, how-to-start-a-brand guides, fabric selection explainers, and production method deep dives.'},{label:'Sample articles',text:'Small batch hoodie production, cotton vs polyester comparison, tech pack creation guide, and 20+ types-of-apparel articles.'},{label:'The result',text:"A scalable content system covering every stage of the B2B buyer journey — from discovery to decision."}],results:[{num:'30+',label:'articles and pages'},{num:'B2B',label:'buyer journey mapped'},{num:'USA',label:'market targeting'},{num:'2026',label:'content updated'}]},
+  saas_b2b:{tag:'<span class="modal-tag tag-saas">SaaS / B2B Data</span>',title:'B2B data provider comparison series across 6 EU markets',company:'B2B SaaS client · 2024',sections:[{label:'The brief',text:'Produce "Best B2B Data Providers in [Country]" articles targeting decision-stage buyers across Sweden, Portugal, Denmark, Finland, Greece, and Austria.'},{label:'The challenge',text:"Deep research into each market's data landscape, accurate provider positioning, and writing that serves both the algorithm and a sophisticated B2B audience."},{label:'My approach',text:"Each article independently researched with providers evaluated on data coverage, integration options, compliance, and pricing."},{label:'The outcome',text:'Six published comparison articles targeting high-commercial-intent keywords.'}],results:[{num:'6',label:'EU markets covered'},{num:'High-intent',label:'decision-stage'},{num:'Series',label:'with internal linking'},{num:'Research-led',label:'per market'}]},
+  real_estate:{tag:'<span class="modal-tag tag-finance">Real Estate</span>',title:'Dubai real estate content for Indian and UK investors',company:'Real estate client · Dubai · 2024',sections:[{label:'The audience',text:"Two distinct audiences: Indian buyers navigating Dubai's property laws and UK investors looking at off-plan properties."},{label:'Content produced',text:'Dubai 2024 forecast, property laws for Indian buyers, off-plan guide for UK investors, tax landscape analysis, and a marketing case study series.'},{label:'The approach',text:'Research-heavy and compliance-aware — each piece written with awareness of regulatory differences between jurisdictions.'},{label:'Why this worked',text:'Specificity to national audiences is what earns trust and ranks for long-tail queries.'}],results:[{num:'2',label:'investor audiences'},{num:'5',label:'articles produced'},{num:'Compliance-aware',label:'writing'},{num:'High-trust',label:'format'}]},
+  technical_docs:{tag:'<span class="modal-tag tag-docs">Technical Writing</span>',title:'Fuel tank process guide and RFP documentation',company:'Divinatory Solutions · BOSAL Belgium · 2024',sections:[{label:'The brief',text:"Technical overview of BOSAL Belgium's flexible fuel tank production line — requiring real understanding of manufacturing systems, materials, and process engineering."},{label:'What made it challenging',text:"Fuel tank production involves fluid dynamics, materials science, and quality control. My Applied Physics background made me the right person."},{label:'My process',text:"Worked from engineering documentation and specs, structured for procurement decision-makers, with technical sections reviewed for accuracy."},{label:'The broader context',text:'This is the kind of technical writing most content writers cannot do — documentation that requires real domain comprehension.'}],results:[{num:'BOSAL',label:'Belgium — industrial'},{num:'RFPs',label:'and process guides'},{num:'Physics-led',label:'comprehension'},{num:'Client-ready',label:'documents'}]},
+  iot_biotech:{tag:'<span class="modal-tag tag-iot">IoT / Hardware</span>',title:'Biosensor testing and documentation for JANUS Biotechnology',company:'Guangdong JANUS Biotechnology Co. Ltd · Remote · 2024',sections:[{label:'The context',text:'JANUS Biotechnology develops sensor-based diagnostic devices. I joined as Project Assistant to support sensor configuration, testing, and documentation — working remotely with an engineering team in Guangdong, China.'},{label:'What I did',text:'Configured and tested biosensor hardware. Documented test results and reported findings to the project lead. Applied my Applied Physics degree in a working hardware environment.'},{label:'Why this matters',text:"I've held a sensor, configured it, documented its failure modes, and reported findings to engineers. When I produce documentation for technical products, that background comes with me."},{label:'The long-term signal',text:'This role opens the door to IoT documentation, robotics SaaS, industrial automation content, and developer tool writing.'}],results:[{num:'MSc',label:'Applied Physics'},{num:'Hardware',label:'sensor config'},{num:'Biotech',label:'industry'},{num:'Cross-TZ',label:'eng team'}]},
+  press_releases:{tag:'<span class="modal-tag tag-press">Press Releases</span>',title:'WordPress plugin launch releases and feature announcements',company:'Objects · 2026',sections:[{label:'The deliverables',text:'Three press releases and two release emails: Post SMTP Pro v1.5.0, Post SMTP v3.8.0 (Sweego mailer), and AIO Login Pro v1.4.0 (WooCommerce + hCAPTCHA).'},{label:'What good plugin press releases require',text:"You need to understand the feature before explaining why it matters. A Microsoft 365 integration isn't a technical upgrade — it's a solution to a problem."},{label:'The release emails',text:'"Protect Your WooCommerce Store from Bots" and the Sweego mailer announcement — concise, benefit-led, technically accurate.'},{label:'The format',text:'Each press release: headline → what is new → why it matters → how to get it. No fluff, no passive voice.'}],results:[{num:'3',label:'press releases'},{num:'2',label:'release emails'},{num:'Dev-reviewed',label:'accuracy'},{num:'WordPress',label:'ecosystem'}]},
+  ghostwriting:{tag:'<span class="modal-tag tag-seo">Ghostwriting</span>',title:'100+ ghostwritten articles driving 85K+ audience growth',company:'Medium (remote ghostwriting) · Oct 2020 – Nov 2024',sections:[{label:'The work',text:"100+ client-commissioned articles across business, technology, lifestyle, real estate, finance, health, and culture — every piece written to the client's tone and optimised for Google."},{label:'The track record',text:'92% on-time delivery rate. 85,000+ audience growth for clients. Consistently achieved high Google rankings through ethical keyword integration.'},{label:'What this discipline built',text:'Writing at volume across 15+ niches trains research instinct, tonal range, and structural fluency.'},{label:'The ghost advantage',text:"The best ghost writing is invisible. Every piece I delivered felt like it came from the client — their voice, their expertise, their authority."}],results:[{num:'100+',label:'articles delivered'},{num:'85K+',label:'audience growth'},{num:'92%',label:'on-time delivery'},{num:'15+',label:'niches covered'}]},
+  finance_writing:{tag:'<span class="modal-tag tag-finance">Finance Content</span>',title:'Long-form investment guides and e-wallet competitive analysis',company:'Finance clients · 2024',sections:[{label:'The work',text:'Investment principles guides, long-term strategy articles, and a comprehensive e-wallet competitive analysis as a PPT deck.'},{label:'The challenge',text:'Financial content requires a higher accuracy standard. Readers are educated, skeptical, and quick to spot shallow research.'},{label:'The e-wallet analysis',text:'Competitive analysis of major e-wallet providers — market positioning, feature comparison, regulatory compliance, and strategic recommendations.'},{label:'The investment articles',text:'"Essential Investing Principles Every Smart Investor Should Know" and "Long-Term Investment Strategies for Maximizing Returns."'}],results:[{num:'Finance',label:'specialist content'},{num:'PPT',label:'competitive deck'},{num:'Research-led',label:'writing'},{num:'Retail+pro',label:'audience range'}]},
+  ebooks:{tag:'<span class="modal-tag tag-saas">Long-Form</span>',title:'7 full ebooks across health, business, and entrepreneurship',company:'Various ghostwriting clients · 2020–2024',sections:[{label:'The scope',text:"Seven complete ebooks: gut health and weight loss, passive income, children's leadership (parts 2 & 3), entrepreneurship, Moissanite jewelry, and a gluten-free cookbook."},{label:'What long-form ghostwriting requires',text:"An ebook has arc, chapter structure, voice consistency across tens of thousands of words, and a reading experience that has to hold together as a product."},{label:'The process',text:"Detailed brief and chapter outline agreed with client, research phase, chapter-by-chapter drafts with revision rounds, delivered formatted for digital distribution."},{label:'The outcome',text:"All ebooks delivered on brief, on time. Several published and sold. The Moissanite guide became marketing collateral. The passive income book was self-published."}],results:[{num:'7',label:'full ebooks'},{num:'Multi-category',label:'range'},{num:'Ghost',label:'voice-matched'},{num:'Published',label:'& sold'}]}
 };
 
 function openModal(key){
   const c=cases[key];
   let h=`${c.tag}<h2>${c.title}</h2><div class="modal-company">${c.company}</div>`;
-  c.sections.forEach(s=>{ h+=`<div class="modal-section"><div class="modal-section-label">${s.label}</div><p>${s.text}</p></div>`; });
+  c.sections.forEach(s=>{h+=`<div class="modal-section"><div class="modal-section-label">${s.label}</div><p>${s.text}</p></div>`;});
   h+=`<div class="modal-results">`;
-  c.results.forEach(r=>{ h+=`<div class="modal-result-item"><div class="r-num">${r.num}</div><div class="r-label">${r.label}</div></div>`; });
+  c.results.forEach(r=>{h+=`<div class="modal-result-item"><div class="r-num">${r.num}</div><div class="r-label">${r.label}</div></div>`;});
   h+=`</div>`;
   document.getElementById('modal-body').innerHTML=h;
   document.getElementById('modal-overlay').classList.add('open');
@@ -1270,31 +1044,30 @@ function closeModal(){
   document.getElementById('modal-overlay').classList.remove('open');
   document.body.style.overflow='';
 }
+
 /* ── MARKETING OVERLAY ── */
 function openMkt(e){
-  if(e) e.preventDefault();
-  const o = document.getElementById('mkt-overlay');
-  o.classList.remove('closing');
-  o.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  buildMktLines();
+  if(e)e.preventDefault();
+  const o=document.getElementById('mkt-overlay');
+  o.classList.remove('closing');o.classList.add('open');
+  document.body.style.overflow='hidden';buildMktLines();
 }
 function closeMkt(){
-  const o = document.getElementById('mkt-overlay');
+  const o=document.getElementById('mkt-overlay');
   o.classList.add('closing');
-  setTimeout(()=>{ o.classList.remove('open','closing'); document.body.style.overflow=''; }, 360);
+  setTimeout(()=>{o.classList.remove('open','closing');document.body.style.overflow='';},360);
 }
 function buildMktLines(){
-  const c = document.getElementById('mkt-lines');
-  if(!c || c.children.length) return;
+  const c=document.getElementById('mkt-lines');
+  if(!c||c.children.length)return;
   for(let i=0;i<18;i++){
-    const s = document.createElement('span');
-    const h = 40 + Math.random()*120;
-    s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;height:${h}px;animation-delay:${Math.random()*5}s;animation-duration:${4+Math.random()*4}s;`;
+    const s=document.createElement('span');
+    const h=40+Math.random()*120;
+    s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;height:${h}px;animation-delay:${Math.random()*5}s;animation-duration:${4+Math.random()*4}s;`;
     c.appendChild(s);
   }
 }
-document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeMkt(); closeModal(); } });
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMkt();closeModal();}});
 </script>
 </body>
 </html>
